@@ -5,19 +5,20 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "community".
+ * This is the model class for table "district".
  *
  * @property integer $id
+ * @property string $big
  * @property string $name
  */
-class Community extends \yii\db\ActiveRecord
+class District extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'community';
+        return 'district';
     }
 
     /**
@@ -26,7 +27,8 @@ class Community extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['big', 'name'], 'required'],
+            [['big'], 'string', 'max' => 8],
             [['name'], 'string', 'max' => 16],
         ];
     }
@@ -38,6 +40,7 @@ class Community extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'big' => '大区',
             'name' => 'Name',
         ];
     }

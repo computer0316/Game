@@ -7,15 +7,13 @@ use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use app\models\Exchange;
-use app\models\Community;
-use app\models\IO;
+use app\models\Equipment;
 use app\models\User;
+use app\models\Picture;
 use yii\helpers\Url;
+use app\models\UploadForm;
 
 class SiteController extends Controller
 {
@@ -31,8 +29,30 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+    public function actionCreate(){
+    	$model = new Equipment();
+    	$upload = new UploadForm();
+    	
+    	if($model->load(yii::$app->request->post()) && $model->save()){
+        	$upload->imageFiles = UploadedFile::getInstances($upload, 'imageFiles');
+            $filepaths = $upload->upload(1312);
 
+            foreach($filepaths as $filepath){
+				$pic = new Picture();
+				$pic->create($model->id, $filepath);
+            }
+    		yii::$app->session->setFlash('message', 'success');
+    	}
+        return $this->render('create', [
+            'model' => $model,
+            'upload'=> $upload,
+        ]);
+    }
 
+/***************************************************
+***************************************************
+***************************************************/
 
 	public function actionList(){
 //    	$userid = Yii::$app->session->get('userid');
