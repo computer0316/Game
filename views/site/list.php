@@ -28,14 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo $e->os . ' ';
 				echo District::findOne($e->district)->big . ' ';
 				echo District::findOne($e->district)->name . ' ';
-				echo $e->type . ' ';
+				echo $e->bind . ' ';
 				echo $e->level . '级 ';
 				echo ($e->sex ==0 ? '女': '男') . ' ';
 				echo School::findOne($e->school)->name . ' ';
 				echo $e->monster . '神兽 ';
 				echo $e->note . $e->note;
 				echo '</td></tr><tr class="last-tr"><td>';
-				echo '价格：￥'. $e->price;
+				echo '<span style="color:red;">￥'. $e->price . '.00</span>';
 				echo "</td></tr>\n";
 			}
 			echo '</table>';

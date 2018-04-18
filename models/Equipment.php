@@ -36,10 +36,10 @@ class Equipment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'os', 'district', 'level', 'type', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
+            [['price', 'category', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
             [['price', 'district', 'level', 'sex', 'school', 'monster', 'discuss'], 'integer'],
             [['updatetime'], 'safe'],
-            [['os', 'type'], 'string', 'max' => 16],
+            [['category', 'os', 'bind'], 'string', 'max' => 16],
             [['note'], 'string', 'max' => 512],
         ];
     }
@@ -51,11 +51,12 @@ class Equipment extends \yii\db\ActiveRecord
     {
         return [
             'id' => '商品编号',
+            'category' => '账号分类',
             'price' => '价格',
             'os' => '平台',
             'district' => '大区',
             'level' => '等级',
-            'type' => '账号类型',
+            'bind' => '账号类型',
             'sex' => '性别',
             'school' => '门派',
             'monster' => '神兽数量',

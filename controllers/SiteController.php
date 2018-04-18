@@ -77,6 +77,21 @@ class SiteController extends Controller
 
 	}
 
+	public function actionTemp(){
+		$e = Equipment::find()->where('length(category)=0')->limit(1)->one();
+		$cate = ["成品号", "金币号", "装备专区", "宠物专区"];
+		ob_start();
+		while($e){
+			$e->category = $cate[rand(0,3)];
+			$e->save();
+			echo $e->category . '<br />';
+			$e = Equipment::find()->where("length(category)=0")->limit(1)->one();
+			
+			ob_flush();
+			flush();
+		}
+	}
+	
 	// 用于添加500个虚拟数据
 	public function actionAddtemp(){
 		echo '<meta charset="utf-8">';
