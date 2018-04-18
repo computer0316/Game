@@ -6,15 +6,16 @@ use Yii;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\helpers\VarDumper;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\Response;
 use app\models\Equipment;
 use app\models\User;
 use app\models\Picture;
-use yii\helpers\Url;
+use app\models\District;
 use app\models\UploadForm;
-
+use app\models\Download;
 class SiteController extends Controller
 {
 
@@ -29,11 +30,11 @@ class SiteController extends Controller
             ],
         ];
     }
-    
+
     public function actionCreate(){
     	$model = new Equipment();
     	$upload = new UploadForm();
-    	
+
     	if($model->load(yii::$app->request->post()) && $model->save()){
         	$upload->imageFiles = UploadedFile::getInstances($upload, 'imageFiles');
             $filepaths = $upload->upload(1312);
@@ -50,27 +51,17 @@ class SiteController extends Controller
         ]);
     }
 
-/***************************************************
-***************************************************
-***************************************************/
-
 	public function actionList(){
-//    	$userid = Yii::$app->session->get('userid');
-//    	if(!isset($userid) && $userid <1){
-//    		//Yii::$app->session->setFlash('message',"请先登录");
-//    		return $this->redirect(Url::toRoute("user/login"));
-//    	}
 
-
-		$query	= Exchange::find();
+		$query	= Equipment::find();
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
-		$pagination->pageSize = 18;
-		$exchanges	= $query->offset($pagination->offset)
+		$pagination->pageSize = 15;
+		$equipments	= $query->offset($pagination->offset)
 					->limit($pagination->limit)
 					->all();
 		return $this->render('list', [
-					'exchanges'		=> $exchanges,
+					'equipments'		=> $equipments,
 					'pagination'	=> $pagination,
 					]);
 	}
@@ -85,6 +76,43 @@ class SiteController extends Controller
 		}
 
 	}
+
+	// 用于添加500个虚拟数据
+	public function actionAddtemp(){
+		echo '<meta charset="utf-8">';
+		die();
+		$type = ['手机账号', '签合同账号', '无绑定账号', '有绑定账号'];
+		$os  = ['苹果专区', '安卓官服', '苹果安卓互通区'];
+		for($i=0;$i<500;$i++){
+			$e = new Equipment();
+			$e->price	= rand(2500, 48000);
+			$e->os		= $os[rand(0,2)];
+			$e->district= rand(1,162);
+			$e->level	= rand(0,109);
+			$e->type	= $type[rand(0,3)];
+			$e->sex		= rand(0,1);
+			$e->school	= rand(1,9);
+			$e->monster	= rand(1,100);
+			$e->discuss	= rand(0,1);
+			$e->note	= "&nbsp;";
+			$e->updatetime= date("Y-m-d H:i:s", time());
+			if($e->save()){
+				echo District::findOne($e->district)->name . '<br />';
+			}
+			else{
+				var_dump($e);
+				die();
+			}
+
+		}
+	}
+
+/***************************************************
+***************************************************
+***************************************************/
+
+
+
     /**
      * Displays homepage.
      *

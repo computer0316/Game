@@ -6,6 +6,8 @@
 	use yii\widgets\LinkPager;
 	use app\models\User;
 	use app\models\Community;
+	use app\models\District;
+	use app\models\School;
 
 $this->title = '列表';
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,21 +16,26 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
     <div>
 	<?php
-		if(!$exchanges){
-			echo '还没有房屋交换信息';
+		if(!$equipments){
+			echo '还没有任何信息';
 		}
 		else{
-			echo '<table class="sp-grid-import">';
-			echo '<tr><td>时间</td><td>姓名</td><td>电话</td><td>现居小区</td><td>目标小区</td></tr>';
-			foreach($exchanges as $exchange){
-				echo '<tr>';
-				echo '<td>' . substr($exchange->updatetime,0,10) . '</td>';
-				echo '<td>' . User::findOne($exchange->userid)->name . '</td>';
-				echo '<td>' . User::findOne($exchange->userid)->mobile . '</td>';
-				echo '<td>' . Community::find()->where(['id' => User::findOne($exchange->userid)->communityid])->one()->name . '</td>';
-				echo '<td>' . Community::findOne($exchange->target_communityid)->name . '</td>';
-
-				echo '</tr>';
+			echo "<table class='list'>\n";
+			foreach($equipments as $e){
+				echo '<tr><td>';
+				echo '(' . $e->id . ')';
+				echo ($e->discuss=="0" ? '不议价' : '可议价') . ' ';
+				echo $e->os . ' ';
+				echo District::findOne($e->district)->big . ' ';
+				echo District::findOne($e->district)->name . ' ';
+				echo $e->type . ' ';
+				echo $e->level . '级 ';
+				echo ($e->sex ==0 ? '女': '男') . ' ';
+				echo School::findOne($e->school)->name . ' ';
+				echo $e->monster . '神兽 ';
+				echo '</td></tr><tr class="last-tr"><td>';
+				echo '价格：￥'. $e->price;
+				echo "</td></tr>\n";
 			}
 			echo '</table>';
 			echo LinkPager::widget(['pagination' => $pagination,]);

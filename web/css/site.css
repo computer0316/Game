@@ -1,6 +1,7 @@
-		body{font-family: helvetica neue,tahoma,arial,hiragino sans gb,microsoft yahei,sans-serif; font-size: 1.4rem; color:#333;background: #f7f7f7;}
+		html{background: #f7f7f7;}
+		body{font-family: helvetica neue,tahoma,arial,hiragino sans gb,microsoft yahei,sans-serif; font-size: 1.4rem; color:#333;}
 		body, button, input, optgroup, select, textarea, h1, h2, h3, h4, h5, h6, p, figure, form, blockquote, ul, ol, li, dl, dd{margin:0;padding:0}
-		html,body{position:relative; min-height:100%; min-width: 320px;max-width: 760px;margin: 0 auto;}
+		body{position:relative; min-height:100%; min-width: 320px;max-width: 760px;margin: 0 auto;}
 		article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary{display: block;}
 		input[type="button"], input[type="submit"], input[type="reset"]{-webkit-appearance:none;}
 		img{vertical-align:middle; max-width:100%; border:0;}
@@ -15,68 +16,76 @@
 		.clear{clear:both; height:0; overflow:hidden;}
 		.clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden;}
 
+		.header{
+			height:80px;
+			background:#e7e7e7;
+		}
 		.container{
-			border:1px solid blue;
-			border-radius:15px;
-			height:350px;
 			overflow:hidden;
 		}
+		.list{
+			font-size:0.8rem;
+		}
+		.last-tr{
+			border-bottom:1px solid #e7f7f7;
+			padding-bottom:15px;
+		}
 /*************  form   *************/
-.l10 input{width:10px;}
-.l12 input{width:20px;}
-.l30 input{width:30px;}
-.l40 input{width:40px;}
-.l50 input{width:50px;}
-.l80 input{width:80px;}
-.l100 input{width:100px;}
-.l120 input{width:120px;}
-.l150 input{width:150px;}
-.l180 input{width:180px;}
-.l240 input{width:240px;}
-.l300 input{width:300px;}
-.l360 input{width:360px;}
+		.l10 input{width:10px;}
+		.l12 input{width:20px;}
+		.l30 input{width:30px;}
+		.l40 input{width:40px;}
+		.l50 input{width:50px;}
+		.l80 input{width:80px;}
+		.l100 input{width:100px;}
+		.l120 input{width:120px;}
+		.l150 input{width:150px;}
+		.l180 input{width:180px;}
+		.l240 input{width:240px;}
+		.l300 input{width:300px;}
+		.l360 input{width:360px;}
 
-.form-group{
-	float:left;
-	clear:both;
-	height:65px;
-}
-.form-group label{
-	float:left;
-	width:150px;
-	text-align:right;
-	font-size:14px;
-	margin-right:20px;
-	line-height:35px;
-}
-.form-group .help-block{
-	margin-left:110px;
-	font-size:12px;
-	color:red;
-}
-.button-group{
-	padding-left:150px;
-}
+		.form-group{
+			float:left;
+			clear:both;
+			height:65px;
+		}
+		.form-group label{
+			float:left;
+			width:150px;
+			text-align:right;
+			font-size:14px;
+			margin-right:20px;
+			line-height:35px;
+		}
+		.form-group .help-block{
+			margin-left:110px;
+			font-size:12px;
+			color:red;
+		}
+		.button-group{
+			padding-left:150px;
+		}
 
-select,input{
-	border:1px solid #D3D2D1;
-	height:35px;
-	padding-left:5px;
-}
+		select,input{
+			border:1px solid #D3D2D1;
+			height:35px;
+			padding-left:5px;
+		}
 
-.in-line{
-	float:left;
-}
-.in-line label{
-	font-size:14px;
-	margin-left:15px;
-	line-height:35px;
-}
-.in-line .help-block{
-	margin-left:10px;
-	font-size:12px;
-	color:red;	
-}
-input[type="file"]{
-	border:none;
+		.in-line{
+			float:left;
+		}
+		.in-line label{
+			font-size:14px;
+			margin-left:15px;
+			line-height:35px;
+		}
+		.in-line .help-block{
+			margin-left:10px;
+			font-size:12px;
+			color:red;
+		}
+		input[type="file"]{
+			border:none;
 }
