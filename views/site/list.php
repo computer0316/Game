@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo ($e->sex ==0 ? '女': '男') . ' ';
 				echo School::findOne($e->school)->name . ' ';
 				echo $e->monster . '神兽 ';
+				echo $e->note . $e->note;
 				echo '</td></tr><tr class="last-tr"><td>';
 				echo '价格：￥'. $e->price;
 				echo "</td></tr>\n";
