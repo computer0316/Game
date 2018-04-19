@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 	use yii\helpers\Html;
+	use yii\helpers\Url;
 	use yii\widgets\LinkPager;
 	use app\models\User;
 	use app\models\Community;
@@ -22,21 +23,37 @@ $this->params['breadcrumbs'][] = $this->title;
 		else{
 			echo "<table class='list'>\n";
 			foreach($equipments as $e){
-				echo '<tr><td>';
-				echo '(' . $e->id . ')';
-				echo ($e->discuss=="0" ? '不议价' : '可议价') . ' ';
-				echo $e->os . ' ';
-				echo District::findOne($e->district)->big . ' ';
-				echo District::findOne($e->district)->name . ' ';
-				echo $e->bind . ' ';
-				echo $e->level . '级 ';
-				echo ($e->sex ==0 ? '女': '男') . ' ';
-				echo School::findOne($e->school)->name . ' ';
-				echo $e->monster . '神兽 ';
-				echo $e->note . $e->note;
-				echo '</td></tr><tr class="last-tr"><td>';
-				echo '<span style="color:red;">￥'. $e->price . '.00</span>';
-				echo "</td></tr>\n";
+				echo '<tr>';
+					echo '<td>';
+					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
+					echo '(' . $e->id . ')';
+					echo ($e->discuss=="0" ? '不议价' : '可议价') . ' ';
+					echo $e->os . ' ';
+					echo District::findOne($e->district)->big . ' ';
+					echo District::findOne($e->district)->name . ' ';
+					echo $e->bind . ' ';
+					echo $e->level . '级 ';
+					echo ($e->sex ==0 ? '女': '男') . ' ';
+					echo School::findOne($e->school)->name . ' ';
+					echo $e->monster . '神兽 ';
+					echo $e->note . $e->note;
+					echo '</a>';
+					echo '</td>';
+				echo '</tr>';
+				echo '<tr>';
+					echo '<td style="color:chocolate;">';
+						echo $e->os . '|';
+						echo District::findOne($e->district)->big . '|';
+						echo District::findOne($e->district)->name . '|';
+						echo School::findOne($e->school)->name . '|';
+						echo $e->bind;
+					echo '</td>';
+				echo '</tr>';
+				echo '<tr class="last-tr">';
+					echo '<td>';
+					echo '<span style="color:red;">￥'. $e->price . '.00</span>';
+					echo "</td>";
+				echo "</tr>\n";
 			}
 			echo '</table>';
 			echo LinkPager::widget(['pagination' => $pagination,]);

@@ -12,22 +12,57 @@
 		input:-ms-input-placeholder{ color: #999;opacity:1; }
 		input::-webkit-input-placeholder{ color: #999;opacity:1; }
 		table,tr,td{border:0px solid;border-collapse:collapse;}
+		a{text-decoration:none;color:black;}
+
 		.header{
 			height:80px;
 			background:#e7e7e7;
 		}
 		.container{
 			overflow:hidden;
+			font-size:0.9rem;
+		}
+		.container div{
+			float:left;
+			width:100%;
 		}
 		.list{
 			font-size:0.9rem;
 		}
 		td{
-			padding:5px;
+			padding:5px 10px;
 		}
 		.last-tr{
 			border-bottom:1px solid #c7c7c7;
 			padding-bottom:15px;
+		}
+		.title-div{
+			width:1rem;
+			border:1px solid chocolate;
+			border-radius:10px;
+			text-align:center;
+			margin:15px 0px;
+			padding:5px 0;
+		}
+		.brief-div{
+			margin-top:5px;
+		}
+		.item-div{
+			border-top:10px solid #f7f7f7;
+		}
+		.item-div p{
+			height:20px;
+			float:left;
+			margin-top:10px;
+			padding-left:10px;
+
+		}
+		.label{
+			width:14%;
+			color:chocolate;
+		}
+		.item{
+			width:30%;
 		}
 /*************  form   *************/
 		.l10 input{width:10px;}
