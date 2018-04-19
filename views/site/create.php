@@ -15,9 +15,10 @@ use app\models\School;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'price') ?>
-        <?= $form->field($model, 'os')->dropDownList(['1'=>'苹果专区','2'=>'安卓官服','3'=>'苹果安卓互通区'], ['style'=>'width:120px']) ?> 
+        <?= $form->field($model, 'category')->dropDownList(['成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区'], ['style'=>'width:120px']) ?>
+        <?= $form->field($model, 'os')->dropDownList(['苹果专区' => '苹果专区', '安卓官服' => '安卓官服', '苹果安卓互通区' => '苹果安卓互通区'], ['style'=>'width:120px']) ?> 
         <?= $form->field($model, 'district')->dropDownList(District::find()->select(["concat(big, ' ', name) as district", 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'type')->dropDownList(['1'=>'手机账号','2'=>'签合同账号','3'=>'无绑定账号','4'=>'有绑定账号'], ['style'=>'width:120px']) ?>
+        <?= $form->field($model, 'bind')->dropDownList(['手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'school')->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'sex')->dropDownList(['1'=>'男','0'=>'女'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'discuss')->dropDownList(['1'=>'能','0'=>'否'], ['style'=>'width:120px']) ?>
@@ -27,8 +28,8 @@ use app\models\School;
         <?= $form->field($model, 'updatetime')->textInput(['value' => date("Y-m-d H:i:s", time())]) ?>
         <?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*'])->label('上传图片') ?>
     
-        <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        <div class="button-group">
+            <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

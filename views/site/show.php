@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\District;
 use app\models\School;
+use app\models\Picture;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipment */
@@ -37,5 +38,15 @@ use app\models\School;
 	?>
 	<div class="title-div" style="width:99%;">
 		详情介绍
+	</div>
+	<div class="img-div">
+		<?php
+			$pics = Picture::find()->where(['equipmentid' => $e->id])->all();
+			if($pics){
+				foreach($pics as $pic){
+					echo '<img src="' . $pic->path . '" />';
+				}
+			}
+		?>
 	</div>
 </div>

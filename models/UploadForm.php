@@ -21,7 +21,7 @@ class UploadForm extends Model
             [
             	['imageFiles'], 
             	'file', 
-            	'skipOnEmpty' => false, 
+            	'skipOnEmpty' => true, 
             	'extensions' => 'png, jpg', 
             	'maxFiles' => 10,
             ],

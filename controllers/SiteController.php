@@ -51,7 +51,7 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionIndex(){
+	public function actionList(){
 
 		$query	= Equipment::find();
 		$count	= $query->count();
@@ -59,6 +59,7 @@ class SiteController extends Controller
 		$pagination->pageSize = 15;
 		$equipments	= $query->offset($pagination->offset)
 					->limit($pagination->limit)
+					->orderBy('id desc')
 					->all();
 		return $this->render('list', [
 					'equipments'		=> $equipments,
@@ -75,7 +76,10 @@ class SiteController extends Controller
 		}
 	}
 
-
+	public function actionIndex(){
+		return $this->render('index');	
+	}
+	
 	// 用于添加500个虚拟数据
 	public function actionAddtemp(){
 		die('用于填充虚拟数据');

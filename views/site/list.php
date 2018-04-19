@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td style="color:chocolate;">';
+					echo '<td style="color:orangered;">';
 						echo $e->os . '|';
 						echo District::findOne($e->district)->big . '|';
 						echo District::findOne($e->district)->name . '|';

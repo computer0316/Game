@@ -30,14 +30,23 @@ use yii\helpers\VarDumper;
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="header">
-	专业代练
-</div>
-<div class="container">
-	<?= $content ?>
+	壹折手游交易平台
 </div>
 
+<?= $content ?>
+<div class="container box">
+	<a href="?r=site/index">首页</a>
+	<a href="?r=site/list">列表</a>
+	<a href="?r=site/create">添加账号</a>
+</div>
+
+<div class="container footer">
+	<p>首页</p>
+	<p>分类</p>
+	<p>客服</p>
+	<p>说明</p>
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>
