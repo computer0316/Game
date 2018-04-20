@@ -35,13 +35,13 @@ use yii\helpers\VarDumper;
 </div>
 
 <?= $content ?>
-<div class="container box">
+<div class="w96-container box">
 	<a href="?r=site/index">首页</a>
 	<a href="?r=site/list">列表</a>
 	<a href="?r=site/create">添加账号</a>
 </div>
 
-<div class="container footer">
+<div class="full-container footer">
 	<p>首页</p>
 	<p>分类</p>
 	<p>客服</p>

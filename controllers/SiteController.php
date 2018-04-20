@@ -51,9 +51,20 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionList(){
-
-		$query	= Equipment::find();
+	public function actionList($level){
+		$condition = "";
+		switch($level){
+			case -3:
+				$condition .= ' level>=0 and level <= 69';
+				break;
+			case -2:
+				$condition .= ' level>=70 and level <= 89';
+				break;
+			case -1:
+				$condition .= ' level>=90 and level <= 109';
+				break;
+		}
+		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
 		$pagination->pageSize = 15;
