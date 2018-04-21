@@ -51,19 +51,11 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionList($level){
+	public function actionList($level = '', $category = '', $school = ''){
 		$condition = "";
-		switch($level){
-			case -3:
-				$condition .= ' level>=0 and level <= 69';
-				break;
-			case -2:
-				$condition .= ' level>=70 and level <= 89';
-				break;
-			case -1:
-				$condition .= ' level>=90 and level <= 109';
-				break;
-		}
+		$condition = $this->joinCondition($condition, $this->level($level));
+		$condition = $this->joinCondition($condition, $this->category($category));
+		$condition = $this->joinCondition($condition, $this->school($school));
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -77,6 +69,81 @@ class SiteController extends Controller
 					'pagination'	=> $pagination,
 					]);
 	}
+		private function school($school){
+			switch($school){
+				case '大唐官府':
+					return "school = 1";
+					break;
+				case '方寸山':
+					return "school = 2";
+					break;
+				case '狮驼岭':
+					return "school = 3";
+					break;
+				case '普陀山':
+					return "school = 4";
+					break;
+				case '龙宫':
+					return "school = 5";
+					break;
+				case '阴曹地府':
+					return "school = 6";
+					break;
+				case '魔王寨':
+					return "school = 7";
+					break;
+				case '化生寺':
+					return "school = 8";
+					break;
+				case '月宫':
+					return "school = 9";
+					break;
+				case '物理':
+					return "school in (1,3,9)";
+					break;
+				case '法系':
+					return "school in (5,7)";
+					break;
+			}
+		}
+		private function category($category){
+			switch($category){
+				case '成品号':
+					return "category='成品号'";
+					break;
+				case '金币号':
+					return "category='金币号'";
+					break;
+				case '装备专区':
+					return "category='装备专区'";
+					break;
+				case '宠物专区':
+					return "category='宠物专区'";
+					break;
+			}
+		}
+		private function level($level){
+			switch($level){
+				case -3:
+					return 'level>=0 and level <= 69';
+					break;
+				case -2:
+					return 'level>=70 and level <= 89';
+					break;
+				case -1:
+					return 'level>=90 and level <= 109';
+					break;
+			}
+		}
+		
+		private function joinCondition($old, $new){
+			if($old <> '' && $new <> ''){
+				return $old . ' and ' . $new;
+			}
+			else{
+				return $new;
+			}
+		}
 
 	public function actionShow($id = 0){
 		if($id>0){
