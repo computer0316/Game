@@ -13,6 +13,25 @@
 $this->title = '列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+	
+		.list{
+			font-size:0.9rem;			
+		}
+		.list, .list tr, .list td{
+			border:0px;
+		}
+		td{
+			padding:5px 10px;
+		}
+		.last-tr td{
+			border-bottom:1px solid orangered;
+			padding-bottom:15px;
+		}
+		.orange{
+			color:orangered;
+		}
+</style>
 
 <div class="site-about">
     <div>
@@ -41,17 +60,17 @@ $this->params['breadcrumbs'][] = $this->title;
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td style="color:orangered;">';
-						echo $e->os . '|';
-						echo District::findOne($e->district)->big . '|';
-						echo District::findOne($e->district)->name . '|';
-						echo School::findOne($e->school)->name . '|';
+					echo '<td class="orange">';
+						echo $e->os . ' | ';
+						echo District::findOne($e->district)->big . ' | ';
+						echo District::findOne($e->district)->name . ' | ';
+						echo School::findOne($e->school)->name . ' | ';
 						echo $e->bind;
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr class="last-tr">';
 					echo '<td>';
-					echo '<span style="color:red;">￥'. $e->price . '.00</span>';
+					echo '<span class="orange">￥'. $e->price . '.00</span>';
 					echo "</td>";
 				echo "</tr>\n";
 			}

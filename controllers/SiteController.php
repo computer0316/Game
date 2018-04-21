@@ -43,7 +43,8 @@ class SiteController extends Controller
 				$pic = new Picture();
 				$pic->create($model->id, $filepath);
             }
-    		yii::$app->session->setFlash('message', 'success');
+            return $this->redirect(Url::toRoute(['site/show', 'id' => $model->id]));
+    		//yii::$app->session->setFlash('message', 'success');
     	}
         return $this->render('create', [
             'model' => $model,

@@ -28,44 +28,6 @@
 		}
 
 
-		.list{
-			font-size:0.9rem;
-		}
-		td{
-			padding:5px 10px;
-		}
-		.last-tr{
-			border-bottom:1px solid #c7c7c7;
-			padding-bottom:15px;
-		}
-		.title-div{
-			width:1rem;
-			border:1px solid orangered;
-			border-radius:10px;
-			text-align:center;
-			margin:15px 0px;
-			padding:5px 0;
-		}
-		.brief-div{
-			margin-top:5px;
-		}
-		.item-div{
-			border-top:10px solid #f7f7f7;
-		}
-		.item-div p{
-			height:20px;
-			float:left;
-			margin-top:10px;
-			padding-left:10px;
-
-		}
-		.label{
-			width:14%;
-			color:orangered;
-		}
-		.item{
-			width:30%;
-		}
 		
 		.school{
 			float:left;
