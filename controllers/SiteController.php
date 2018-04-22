@@ -52,11 +52,13 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionList($level = '', $category = '', $school = ''){
+	public function actionList($os= '', $level = '', $category = '', $school = ''){
 		$condition = "";
+		$condition = $this->joinCondition($condition, $this->os($os));
 		$condition = $this->joinCondition($condition, $this->level($level));
 		$condition = $this->joinCondition($condition, $this->category($category));
 		$condition = $this->joinCondition($condition, $this->school($school));
+
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -66,10 +68,27 @@ class SiteController extends Controller
 					->orderBy('id desc')
 					->all();
 		return $this->render('list', [
-					'equipments'		=> $equipments,
+					'equipments'	=> $equipments,
+					'condition'		=> $condition,
 					'pagination'	=> $pagination,
 					]);
 	}
+		private function os($os){
+			switch($os){
+				case '苹果专区':
+					return "os = '苹果专区'";
+					break;
+				case '安卓官服':
+					return "os = '安卓官服'";
+					break;
+				case '苹果安卓互通区':
+					return "os = '苹果安卓互通区'";
+					break;
+				default:
+					return $os;
+					break;
+			}
+		}
 		private function school($school){
 			switch($school){
 				case '大唐官府':
@@ -136,12 +155,15 @@ class SiteController extends Controller
 					break;
 			}
 		}
-		
+
 		private function joinCondition($old, $new){
 			if($old <> '' && $new <> ''){
 				return $old . ' and ' . $new;
 			}
-			else{
+			if($old <> ''){
+				return $old;
+			}
+			if($new <> ''){
 				return $new;
 			}
 		}
@@ -156,9 +178,9 @@ class SiteController extends Controller
 	}
 
 	public function actionIndex(){
-		return $this->render('index');	
+		return $this->render('index');
 	}
-	
+
 	// 用于添加500个虚拟数据
 	public function actionAddtemp(){
 		die('用于填充虚拟数据');

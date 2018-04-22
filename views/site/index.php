@@ -8,18 +8,16 @@ $this->title = 'My Yii Application';
 ?>
 <link rel="stylesheet" href="css/responsiveslides.css">
 
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="js/responsiveslides.min.js"></script>
 <script type="text/javascript">
 $(function () {
-	// Slideshow 
+	// Slideshow
 	$("#slider").responsiveSlides({
 		auto: true,
 		pager: false,
 		nav: true,
 		speed: 500,
 		timeout:4000,
-		pager: true, 
+		pager: true,
 		pauseControls: true,
 		namespace: "callbacks"
 	});
