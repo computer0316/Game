@@ -30,6 +30,63 @@ class SiteController extends Controller
             ],
         ];
     }
+    public function actionAbc(){
+    	echo '<meta charset="utf-8">';
+    	$dist = District::find()->where('id<500')->all();
+    	foreach($dist as $d){
+    		switch($d->big){
+    			case '一区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"1\">" . $d->name . '</li></a>';
+    				break;
+    			case '二区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"2\">" . $d->name . '</li></a>';
+    				break;
+    			case '三区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"3\">" . $d->name . '</li></a>';
+    				break;
+    			case '四区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"4\">" . $d->name . '</li></a>';
+    				break;
+    			case '五区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"5\">" . $d->name . '</li></a>';
+    				break;
+    			case '六区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"6\">" . $d->name . '</li></a>';
+    				break;
+    			case '七区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"7\">" . $d->name . '</li></a>';
+    				break;
+    			case '八区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"8\">" . $d->name . '</li></a>';
+    				break;
+    			case '九区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"9\">" . $d->name . '</li></a>';
+    				break;
+    			case '十区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"10\">" . $d->name . '</li></a>';
+    				break;
+    			case '十一区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"11\">" . $d->name . '</li></a>';
+    				break;
+    			case '十二区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"12\">" . $d->name . '</li></a>';
+    				break;
+    			case '十三区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"13\">" . $d->name . '</li></a>';
+    				break;
+    			case '十四区':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"14\">" . $d->name . '</li></a>';
+    				break;
+    			case '双平台':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"15\">" . $d->name . '</li></a>';
+    				break;
+    			case '安卓混服':
+    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"16\">" . $d->name . '</li></a>';
+    				break;
+    		}
+
+    	}
+    }
 
     public function actionCreate(){
     	$model = new Equipment();
@@ -52,9 +109,10 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionList($os= '', $level = '', $category = '', $school = ''){
+	public function actionList($os= '', $district ='', $level = '', $category = '', $school = ''){
 		$condition = "";
 		$condition = $this->joinCondition($condition, $this->os($os));
+		$condition = $this->joinCondition($condition, $this->district($district));
 		$condition = $this->joinCondition($condition, $this->level($level));
 		$condition = $this->joinCondition($condition, $this->category($category));
 		$condition = $this->joinCondition($condition, $this->school($school));
@@ -88,6 +146,9 @@ class SiteController extends Controller
 					return $os;
 					break;
 			}
+		}
+		private function district($district){
+			return 'district = ' . $district;
 		}
 		private function school($school){
 			switch($school){
