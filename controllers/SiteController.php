@@ -117,6 +117,18 @@ class SiteController extends Controller
 		$condition = $this->joinCondition($condition, $this->category($category));
 		$condition = $this->joinCondition($condition, $this->school($school));
 
+		$model = new Equipment(['scenario' => 'seek']);
+		if($model->load(Yii::$app->request->post())){
+			$condition = $this->joinCondition($condition, $this->bind($model->bind));
+			$condition = $this->joinCondition($condition, $this->sex($model->sex));
+			$condition = $this->joinCondition($condition, $this->discuss($model->discuss));
+			$condition = $this->joinCondition($condition, $this->category($model->category));
+			$condition = $this->joinCondition($condition, $this->school($model->school));
+			$condition = $this->joinCondition($condition, $this->price($model->price));
+			$condition = $this->joinCondition($condition, $this->level($model->level));
+			$condition = $this->joinCondition($condition, $this->monster($model->monster));
+		}
+
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -129,8 +141,36 @@ class SiteController extends Controller
 					'equipments'	=> $equipments,
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,
+					'model'			=> $model,
 					]);
 	}
+		private function bind($bind){
+			switch($bind){
+				case '手机账号':
+					return "bind = '手机账号'";
+					break;
+				case '签合同账号':
+					return "bind = '签合同账号'";
+					break;
+				case '找回包赔账号':
+					return "bind = '找回包赔账号'";
+					break;
+				case '三无账号':
+					return "bind = '三无账号'";
+					break;
+			}
+		}
+		private function sex($sex){
+			
+		}
+		private function discuss($discuss){
+			
+		}
+		private function price($price){
+		}
+		private function monster($monster){
+			
+		}
 		private function os($os){
 			switch($os){
 				case '苹果专区':
@@ -148,7 +188,9 @@ class SiteController extends Controller
 			}
 		}
 		private function district($district){
-			return 'district = ' . $district;
+			if($district){
+				return 'district = ' . $district;
+			}
 		}
 		private function school($school){
 			switch($school){

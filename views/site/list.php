@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 	use yii\helpers\Html;
+	use yii\widgets\ActiveForm;
 	use yii\helpers\Url;
 	use yii\widgets\LinkPager;
 	use app\models\User;
@@ -63,6 +64,11 @@ $this->params['breadcrumbs'][] = $this->title;
         	margin-left:5%;
         	text-align:center;
         }
+        .price-arrow{
+        	float:left;
+        	height:10px;
+        	
+        }
         .two-box{
 			float:left;
 			width:45%;
@@ -107,25 +113,98 @@ $this->params['breadcrumbs'][] = $this->title;
         	text-align:center;
         	line-height:28px;
         }
+        #filter-div3{
+        	padding-top:10px;
+        }
+/*************  form   *************/
+		.l10 input{width:10px;}
+		.l12 input{width:20px;}
+		.l30 input{width:30px;}
+		.l40 input{width:40px;}
+		.l50 input{width:50px;}
+		.l80 input{width:80px;}
+		.l100 input{width:100px;}
+		.l120 input{width:120px;}
+		.l150 input{width:150px;}
+		.l180 input{width:180px;}
+		.l240 input{width:240px;}
+		.l300 input{width:300px;}
+		.l360 input{width:360px;}
+
+		.form-group{
+			float:left;
+			clear:both;
+			height:65px;
+		}
+		.form-group label{
+			float:left;
+			width:150px;
+			text-align:right;
+			font-size:14px;
+			margin-right:20px;
+			line-height:35px;
+		}
+		.form-group .help-block{
+			margin-left:110px;
+			font-size:12px;
+			color:red;
+		}
+		.button-group{
+			float:left;
+			clear:both;
+			width:100%;
+			text-align:center;
+			margin:25px 0;
+		}
+
+		select,input{
+			border:1px solid orangered;
+			height:35px;
+			padding-left:5px;
+		}
+
+		.in-line{
+			float:left;
+		}
+		.in-line label{
+			font-size:14px;
+			margin-left:15px;
+			line-height:35px;
+		}
+		.in-line .help-block{
+			margin-left:10px;
+			font-size:12px;
+			color:red;
+		}
+		input[type="file"]{
+			border:none;
+		}
+		button{
+			width:20%;
+			height:35px;
+			border-radius:10px;
+			border:1px solid #d7d7d7;
+			background-color:#d7d7d7;
+		}
     </style> 
 <div class="site-about">
 	<div id="menu">
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
 		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
 		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
-		<p id="p4" onclick="showMask()">价格↕</p>
+		<p id="p4" onclick="showMask()">价格</p>
 	</div>
 	<div id="filter-div1" class="filter-div">
-		<a href="<?=Url::toRoute(['site/list', 'os' => '苹果专区'])?>">
+		<a href="<?=Url::current(['os' => '苹果专区'])?>">
 			<div class="two-box"><img src="images/apple.png" /> <p>苹果专区</p></div>
 		</a>
-		<a href="<?=Url::toRoute(['site/list', 'os' => '安卓官服'])?>">
+		<a href="<?=Url::current(['os' => '安卓官服'])?>">
 			<div class="two-box"><img src="images/android.png" /> <p>安卓官服</p></div>
 		</a>
-		<a href="<?=Url::toRoute(['site/list', 'os' => '苹果安卓互通区'])?>">
+		<a href="<?=Url::current(['os' => '苹果安卓互通区'])?>">
 			<div class="two-box"><img src="images/apple.png" /> <img src="images/android.png" /> <p>苹果安卓互通区</p></div>
 		</a>
-		<a href="<?=Url::toRoute('site/list')?>"><div class="two-box"><p>全部</p></div></a>
+		<a href="<?=Url::current(['os' => null])?>"><div class="two-box"><p>全部</p></div></a>
 	</div>
 	<div id="filter-div2" class="filter-div">
 		<ul class="ul1">
@@ -313,6 +392,23 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div class="cb"></div>
 		</ul>
 	</div>
+	<div id="filter-div3" class="filter-div">
+		
+		<?php $form = ActiveForm::begin(); ?>
+		<?= $form->field($model, 'bind')->dropDownList(['手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>        
+        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['1'=>'男','0'=>'女']) ?>
+        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['1'=>'能','0'=>'否']) ?>
+        <?= $form->field($model, 'category')->dropDownList(['成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区']) ?>
+        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'price') ?>
+        <?= $form->field($model, 'level', ['options' => ['class' => 'in-line']]) ?>
+        <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>        
+        <div class="button-group">
+        	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('确认', ['class' => 'btn btn-primary']) ?>
+        </div>
+	    <?php ActiveForm::end(); ?>
+	</div>
 	<div id="mask" class="mask" onclick="hideMask()"></div>
 
 <?php
@@ -362,6 +458,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 </div>
 <script type="text/javascript">
+	// 根据左侧选择的大区，调出右边大区对应的服务器
 	$(document).ready(function(){
 		$(".ul1 li").click(function(){
 			var num = $(this).attr("data-type");
@@ -376,14 +473,20 @@ $this->params['breadcrumbs'][] = $this->title;
 	/* 筛选菜单遮罩 */
 	function showMask1() {
         $("#filter-div1").css('display', 'block');
+        $("#filter-div2").css('display', 'none');
+        $("#filter-div3").css('display', 'none');
         show();
 	}
 	function showMask2() {
 	    $("#filter-div2").css('display', 'block');
+	    $("#filter-div1").css('display', 'none');
+	    $("#filter-div3").css('display', 'none');
         show();
 	}
 	function showMask3() {
 	    $("#filter-div3").css('display', 'block');
+	    $("#filter-div1").css('display', 'none');
+	    $("#filter-div2").css('display', 'none');
         show();
 	}
 	function show(){

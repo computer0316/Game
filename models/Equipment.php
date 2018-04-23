@@ -36,13 +36,21 @@ class Equipment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'category', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
+            [['price', 'category', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required', 'on' => 'create'],
             [['price', 'district', 'level', 'sex', 'school', 'monster', 'discuss'], 'integer'],
             [['updatetime'], 'safe'],
             [['category', 'os', 'bind'], 'string', 'max' => 16],
             [['note'], 'string', 'max' => 512],
         ];
     }
+
+	public function scenarios()
+	{
+	    return [
+	        'seek' => ['price', 'category', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 
+	        'create' => ['price', 'category', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'],
+	    ];
+	}
 
     /**
      * @inheritdoc
