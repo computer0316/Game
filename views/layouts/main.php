@@ -36,19 +36,24 @@ use yii\helpers\VarDumper;
 <div class="header">
 	壹折手游交易平台
 </div>
-
 <?= $content ?>
-<div class="w96-container box">
-	<a href="?r=site/index">首页</a>
-	<a href="?r=site/list">列表</a>
-	<a href="?r=site/create">添加账号</a>
-</div>
-
-<div class="full-container footer">
-	<p>首页</p>
-	<p>分类</p>
-	<p>客服</p>
-	<p>说明</p>
+<div class="footer-div">
+	<div>
+		<img id="abc" class="footerimg" src="images/shou.png" />		
+		<p>首页</p>
+	</div>
+	<div>
+		<img class="footerimg" src="images/fen.png" />
+		<p>分类</p>
+	</div>
+	<div>
+		<img class="footerimg" src="images/ke.png" />
+		<p>客服</p>
+	</div>
+	<div>
+		<img class="footerimg" src="images/shuo.png" />
+		<p>说明</p>
+	</div>
 </div>
 <?php $this->endBody() ?>
 </body>

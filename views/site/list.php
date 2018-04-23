@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
 		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
 		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
-		<p id="p4" onclick="showMask()">价格</p>
+		<p id="p4" onclick="showMask()">价格<img src="images/ad.png" /></p>
 	</div>
 	<div id="filter-div1" class="filter-div">
 		<a href="<?=Url::current(['os' => '苹果专区'])?>">
@@ -208,7 +208,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div id="filter-div2" class="filter-div">
 		<ul class="ul1">
-	    	<li class="now">全部</li>
+	    	<li data-type="-1">不限</li>
 			<li data-type="1">一区</li>
 			<li data-type="2">二区</li>
 			<li data-type="3">三区</li>
@@ -389,20 +389,24 @@ $this->params['breadcrumbs'][] = $this->title;
 			<a href="<?=Url::current(['district' => 160])?>"><li data-type="15">雪之歌</li></a>
 			<a href="<?=Url::current(['district' => 161])?>"><li data-type="15">琉璃城</li></a>
 			<a href="<?=Url::current(['district' => 162])?>"><li data-type="16">安卓混服</li></a>
+			<a href="<?=Url::current(['district' => -1])?>"><li data-type="-1">不限</li></li></a>
 			<div class="cb"></div>
 		</ul>
 	</div>
 	<div id="filter-div3" class="filter-div">
 		
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'bind')->dropDownList(['手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>        
-        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['1'=>'男','0'=>'女']) ?>
-        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['1'=>'能','0'=>'否']) ?>
-        <?= $form->field($model, 'category')->dropDownList(['成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区']) ?>
-        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'price') ?>
-        <?= $form->field($model, 'level', ['options' => ['class' => 'in-line']]) ?>
-        <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>        
+		<?= $form->field($model, 'bind')->dropDownList(['不限' => '不限', '手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>        
+        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'男','0'=>'女']) ?>
+        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'能','0'=>'否']) ?>
+        <?= $form->field($model, 'level') ?>
+        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['不限' => '不限', '成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区']) ?>
+        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '不限']) ?>
+        <?= $form->field($model, 'price1') ?>
+        <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
+        <?= $form->field($model, 'monster1') ?>        
+        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>        
+
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
             <?= Html::submitButton('确认', ['class' => 'btn btn-primary']) ?>

@@ -11,6 +11,7 @@ use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\Response;
 use app\models\Equipment;
+use app\models\News;
 use app\models\User;
 use app\models\Picture;
 use app\models\District;
@@ -30,64 +31,13 @@ class SiteController extends Controller
             ],
         ];
     }
-    public function actionAbc(){
-    	echo '<meta charset="utf-8">';
-    	$dist = District::find()->where('id<500')->all();
-    	foreach($dist as $d){
-    		switch($d->big){
-    			case '一区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"1\">" . $d->name . '</li></a>';
-    				break;
-    			case '二区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"2\">" . $d->name . '</li></a>';
-    				break;
-    			case '三区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"3\">" . $d->name . '</li></a>';
-    				break;
-    			case '四区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"4\">" . $d->name . '</li></a>';
-    				break;
-    			case '五区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"5\">" . $d->name . '</li></a>';
-    				break;
-    			case '六区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"6\">" . $d->name . '</li></a>';
-    				break;
-    			case '七区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"7\">" . $d->name . '</li></a>';
-    				break;
-    			case '八区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"8\">" . $d->name . '</li></a>';
-    				break;
-    			case '九区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"9\">" . $d->name . '</li></a>';
-    				break;
-    			case '十区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"10\">" . $d->name . '</li></a>';
-    				break;
-    			case '十一区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"11\">" . $d->name . '</li></a>';
-    				break;
-    			case '十二区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"12\">" . $d->name . '</li></a>';
-    				break;
-    			case '十三区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"13\">" . $d->name . '</li></a>';
-    				break;
-    			case '十四区':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"14\">" . $d->name . '</li></a>';
-    				break;
-    			case '双平台':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"15\">" . $d->name . '</li></a>';
-    				break;
-    			case '安卓混服':
-    				echo "<a href=\"Url::current(['district' => " . $d->id . "])\"><li data-type=\"16\">" . $d->name . '</li></a>';
-    				break;
-    		}
-
-    	}
+    
+    public function actionArticle($id = 0){
+    	return $this->render('know', [
+    		'id' => $id,
+    	]);
     }
-
+    
     public function actionCreate(){
     	$model = new Equipment();
     	$upload = new UploadForm();
@@ -124,11 +74,11 @@ class SiteController extends Controller
 			$condition = $this->joinCondition($condition, $this->discuss($model->discuss));
 			$condition = $this->joinCondition($condition, $this->category($model->category));
 			$condition = $this->joinCondition($condition, $this->school($model->school));
-			$condition = $this->joinCondition($condition, $this->price($model->price));
+			$condition = $this->joinCondition($condition, $this->price($model->price1, $model->price2));
 			$condition = $this->joinCondition($condition, $this->level($model->level));
-			$condition = $this->joinCondition($condition, $this->monster($model->monster));
+			$condition = $this->joinCondition($condition, $this->monster($model->monster1, $model->monster2));
 		}
-
+		//echo $condition;
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -145,7 +95,7 @@ class SiteController extends Controller
 					]);
 	}
 		private function bind($bind){
-			switch($bind){
+			switch($bind){				
 				case '手机账号':
 					return "bind = '手机账号'";
 					break;
@@ -158,18 +108,37 @@ class SiteController extends Controller
 				case '三无账号':
 					return "bind = '三无账号'";
 					break;
+				case '不限':
+				default:
+					return '';
+					break;
 			}
 		}
 		private function sex($sex){
-			
+			if($sex <> 100){
+				return 'sex = ' . $sex;
+			}
+			else{
+				return '';
+			}
 		}
 		private function discuss($discuss){
-			
+			if($discuss <> 100){
+				return 'discuss = ' . $discuss;
+			}
+			else{
+				return '';
+			}
 		}
-		private function price($price){
+		private function price($price1, $price2){
+			if($price1 <> '' && $price2 <> ''){
+				return 'price > ' . $price1 . ' and price < ' . $price2;
+			}
 		}
-		private function monster($monster){
-			
+		private function monster($monster1, $monster2){
+			if($monster1 <> '' && $monster2 <> ''){
+				return 'monster > '. $monster1 .' and ' . 'monster < ' . $monster2;
+			}
 		}
 		private function os($os){
 			switch($os){
@@ -188,8 +157,11 @@ class SiteController extends Controller
 			}
 		}
 		private function district($district){
-			if($district){
+			if($district && $district <> -1){				
 				return 'district = ' . $district;
+			}
+			else{
+				return '';
 			}
 		}
 		private function school($school){

@@ -60,13 +60,19 @@
 		}
 
 
-.footer{
-	height:148px;
-	background:#f0f0f0;
-}
-.footer p{
-	width:24%;
-	float:left;
-	line-height:48px;
-	text-align:center;
-}
+		.footer-div{
+			height:48px;
+			background:#f0f0f0;
+		}
+		.footer-div div{
+			float:left;
+			width:24%;
+			text-align:center;
+
+		}
+		.footerimg , #abc{
+			width:30%;
+		}
+		.footer-div p{
+			text-align:center;
+		}

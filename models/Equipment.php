@@ -22,6 +22,12 @@ use Yii;
  */
 class Equipment extends \yii\db\ActiveRecord
 {
+	
+	public $price1;
+	public $price2;
+	public $monster1;
+	public $monster2;
+	
     /**
      * @inheritdoc
      */
@@ -47,7 +53,7 @@ class Equipment extends \yii\db\ActiveRecord
 	public function scenarios()
 	{
 	    return [
-	        'seek' => ['price', 'category', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 
+	        'seek' => ['price1', 'price2', 'monster1', 'monster2', 'category', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 
 	        'create' => ['price', 'category', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'],
 	    ];
 	}
@@ -71,6 +77,8 @@ class Equipment extends \yii\db\ActiveRecord
             'discuss' => '能否议价',
             'note' => '卖家描述',
             'updatetime' => '更新时间',
+            'price1'	=> '价格区间',
+            'monster1' => '神兽数量',
         ];
     }
 }
