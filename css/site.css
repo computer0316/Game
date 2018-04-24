@@ -19,11 +19,12 @@
 
 
 		.footer-div{
-			width:100%;
-			float:left;
-			padding:10px 0;
+			position:fixed;
+			bottom:0;
+			margin:0;
+			height:60px;
 			background-color:#ffffff;
-			margin:0px;
+			padding:10px 0px 0px 0px;
 		}
 		.footer-div div{
 			float:left;
@@ -31,8 +32,8 @@
 			text-align:center;
 
 		}
-		.footerimg , #abc{
-			width:30%;
+		.footerimg {
+			width:25%;
 		}
 		.footer-div p{
 			text-align:center;

@@ -49,6 +49,9 @@ $(function () {
 			text-align:center;
 			width:16.5%;
 		}
+		.school img {
+			width:30%;
+		}
 		.four-box{
 			width:20.8%;
 			border:1px solid orangered;
@@ -109,7 +112,6 @@ $(function () {
 	<ul class="rslides" id="slider">
 		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
 		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
 	</ul>
 </div>
 <div class="container" style="height:5px;">&nbsp;</div>
@@ -198,7 +200,7 @@ $(function () {
 	</div>
 </div>
 <div class="box">
-
+	<p style="color:orangered;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
 	<?php
 		foreach($equi as $e){
 			echo '<div class="list">';
@@ -210,3 +212,4 @@ $(function () {
 		}
 	?>
 </div>
+<div style="margin-bottom:80px;"> </div>

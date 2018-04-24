@@ -209,8 +209,34 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:1px solid #d7d7d7;
 			background-color:#d7d7d7;
 		}
+		#search{
+			width:100%;
+			float:left;
+			margin:10px 0;
+		}
+		#search-form{
+			width:95%;
+			margin:0 auto;
+			border:1px solid orangered;
+			border-radius:10px;
+		}
+		#search-input{
+			width:92%;
+			border:0px;
+			margin-left:15px;
+		}
+		#searchimg{
+			float:right:
+			margin-right:5px;
+			width:25px;
+		}
     </style>
 <div class="site-about">
+	<div id="search">
+		<form action="?r=site/list" id="search-form">
+				<input id="search-input" type="text" size="30" /><img id="searchimg" src="images/search.png" />
+		</form>
+	</div>
 	<div id="menu">
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
 		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
@@ -464,7 +490,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
-					echo '<td class="orange">';
+					echo '<td style="color:#ccc">';
 						echo $e->os . ' | ';
 						echo District::findOne($e->district)->big . ' | ';
 						echo District::findOne($e->district)->name . ' | ';
@@ -474,12 +500,13 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo '</tr>';
 				echo '<tr class="last-tr">';
 					echo '<td>';
-					echo '<span class="orange">￥'. $e->price . '.00</span>';
+					echo '<span style="color:orangered">￥'. $e->price . '.00</span>';
+					echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
 					echo "</td>";
 				echo "</tr>\n";
 			}
 			echo '</table>';
-			echo '<div style="width:100%;float:left;margin:5px 0 20px 0;">';
+			echo '<div style="width:100%;float:left;margin:5px 0 90px 0;">';
 			echo LinkPager::widget(['pagination' => $pagination,]);
 			echo '</div>';
 		}

@@ -27,7 +27,7 @@ use yii\helpers\VarDumper;
 	<link rel="stylesheet" href="css/site.css">
     <?= Html::csrfMetaTags() ?>
     <title>壹折手游交易平台</title>
-	<meta http-equiv="refresh-page" content="5">
+	<meta http-equiv="refresh-page" content="3">
 
     <?php $this->head() ?>
 </head>
@@ -38,8 +38,8 @@ use yii\helpers\VarDumper;
 </div>
 <div class="container">
 	<?= $content ?>
-</div>
-	<div class="footer-div">
+
+	<div id="footer-div" class="footer-div">
 		<div>
 			<a href="?r=site/index">
 				<img id="abc" class="footerimg" src="images/shou.png" />
@@ -61,7 +61,7 @@ use yii\helpers\VarDumper;
 			<p>说明</p>
 		</div>
 	</div>
-
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>
