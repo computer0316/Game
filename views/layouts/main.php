@@ -26,8 +26,8 @@ use yii\helpers\VarDumper;
 
 	<link rel="stylesheet" href="css/site.css">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-
+    <title>壹折手游交易平台</title>
+	<meta http-equiv="refresh-page" content="5">
 
     <?php $this->head() ?>
 </head>
@@ -36,25 +36,32 @@ use yii\helpers\VarDumper;
 <div class="header">
 	壹折手游交易平台
 </div>
-<?= $content ?>
-<div class="footer-div">
-	<div>
-		<img id="abc" class="footerimg" src="images/shou.png" />		
-		<p>首页</p>
-	</div>
-	<div>
-		<img class="footerimg" src="images/fen.png" />
-		<p>分类</p>
-	</div>
-	<div>
-		<img class="footerimg" src="images/ke.png" />
-		<p>客服</p>
-	</div>
-	<div>
-		<img class="footerimg" src="images/shuo.png" />
-		<p>说明</p>
-	</div>
+<div class="container">
+	<?= $content ?>
 </div>
+	<div class="footer-div">
+		<div>
+			<a href="?r=site/index">
+				<img id="abc" class="footerimg" src="images/shou.png" />
+				<p>首页</p>
+			</a>
+		</div>
+		<div>
+			<a href="?r=site/list">
+				<img class="footerimg" src="images/fen.png" />
+				<p>分类</p>
+			</a>
+		</div>
+		<div>
+			<img class="footerimg" src="images/ke.png" />
+			<p>客服</p>
+		</div>
+		<div>
+			<img class="footerimg" src="images/shuo.png" />
+			<p>说明</p>
+		</div>
+	</div>
+
 <?php $this->endBody() ?>
 </body>
 </html>

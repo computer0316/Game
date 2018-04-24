@@ -253,7 +253,9 @@ class SiteController extends Controller
 	}
 
 	public function actionIndex(){
-		return $this->render('index');
+		$equi = Equipment::find()->orderBy('id desc')->limit(10)->all();
+		
+		return $this->render('index', ['equi' => $equi,]);
 	}
 
 	// 用于添加500个虚拟数据

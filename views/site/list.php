@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			left:0px;
 			display:none;
 			width:100%;
-			background:#e7e7e7;
+			background:#ffffff;
 			color:black;
 			z-index:20;
 		}
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
         .price-arrow{
         	float:left;
         	height:10px;
-        	
+
         }
         .two-box{
 			float:left;
@@ -89,6 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
    		#filter-div2{
 			height:300px;
 			overflow:hidden;
+			padding-bottom:20px;
 		}
 		#filter-div2 ul{
 			height:300px;
@@ -96,18 +97,24 @@ $this->params['breadcrumbs'][] = $this->title;
         	overflow:scroll;
         }
         #filter-div2 .ul1{
-        	width:10%;
+        	width:20%;
+        	padding:0;margin-left:1%;
+        	text-align:center;
         }
         #filter-div2 .ul2{
-        	width:78%;
+        	width:76%;
+        	padding:0;margin-left:1%;
         }
         #filter-div2 .ul1 li{
+        	width:100%;
         	line-height:35px;
+        	float:left;
+        	padding:0px;margin:0px;
         }
         .ul2 li{
         	border:1px solid orangered;
         	width:28%;
-        	height:28px;
+        	height:30px;
         	float:left;
         	margin:2%;
         	text-align:center;
@@ -115,6 +122,22 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         #filter-div3{
         	padding-top:10px;
+        }
+        .pagination{
+        	list-style-type:none;
+        	margin:0;
+        	padding:0;
+        }
+        .pagination li{
+        	border:1px solid orangered;
+        	padding:2px 8px;
+        	margin:0 2px;
+        	float:left;
+        }
+        .pagination li a{
+        	width:100%;
+        	height:100%;
+        	display:block;
         }
 /*************  form   *************/
 		.l10 input{width:10px;}
@@ -138,10 +161,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		}
 		.form-group label{
 			float:left;
-			width:150px;
 			text-align:right;
 			font-size:14px;
-			margin-right:20px;
+			margin:0 10px;
 			line-height:35px;
 		}
 		.form-group .help-block{
@@ -160,6 +182,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		select,input{
 			border:1px solid orangered;
 			height:35px;
+			width:60px;
 			padding-left:5px;
 		}
 
@@ -186,7 +209,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:1px solid #d7d7d7;
 			background-color:#d7d7d7;
 		}
-    </style> 
+    </style>
 <div class="site-about">
 	<div id="menu">
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
@@ -394,9 +417,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		</ul>
 	</div>
 	<div id="filter-div3" class="filter-div">
-		
+
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'bind')->dropDownList(['不限' => '不限', '手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>        
+		<?= $form->field($model, 'bind')->dropDownList(['不限' => '不限', '手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>
         <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'男','0'=>'女']) ?>
         <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'能','0'=>'否']) ?>
         <?= $form->field($model, 'level') ?>
@@ -404,8 +427,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '不限']) ?>
         <?= $form->field($model, 'price1') ?>
         <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
-        <?= $form->field($model, 'monster1') ?>        
-        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>        
+        <?= $form->field($model, 'monster1') ?>
+        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
 
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
@@ -456,7 +479,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo "</tr>\n";
 			}
 			echo '</table>';
+			echo '<div style="width:100%;float:left;margin:5px 0 20px 0;">';
 			echo LinkPager::widget(['pagination' => $pagination,]);
+			echo '</div>';
 		}
 		?>
 	</div>

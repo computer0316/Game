@@ -15,11 +15,12 @@ use app\models\Picture;
 		.brief-div{
 			float:left;
 			width:100%;
-			height:30px;
+			padding:5px 0;
+			border-bottom:1px dashed #ccc;
 		}
 			.brief-div .p1{
 				float:left;
-				padding-left:10px;				
+				padding-left:10px;
 				margin:0;
 			}
 			.brief-div .p2{
@@ -100,4 +101,5 @@ use app\models\Picture;
 			}
 		?>
 	</div>
+
 

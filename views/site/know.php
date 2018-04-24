@@ -6,6 +6,7 @@ use yii\helpers\Url;
 $this->title = 'My Yii Application';
 
 ?>
+
 <style>
 	.title-div{
 		text-align:center;

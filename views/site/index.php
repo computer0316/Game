@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Url;
+use app\models\District;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -23,16 +24,92 @@ $(function () {
 	});
 });
 </script>
+<style>
 
-</head>
-<body>
+		a{color:black;}
+		.container{
+			float:left;
+			width:100%;
+			background-color:#ffffff;
+			margin:3px auto;
 
+		}
+
+
+		.box{
+			width:96%;
+			border:1px solid orangered;
+			border-radius:5px;
+			margin:3px auto;
+			padding:5px 0;
+			overflow:hidden;
+		}
+		.school{
+			float:left;
+			text-align:center;
+			width:16.5%;
+		}
+		.four-box{
+			width:20.8%;
+			border:1px solid orangered;
+			border-radius:5px;
+			margin:5px 1.8%;
+			float:left;
+			text-align:center;
+		}
+		.four-box p{
+			margin:5px auto;
+			color:black;
+		}
+		.three-box{
+			width:28%;
+			text-align:center;
+			border:2px solid orangered;
+			border-radius:5px;
+			float:left;
+			margin:5px 2% 5px 2.2%;
+		}
+		.three-box img{
+			width:100%;
+			height:150px;
+		}
+		.two-box{
+			border:1px solid orangered;
+			border-radius:5px;
+			width:44.5%;
+			margin:2.5%;
+			float:left;
+			text-align:center;
+			padding:5px 0;
+		}
+		.two-box a{
+			color:black;
+		}
+		.list{
+			float:left;
+			width:100%;
+			border-bottom:1px dashed #ccc;
+		}
+		.list .p1{
+			float:left;
+			width:75%;
+			height:48px;
+			overflow:hidden;
+			line-height:48px;
+		}
+		.list .p2{
+			float:right;
+			margin-right:10px;
+			color:orangered;
+			line-height:48px;
+		}
+</style>
 <!-- Slideshow -->
 <div class="callbacks_container">
 	<ul class="rslides" id="slider">
-		<li><a href="http://sc.chinaz.com/"><img src="images/11.jpg" alt=""></a></li>
-		<li><a href="http://sc.chinaz.com/"><img src="images/44.jpg" alt=""></a></li>
-		<li><a href="http://sc.chinaz.com/"><img src="images/11.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
 	</ul>
 </div>
 <div class="container" style="height:5px;">&nbsp;</div>
@@ -97,4 +174,39 @@ $(function () {
 		<a href="<?=Url::toRoute(['site/list', 'level' => -1])?>"><img src="images/a3.gif" /></a>
 		<p>神威专区</p>
 	</div>
+</div>
+<div class="container">
+	<div class="two-box">
+		<a href="?r=site/article&id=1">
+			我要卖号
+		</a>
+	</div>
+	<div class="two-box">
+		<a href="?r=site/article&id=1">
+			其他内容
+		</a>
+	</div>
+	<div class="two-box">
+		<a href="?r=site/article&id=1">
+			其他说明
+		</a>
+	</div>
+	<div class="two-box">
+		<a href="?r=site/article&id=1">
+			其他说明
+		</a>
+	</div>
+</div>
+<div class="box">
+
+	<?php
+		foreach($equi as $e){
+			echo '<div class="list">';
+			echo '<a href="?r=site/show&id=' . $e->id . '">';
+			echo '<p class="p1">（' . $e->id . '） ' . $e->os . '：' . District::findOne($e->district)->name . ' ' . $e->note. '</p>';
+			echo '</a>';
+			echo '<p class="p2">￥ ' . $e->price . "</p>\n";
+			echo '</div>';
+		}
+	?>
 </div>
