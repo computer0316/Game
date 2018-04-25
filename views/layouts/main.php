@@ -27,7 +27,7 @@ use yii\helpers\VarDumper;
 	<link rel="stylesheet" href="css/site.css">
     <?= Html::csrfMetaTags() ?>
     <title>壹折手游交易平台</title>
-	<meta http-equiv="refresh-page" content="3">
+	<meta http-equiv="refresh1" content="3">
 
     <?php $this->head() ?>
 </head>

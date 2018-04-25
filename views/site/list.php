@@ -215,18 +215,23 @@ $this->params['breadcrumbs'][] = $this->title;
 			margin:10px 0;
 		}
 		#search-form{
+			float:left;
 			width:95%;
-			margin:0 auto;
+			margin:0 10px;
 			border:1px solid deepskyblue;
 			border-radius:10px;
+			height:30px;
 		}
 		#search-input{
-			width:92%;
-			border:0px;
-			margin-left:15px;
+			float:left;
+			width:82%;
+			border:0px white;
+			outline:none;
+			margin:0 15px;
+			height:25px;
 		}
 		#searchimg{
-			float:right:
+			float:right;
 			margin-right:5px;
 			width:25px;
 		}
@@ -234,7 +239,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-about">
 	<div id="search">
 		<form action="?r=site/list" id="search-form">
-				<input id="search-input" type="text" size="30" /><img id="searchimg" src="images/search.png" />
+				<input style="border:0;" id="search-input" type="text" /><img id="searchimg" src="images/search.png" />
 		</form>
 	</div>
 	<div id="menu">

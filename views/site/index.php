@@ -158,27 +158,27 @@ $(function () {
 </div>
 <div class="box">
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '方寸山'])?>"><img src="images/fc.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '方寸山'])?>"><img src="images/fc.png" /></a>
 		<p>方寸</p>
 	</div>
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '普陀山'])?>"><img src="images/pt.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '普陀山'])?>"><img src="images/pt.png" /></a>
 		<p>普陀</p>
 	</div>
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '化生寺'])?>"><img src="images/dt.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '化生寺'])?>"><img src="images/hs.png" /></a>
 		<p>化生</p>
 	</div>
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '阴曹地府'])?>"><img src="images/yc.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '阴曹地府'])?>"><img src="images/yc.png" /></a>
 		<p>地府</p>
 	</div>
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '物理'])?>"><img src="images/lg.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '物理'])?>"><img src="images/dt.png" /></a>
 		<p>物理</p>
 	</div>
 	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '法系'])?>"><img src="images/st.gif" /></a>
+		<a href="<?=Url::toRoute(['site/list', 'school' => '法系'])?>"><img src="images/lg.png" /></a>
 		<p>法系</p>
 	</div>
 </div>
