@@ -27,7 +27,7 @@ use app\models\Picture;
 				float:left;
 				margin:0;
 				padding-left:15px;
-				color:orangered;
+				color:deepskyblue;
 				}
 			.brief-div .p3{
 				float:right;
@@ -52,7 +52,7 @@ use app\models\Picture;
 				width:30%;
 			}
 		.title-div{
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			border-radius:5px;
 			text-align:center;
 			margin:15px 0px;

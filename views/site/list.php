@@ -25,11 +25,11 @@ $this->params['breadcrumbs'][] = $this->title;
 			padding:5px 10px;
 		}
 		.last-tr td{
-			border-bottom:1px solid orangered;
+			border-bottom:1px solid deepskyblue;
 			padding-bottom:15px;
 		}
 		.orange{
-			color:orangered;
+			color:deepskyblue;
 		}
 		.filter-div{
 			position:absolute;
@@ -60,7 +60,7 @@ $this->params['breadcrumbs'][] = $this->title;
         #menu p{
         	float:left;
         	width:18%;
-        	//border:1px solid orangered;
+        	//border:1px solid deepskyblue;
         	margin-left:5%;
         	text-align:center;
         }
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			height:36px;
 			margin:10px 2%;
 			text-align:center;
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
         }
         .two-box p{
         	display:inline;
@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	padding:0px;margin:0px;
         }
         .ul2 li{
-        	border:1px solid orangered;
+        	border:1px solid deepskyblue;
         	width:28%;
         	height:30px;
         	float:left;
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	padding:0;
         }
         .pagination li{
-        	border:1px solid orangered;
+        	border:1px solid deepskyblue;
         	padding:2px 8px;
         	margin:0 2px;
         	float:left;
@@ -180,7 +180,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		}
 
 		select,input{
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			height:35px;
 			width:60px;
 			padding-left:5px;
@@ -217,7 +217,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		#search-form{
 			width:95%;
 			margin:0 auto;
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			border-radius:10px;
 		}
 		#search-input{
@@ -491,17 +491,21 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo '</tr>';
 				echo '<tr>';
 					echo '<td style="color:#ccc">';
+					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 						echo $e->os . ' | ';
 						echo District::findOne($e->district)->big . ' | ';
 						echo District::findOne($e->district)->name . ' | ';
 						echo School::findOne($e->school)->name . ' | ';
 						echo $e->bind;
+						echo '</a>';
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr class="last-tr">';
 					echo '<td>';
-					echo '<span style="color:orangered">￥'. $e->price . '.00</span>';
+					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
+					echo '<span style="color:deepskyblue">￥'. $e->price . '.00</span>';
 					echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
+					echo '</a>';
 					echo "</td>";
 				echo "</tr>\n";
 			}

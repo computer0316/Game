@@ -28,7 +28,7 @@ $this->title = 'My Yii Application';
 	.content-div{
 		width:92%;
 		margin:10px auto;
-		border:1px dashed orangered;
+		border:1px dashed deepskyblue;
 		border-radius:5px;
 		padding:5px;
 	}

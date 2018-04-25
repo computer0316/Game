@@ -38,7 +38,7 @@ $(function () {
 
 		.box{
 			width:96%;
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			border-radius:5px;
 			margin:3px auto;
 			padding:5px 0;
@@ -54,7 +54,7 @@ $(function () {
 		}
 		.four-box{
 			width:20.8%;
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			border-radius:5px;
 			margin:5px 1.8%;
 			float:left;
@@ -67,17 +67,16 @@ $(function () {
 		.three-box{
 			width:28%;
 			text-align:center;
-			border:2px solid orangered;
+			border:2px solid deepskyblue;
 			border-radius:5px;
 			float:left;
 			margin:5px 2% 5px 2.2%;
 		}
 		.three-box img{
 			width:100%;
-			height:150px;
 		}
 		.two-box{
-			border:1px solid orangered;
+			border:1px solid deepskyblue;
 			border-radius:5px;
 			width:44.5%;
 			margin:2.5%;
@@ -103,7 +102,7 @@ $(function () {
 		.list .p2{
 			float:right;
 			margin-right:10px;
-			color:orangered;
+			color:deepskyblue;
 			line-height:48px;
 		}
 </style>
@@ -111,10 +110,52 @@ $(function () {
 <div class="callbacks_container">
 	<ul class="rslides" id="slider">
 		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/22.jpg" alt=""></a></li>
 		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
 	</ul>
 </div>
 <div class="container" style="height:5px;">&nbsp;</div>
+<div class="container">
+	<!--
+	<a href="<?=Url::toRoute(['site/list', 'category' => '成品号'])?>">
+
+		<div class="four-box">
+			<p>成品号</p>
+		</div>
+	</a>-->
+	<a href="<?=Url::toRoute(['site/list', 'category' => '金币号'])?>">
+		<div class="three-box">
+			<img src="images/jinbi.png" />
+			<p>金币号</p>
+		</div>
+	</a>
+	<a href="<?=Url::toRoute(['site/list', 'category' => '装备专区'])?>">
+		<div class="three-box">
+			<img src="images/zhuangbei.png" />
+			<p>装备专区</p>
+		</div>
+	</a>
+	<a href="<?=Url::toRoute(['site/list', 'category' => '宠物专区'])?>">
+		<div class="three-box">
+			<img src="images/chongwu.png" />
+			<p>宠物专区</p>
+		</div>
+	</a>
+</div>
+<div class="container">
+	<div class="three-box">
+		<a href="<?=Url::toRoute(['site/list', 'level' => -3])?>"><img src="images/a1.gif" /></a>
+		<p>精锐专区</p>
+	</div>
+	<div class="three-box">
+		<a href="<?=Url::toRoute(['site/list', 'level' => -2])?>"><img src="images/a2.gif" /></a>
+		<p>勇武专区</p>
+	</div>
+	<div class="three-box">
+		<a href="<?=Url::toRoute(['site/list', 'level' => -1])?>"><img src="images/a3.gif" /></a>
+		<p>神威专区</p>
+	</div>
+</div>
 <div class="box">
 	<div class="school">
 		<a href="<?=Url::toRoute(['site/list', 'school' => '方寸山'])?>"><img src="images/fc.gif" /></a>
@@ -142,42 +183,6 @@ $(function () {
 	</div>
 </div>
 <div class="container">
-	<a href="<?=Url::toRoute(['site/list', 'category' => '成品号'])?>">
-		<div class="four-box">
-			<p>成品号</p>
-		</div>
-	</a>
-	<a href="<?=Url::toRoute(['site/list', 'category' => '金币号'])?>">
-		<div class="four-box">
-			<p>金币号</p>
-		</div>
-	</a>
-	<a href="<?=Url::toRoute(['site/list', 'category' => '装备专区'])?>">
-		<div class="four-box">
-			<p>装备专区</p>
-		</div>
-	</a>
-	<a href="<?=Url::toRoute(['site/list', 'category' => '宠物专区'])?>">
-		<div class="four-box">
-			<p>宠物专区</p>
-		</div>
-	</a>
-</div>
-<div class="container">
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -3])?>"><img src="images/a1.gif" /></a>
-		<p>精锐专区</p>
-	</div>
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -2])?>"><img src="images/a2.gif" /></a>
-		<p>勇武专区</p>
-	</div>
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -1])?>"><img src="images/a3.gif" /></a>
-		<p>神威专区</p>
-	</div>
-</div>
-<div class="container">
 	<div class="two-box">
 		<a href="?r=site/article&id=1">
 			我要卖号
@@ -200,7 +205,7 @@ $(function () {
 	</div>
 </div>
 <div class="box">
-	<p style="color:orangered;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
+	<p style="color:deepskyblue;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
 	<?php
 		foreach($equi as $e){
 			echo '<div class="list">';
