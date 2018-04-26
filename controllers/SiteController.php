@@ -17,6 +17,8 @@ use app\models\Picture;
 use app\models\District;
 use app\models\UploadForm;
 use app\models\Download;
+use app\models\Search;
+
 class SiteController extends Controller
 {
 
@@ -31,13 +33,13 @@ class SiteController extends Controller
             ],
         ];
     }
-    
+
     public function actionArticle($id = 0){
     	return $this->render('know', [
     		'id' => $id,
     	]);
     }
-    
+
     public function actionCreate(){
     	$model = new Equipment();
     	$upload = new UploadForm();
@@ -58,6 +60,16 @@ class SiteController extends Controller
             'upload'=> $upload,
         ]);
     }
+
+	public function actionSearch(){
+		$model = new Search();
+		if($model->load(yii::$app->request->post())){
+			$model->text;
+		}
+		else{
+			return $this->redirect(Url::toRoute('site/list'));
+		}
+	}
 
 	public function actionList($os= '', $district ='', $level = '', $category = '', $school = ''){
 		$condition = "";
@@ -92,10 +104,11 @@ class SiteController extends Controller
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,
 					'model'			=> $model,
+					'search'		=> new Search(),
 					]);
 	}
 		private function bind($bind){
-			switch($bind){				
+			switch($bind){
 				case '手机账号':
 					return "bind = '手机账号'";
 					break;
@@ -157,7 +170,7 @@ class SiteController extends Controller
 			}
 		}
 		private function district($district){
-			if($district && $district <> -1){				
+			if($district && $district <> -1){
 				return 'district = ' . $district;
 			}
 			else{
@@ -254,7 +267,7 @@ class SiteController extends Controller
 
 	public function actionIndex(){
 		$equi = Equipment::find()->orderBy('id desc')->limit(10)->all();
-		
+
 		return $this->render('index', ['equi' => $equi,]);
 	}
 

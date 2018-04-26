@@ -214,7 +214,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			float:left;
 			margin:10px 0;
 		}
-		#search-form{
+		#search{
 			float:left;
 			width:95%;
 			margin:0 10px;
@@ -222,7 +222,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			border-radius:10px;
 			height:30px;
 		}
-		#search-input{
+		#search-text{
 			float:left;
 			width:82%;
 			border:0px white;
@@ -233,14 +233,19 @@ $this->params['breadcrumbs'][] = $this->title;
 		#searchimg{
 			float:right;
 			margin-right:5px;
+			margin-top:2px;
+			outline:none;
 			width:25px;
+			height:25px;
+			border:0;
 		}
     </style>
 <div class="site-about">
 	<div id="search">
-		<form action="?r=site/list" id="search-form">
-				<input style="border:0;" id="search-input" type="text" /><img id="searchimg" src="images/search.png" />
-		</form>
+		<?php $form = ActiveForm::begin(['action' => Url::toRoute('site/search'), 'method' => 'post']); ?>
+			<?= $form->field($search, 'text', ['options' => ['class' => 'search-form']])->textInput(['class' => 'search-input'])->label(false) ?>
+			<input type="image" id="searchimg" src="images/search.png" />
+		<?php ActiveForm::end(); ?>
 	</div>
 	<div id="menu">
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
