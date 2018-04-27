@@ -34,6 +34,31 @@ class SiteController extends Controller
         ];
     }
 
+	public function actionD(){
+		$base = "http://my.163.com/2015/3/26/18021_506805.html";
+		//$urls = Download::getCurrentPageUrls($base);
+		$urls = Download::getCurrentPageImages($base);
+		foreach($urls as $url){
+			$png = Download::getIn($url,'/http.*?png/');
+			if(isset($png[0]) > 0){
+				echo $png[0] . '<br />';
+			}
+		}
+		//echo Download::getPage($base);
+	}
+
+private function curl_file_get_contents($durl){
+   $ch = curl_init();
+   curl_setopt($ch, CURLOPT_URL, $durl);
+   curl_setopt($ch, CURLOPT_TIMEOUT, 2);
+   curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0');
+   //curl_setopt($ch, CURLOPT_REFERER,_REFERER_);
+   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+   $r = curl_exec($ch);
+   curl_close($ch);
+   return $r;
+ }
+
     public function actionArticle($id = 0){
     	return $this->render('know', [
     		'id' => $id,

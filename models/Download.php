@@ -42,6 +42,18 @@ class Download{
 		return $match[1];
 	}
 
+	public static function getCurrentPageImages($url){
+		$preg	=	'/https:\/\/.*?>/';
+		$str	=	self::getPage($url);
+		preg_match_all($preg, $str,$match);	//在$str中搜索匹配所有符合$preg加入$match中
+		return $match[0];
+	}
+
+	public static function getIn($str, $preg){
+		preg_match_all($preg, $str,$match);	//在$str中搜索匹配所有符合$preg加入$match中
+		return $match[0];
+	}
+
 	/*
 		将 http://www.abc.com 和 /def/ghi 组合成一个有效的 url
 		$host 是前面的主机部分
@@ -74,7 +86,7 @@ class Download{
 		curl_setopt($ch,CURLOPT_HEADER,FALSE);
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);
 		curl_setopt($ch,CURLOPT_AUTOREFERER,TRUE);
-		curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/536.11 (KHTML, like Gecko) Chrome/20.0.1132.47 Safari/536.11');
+		curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0');
 		curl_setopt($ch,CURLOPT_ENCODING, 'gzip');	// gzip is ok, for the pages which don't press with gzit, it seems ok too
 		curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,FALSE);	// https supported
 		curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,FALSE);
