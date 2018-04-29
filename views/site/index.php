@@ -31,61 +31,20 @@ $(function () {
 			float:left;
 			width:100%;
 			background-color:#ffffff;
-			margin:3px auto;
-
-		}
-
-
-		.box{
-			width:96%;
-			border:1px solid deepskyblue;
-			border-radius:5px;
-			margin:3px auto;
-			padding:5px 0;
-			overflow:hidden;
-		}
-		.school{
-			float:left;
-			text-align:center;
-			width:16.5%;
-		}
-		.school img {
-			width:30%;
+			margin:0 auto;
+			margin-top:30px;
 		}
 		.four-box{
-			width:20.8%;
-			border:1px solid deepskyblue;
-			border-radius:5px;
-			margin:5px 1.8%;
+			width:25%;
 			float:left;
 			text-align:center;
+		}
+		.four-box img{
+			width:60px;
+			border-radius:30px;
 		}
 		.four-box p{
-			margin:5px auto;
-			color:black;
-		}
-		.three-box{
-			width:28%;
-			text-align:center;
-			border:2px solid deepskyblue;
-			border-radius:5px;
-			float:left;
-			margin:5px 2% 5px 2.2%;
-		}
-		.three-box img{
-			width:100%;
-		}
-		.two-box{
-			border:1px solid deepskyblue;
-			border-radius:5px;
-			width:44.5%;
-			margin:2.5%;
-			float:left;
-			text-align:center;
-			padding:5px 0;
-		}
-		.two-box a{
-			color:black;
+			margin-top:20px;
 		}
 		.list{
 			float:left;
@@ -114,95 +73,57 @@ $(function () {
 		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
 	</ul>
 </div>
-<div class="container" style="height:5px;">&nbsp;</div>
 <div class="container">
-	<!--
 	<a href="<?=Url::toRoute(['site/list', 'category' => '成品号'])?>">
-
 		<div class="four-box">
-			<p>成品号</p>
+			<img src="sysimg/index/coin.jpg" />
+			<p>梦幻币</p>
 		</div>
-	</a>-->
+	</a>
 	<a href="<?=Url::toRoute(['site/list', 'category' => '金币号'])?>">
-		<div class="three-box">
-			<img src="images/jinbi.png" />
-			<p>金币号</p>
+		<div class="four-box">
+			<img src="sysimg/index/role.jpg" />
+			<p>角色</p>
 		</div>
 	</a>
 	<a href="<?=Url::toRoute(['site/list', 'category' => '装备专区'])?>">
-		<div class="three-box">
-			<img src="images/zhuangbei.png" />
-			<p>装备专区</p>
+		<div class="four-box">
+			<img src="sysimg/index/monster.png" />
+			<p>召唤兽</p>
 		</div>
 	</a>
-	<a href="<?=Url::toRoute(['site/list', 'category' => '宠物专区'])?>">
-		<div class="three-box">
-			<img src="images/chongwu.png" />
-			<p>宠物专区</p>
+	<a href="<?=Url::toRoute(['site/list', 'category' => '装备专区'])?>">
+		<div class="four-box">
+			<img src="sysimg/index/arm.png" />
+			<p>装备</p>
 		</div>
 	</a>
 </div>
 <div class="container">
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -3])?>"><img src="images/a1.gif" /></a>
-		<p>精锐专区</p>
-	</div>
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -2])?>"><img src="images/a2.gif" /></a>
-		<p>勇武专区</p>
-	</div>
-	<div class="three-box">
-		<a href="<?=Url::toRoute(['site/list', 'level' => -1])?>"><img src="images/a3.gif" /></a>
-		<p>神威专区</p>
-	</div>
-</div>
-<div class="box">
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '方寸山'])?>"><img src="images/fc.png" /></a>
-		<p>方寸</p>
-	</div>
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '普陀山'])?>"><img src="images/pt.png" /></a>
-		<p>普陀</p>
-	</div>
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '化生寺'])?>"><img src="images/hs.png" /></a>
-		<p>化生</p>
-	</div>
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '阴曹地府'])?>"><img src="images/yc.png" /></a>
-		<p>地府</p>
-	</div>
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '物理'])?>"><img src="images/dt.png" /></a>
-		<p>物理</p>
-	</div>
-	<div class="school">
-		<a href="<?=Url::toRoute(['site/list', 'school' => '法系'])?>"><img src="images/lg.png" /></a>
-		<p>法系</p>
-	</div>
-</div>
-<div class="container">
-	<div class="two-box">
-		<a href="?r=site/article&id=1">
-			我要卖号
-		</a>
-	</div>
-	<div class="two-box">
-		<a href="?r=site/article&id=1">
-			其他内容
-		</a>
-	</div>
-	<div class="two-box">
-		<a href="?r=site/article&id=1">
-			其他说明
-		</a>
-	</div>
-	<div class="two-box">
-		<a href="?r=site/article&id=1">
-			其他说明
-		</a>
-	</div>
+	<a href="?r=site/article&id=1">
+		<div class="four-box">
+			<img src="sysimg/index/ffqi.png" />
+			<p>分期购号</p>
+		</div>
+	</a>
+	<a href="?r=site/article&id=1">
+		<div class="four-box">
+			<img src="sysimg/index/vsjx.png" />
+			<p>中介交易</p>
+		</div>
+	</a>
+	<a href="?r=site/article&id=1">
+		<div class="four-box">
+			<img src="sysimg/index/ubch.png" />
+			<p>我的收藏</p>
+		</div>
+	</a>
+	<a href="?r=site/article&id=1">
+		<div class="four-box">
+			<img src="sysimg/index/gerf.png" />
+			<p>个人中心</p>
+		</div>
+	</a>
 </div>
 <div class="box">
 	<p style="color:deepskyblue;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
