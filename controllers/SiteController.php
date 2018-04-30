@@ -65,7 +65,8 @@ private function curl_file_get_contents($durl){
     	]);
     }
 
-    public function actionCreate(){
+    public function actionCreate($add){
+    	$this->layout = 'admin';
     	$model = new Equipment();
     	$upload = new UploadForm();
 
@@ -83,6 +84,7 @@ private function curl_file_get_contents($durl){
         return $this->render('create', [
             'model' => $model,
             'upload'=> $upload,
+            'add'	=> $add,
         ]);
     }
 

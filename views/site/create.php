@@ -5,6 +5,12 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use app\models\District;
 use app\models\School;
+use app\models\Role;
+use app\models\Pets;
+use app\models\Arm;
+use app\models\Os;
+use app\models\Bind;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipment */
@@ -26,7 +32,11 @@ use app\models\School;
 		.l300 input{width:300px;}
 		.l360 input{width:360px;}
 
+.create{
+	margin:20px;
+}
 		.form-group{
+
 			float:left;
 			clear:both;
 			height:65px;
@@ -45,6 +55,8 @@ use app\models\School;
 			color:red;
 		}
 		.button-group{
+			width:100%;
+			clear:both;
 			padding-left:150px;
 		}
 
@@ -56,6 +68,7 @@ use app\models\School;
 
 		.in-line{
 			float:left;
+			height:65px;
 		}
 		.in-line label{
 			font-size:14px;
@@ -76,19 +89,37 @@ use app\models\School;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'price') ?>
-        <?= $form->field($model, 'category')->dropDownList(['成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区'], ['style'=>'width:120px']) ?>
-        <?= $form->field($model, 'os')->dropDownList(['苹果专区' => '苹果专区', '安卓官服' => '安卓官服', '苹果安卓互通区' => '苹果安卓互通区'], ['style'=>'width:120px']) ?> 
-        <?= $form->field($model, 'district')->dropDownList(District::find()->select(["concat(big, ' ', name) as district", 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'bind')->dropDownList(['手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号'], ['style'=>'width:120px']) ?>
-        <?= $form->field($model, 'school')->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?php
+           	switch($add){
+        		case 'coin':
+        			 echo $form->field($model, 'coin');
+        			break;
+        		case 'role':
+        			 echo $form->field($model, 'role')->dropDownlist(['空' => '选择角色'] + Role::find()->select(['name', 'id'])->indexBy('id')->column());
+        			break;
+        		case 'pets':
+        			 echo $form->field($model, 'pets')->dropDownlist(['空' => '选择宠物'] + Pets::find()->select(['name', 'id'])->indexBy('id')->column());
+        			break;
+        		case 'arm':
+        			 echo $form->field($model, 'arm')->dropDownlist(['空' => '选择装备'] + Arm::find()->select(['name', 'id'])->indexBy('id')->column());
+        			break;
+			}
+        ?>
+        <?= $form->field($model, 'category')->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'bind', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'os')->dropDownList(['空' => '选择平台'] + Os::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'district', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '服务器'] + District::find()->select(["concat(big, ' ', name) as district", 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
+
         <?= $form->field($model, 'sex')->dropDownList(['1'=>'男','0'=>'女'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'discuss')->dropDownList(['1'=>'能','0'=>'否'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'level') ?>
-        <?= $form->field($model, 'monster') ?>        
+        <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>
         <?= $form->field($model, 'note') ?>
         <?= $form->field($model, 'updatetime')->textInput(['value' => date("Y-m-d H:i:s", time())]) ?>
         <?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*'])->label('上传图片') ?>
-    
+
         <div class="button-group">
             <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
         </div>
