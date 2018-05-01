@@ -27,6 +27,10 @@ use Yii;
  */
 class Equipment extends \yii\db\ActiveRecord
 {
+	public $price1;
+	public $price2;
+	public $monster1;
+	public $monster2;
     /**
      * @inheritdoc
      */

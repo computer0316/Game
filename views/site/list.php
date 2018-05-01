@@ -10,24 +10,18 @@
 	use app\models\Community;
 	use app\models\District;
 	use app\models\School;
+use app\models\Role;
+use app\models\Pets;
+use app\models\Arm;
+use app\models\Os;
+use app\models\Bind;
+use app\models\Category;
 
 $this->title = '列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
-		.list{
-			font-size:0.9rem;
-		}
-		.list, .list tr, .list td{
-			border:0px;
-		}
-		td{
-			padding:5px 10px;
-		}
-		.last-tr td{
-			border-bottom:1px solid deepskyblue;
-			padding-bottom:15px;
-		}
+
 		.orange{
 			color:deepskyblue;
 		}
@@ -239,7 +233,52 @@ $this->params['breadcrumbs'][] = $this->title;
 			height:25px;
 			border:0;
 		}
-    </style>
+</style>
+<style>
+		.list{
+			float:left;
+			width:100%;
+			font-size:0.9rem;
+			border-bottom:1px dashed #ccc;
+			margin-top:10px;
+			padding-bottom:10px;
+		}
+		.list-img-div{
+			float:left;
+			width:15%;
+			padding:1%;
+			margin:1% 2%;
+			border:1px solid #ccc;
+			border-radius:5px;
+		}
+		.list-line{
+			float:left;
+			width:73%;
+			margin:5px 1%;
+		}
+		.list-icon{
+			float:left;
+			width:1.5rem;
+		}
+		.list-line p{
+			padding:0;
+			margin:0;
+		}
+		.list-title{
+			float:left;
+			font-size:1rem;
+		}
+		.list-item{
+			float:left;
+			font-size:0.8rem;
+			color:#999;
+		}
+		.right-item{
+			float:right;
+			font-size:0.8rem;
+			color:#999;
+		}
+</style>
 <div class="site-about">
 	<div id="search">
 		<?php $form = ActiveForm::begin(['action' => Url::toRoute('site/search'), 'method' => 'post']); ?>
@@ -480,46 +519,56 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo '还没有任何信息';
 		}
 		else{
-			echo "<table class='list'>\n";
+
 			foreach($equipments as $e){
-				echo '<tr>';
-					echo '<td>';
-					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
-					echo '(' . $e->id . ')';
-					echo ($e->discuss=="0" ? '不议价' : '可议价') . ' ';
-					echo $e->os . ' ';
-					echo District::findOne($e->district)->big . ' ';
-					echo District::findOne($e->district)->name . ' ';
-					echo $e->bind . ' ';
-					echo $e->level . '级 ';
-					echo ($e->sex ==0 ? '女': '男') . ' ';
-					echo School::findOne($e->school)->name . ' ';
-					echo $e->monster . '神兽 ';
-					echo $e->note . $e->note;
-					echo '</a>';
-					echo '</td>';
-				echo '</tr>';
-				echo '<tr>';
-					echo '<td style="color:#ccc">';
-					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
-						echo $e->os . ' | ';
-						echo District::findOne($e->district)->big . ' | ';
-						echo District::findOne($e->district)->name . ' | ';
-						echo School::findOne($e->school)->name . ' | ';
-						echo $e->bind;
-						echo '</a>';
-					echo '</td>';
-				echo '</tr>';
-				echo '<tr class="last-tr">';
-					echo '<td>';
-					echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
-					echo '<span style="color:deepskyblue">￥'. $e->price . '.00</span>';
-					echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
-					echo '</a>';
-					echo "</td>";
-				echo "</tr>\n";
+				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
+					echo "<div class='list'>\n";
+						echo '<div class="list-img-div">';
+							switch($add){
+								case 'role':
+									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+									break;
+								case 'pets':
+									echo '<img class="list-img" src="sysimg/role/fyn.gif" />';
+									break;
+								case 'arm':
+									echo '<img class="list-img" src="sysimg/role/fyn.gif" />';
+									break;
+								case 'coin':
+									echo '<img class="list-img" src="sysimg/index/coin.jpg" />';
+									break;
+							}
+
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo ($e->discuss=="0" ? '' : '<img class="list-icon" src="sysimg/index/discuss.png" />') . ' ';
+							echo '<p class="list-title">' . School::findOne($e->school)->name . '</p>';
+							echo '<p class="list-item">&nbsp;|&nbsp;' . $e->level . '级</p>';
+							echo '<p class="right-item">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo '(' . $e->id . ')';
+							echo $e->os . ' ';
+
+
+							echo $e->bind . ' ';
+
+							echo ($e->sex ==0 ? '女': '男') . ' ';
+							echo $e->monster . '神兽 ';
+
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
+							echo '<span style="color:red">￥'. $e->price . '.00</span>';
+							echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
+							echo '</a>';
+							echo "</td>";
+						echo "</div>";
+					echo "</div>\n";
+				echo '</a>';
 			}
-			echo '</table>';
+			echo '</div>';
+
 			echo '<div style="width:100%;float:left;margin:5px 0 90px 0;">';
 			echo LinkPager::widget(['pagination' => $pagination,]);
 			echo '</div>';

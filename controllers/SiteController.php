@@ -18,6 +18,9 @@ use app\models\District;
 use app\models\UploadForm;
 use app\models\Download;
 use app\models\Search;
+use app\models\Pets;
+use app\models\Arm;
+use app\models\Defence;
 
 class SiteController extends Controller
 {
@@ -34,6 +37,20 @@ class SiteController extends Controller
         ];
     }
 
+	public function actionChange(){
+		$pet = Defence::find()->orderBy('id')->all();
+		$i=1;
+		echo '<meta charset="utf-8">';
+		foreach($pet as $p){
+			$p->img = 'sysimg/def/' . $i++ . '.png';
+			$p->save();
+			echo '<div style="float:left;width:100px;text-align:center;">';
+			echo '<img style="width:100%;" src="' . $p->img . '" />';
+
+			echo '<p>' . $p->name . '</p> ';
+			echo '</div>';
+		}
+	}
 	public function actionD(){
 		$base = "http://my.163.com/2015/3/26/18021_506805.html";
 		//$urls = Download::getCurrentPageUrls($base);
@@ -98,7 +115,7 @@ private function curl_file_get_contents($durl){
 		}
 	}
 
-	public function actionList($os= '', $district ='', $level = '', $category = '', $school = ''){
+	public function actionList($add= '', $os= '', $district ='', $level = '', $category = '', $school = ''){
 		$condition = "";
 		$condition = $this->joinCondition($condition, $this->os($os));
 		$condition = $this->joinCondition($condition, $this->district($district));
@@ -126,7 +143,9 @@ private function curl_file_get_contents($durl){
 					->limit($pagination->limit)
 					->orderBy('id desc')
 					->all();
+		$this->layout = 'list';
 		return $this->render('list', [
+					'add'			=> $add,
 					'equipments'	=> $equipments,
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,
@@ -287,6 +306,7 @@ private function curl_file_get_contents($durl){
 		if($id>0){
 			$e = Equipment::findOne($id);
 			if($e){
+				$this->layout = 'list';
 				return $this->render('show', ['e' => $e]);
 			}
 		}

@@ -5,22 +5,20 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "pets".
+ * This is the model class for table "defence".
  *
  * @property integer $id
  * @property string $name
  * @property string $img
- * @property integer $low
- * @property integer $high
  */
-class Pets extends \yii\db\ActiveRecord
+class Defence extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'pets';
+        return 'defence';
     }
 
     /**
@@ -29,10 +27,9 @@ class Pets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img', 'high'], 'required'],
-            [['low', 'high'], 'integer'],
+            [['name', 'img'], 'required'],
             [['name'], 'string', 'max' => 16],
-            [['img'], 'string', 'max' => 128],
+            [['img'], 'string', 'max' => 32],
         ];
     }
 
@@ -45,8 +42,6 @@ class Pets extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'img' => 'Img',
-            'low' => 'Low',
-            'high' => 'High',
         ];
     }
 }
