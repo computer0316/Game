@@ -37,6 +37,22 @@ class SiteController extends Controller
             ],
         ];
     }
+	public function actionTemp(){
+		$equips = Pets::find()->where('1=1')->orderBy('id')->all();
+		$i=1;
+		foreach($equips as $e){
+			$e->id1 = $i++;
+
+			if(!$e->save()){
+				echo '<meta charset="utf-8">';
+				var_dump($e->errors);
+				die();
+			}
+			else{
+				echo $e->id . '<br />';
+			}
+		}
+	}
 
 	public function actionD(){
 		$base = "http://my.163.com/2015/3/26/18021_506805.html";
@@ -106,25 +122,23 @@ private function curl_file_get_contents($durl){
 		$model = new Equipment(['scenario' => 'seek']);
 		$condition = "";
 		if($model->load(Yii::$app->request->post())){
-			Tools::RealAssignment($category, $model->category);
-			Tools::RealAssignment($os,$model->os);
-			Tools::RealAssignment($district, $model->district);
-			Tools::RealAssignment($level, $model->level);
-			Tools::RealAssignment($bind, $model->bind);
-			Tools::RealAssignment($school, $model->school);
-echo 'condition: ' . $model->category . ' category<br />';
-			$condition = $this->joinCondition($condition, $this->sex($model->sex));
-			$condition = $this->joinCondition($condition, $this->discuss($model->discuss));
+			$category	= $this->setVal($model->category);
+			$district	= $this->setVal($model->district);
+			$level		= $this->setVal($model->level);
+			$bind		= $this->setVal($model->bind);
+			$school		= $this->setVal($model->school);
+
+			$condition = $this->joinCondition($condition, $this->createCondition($model->sex, 'sex'));
+			$condition = $this->joinCondition($condition, $this->createCondition($model->discuss, 'discuss'));
 			$condition = $this->joinCondition($condition, $this->monster($model->monster1, $model->monster2));
 		}
 
-
-		$condition = $this->joinCondition($condition, $this->category($category));
-		$condition = $this->joinCondition($condition, $this->os($os));
-		$condition = $this->joinCondition($condition, $this->district($district));
-		$condition = $this->joinCondition($condition, $this->level($level));
-		$condition = $this->joinCondition($condition, $this->bind($model->bind));
-		$condition = $this->joinCondition($condition, $this->school($school));
+		$condition = $this->joinCondition($condition, $this->createCondition($level, 	'level'));
+		$condition = $this->joinCondition($condition, $this->createCondition($category, 'category'));
+		$condition = $this->joinCondition($condition, $this->createCondition($os, 		'os'));
+		$condition = $this->joinCondition($condition, $this->createCondition($district, 'district'));
+		$condition = $this->joinCondition($condition, $this->createCondition($bind, 	'bind'));
+		$condition = $this->joinCondition($condition, $this->createCondition($school, 	'school'));
 
 		if($condition <> ''){
 			echo 'condition: ' . $condition . ' condition<br />';
@@ -148,42 +162,13 @@ echo 'condition: ' . $model->category . ' category<br />';
 					]);
 	}
 
-		private function bind($bind){
-			switch($bind){
-				case '手机账号':
-					return "bind = '手机账号'";
-					break;
-				case '签合同账号':
-					return "bind = '签合同账号'";
-					break;
-				case '找回包赔账号':
-					return "bind = '找回包赔账号'";
-					break;
-				case '三无账号':
-					return "bind = '三无账号'";
-					break;
-				case '不限':
-				default:
-					return '';
-					break;
+		private function setVal($value){
+			if(isset($value) && $value <> ''){
+				return $value;
 			}
 		}
-		private function sex($sex){
-			if($sex <> '' && $sex <> 100){
-				return 'sex = ' . $sex;
-			}
-			else{
-				return '';
-			}
-		}
-		private function discuss($discuss){
-			if($discuss <> '' && $discuss <> 100){
-				return 'discuss = ' . $discuss;
-			}
-			else{
-				return '';
-			}
-		}
+
+
 		private function price($price1, $price2){
 			if($price1 <> '' && $price2 <> ''){
 				return 'price > ' . $price1 . ' and price < ' . $price2;
@@ -194,94 +179,9 @@ echo 'condition: ' . $model->category . ' category<br />';
 				return 'monster > '. $monster1 .' and ' . 'monster < ' . $monster2;
 			}
 		}
-		private function os($os){
-			switch($os){
-				case '苹果专区':
-					return "os = '苹果专区'";
-					break;
-				case '安卓官服':
-					return "os = '安卓官服'";
-					break;
-				case '苹果安卓互通区':
-					return "os = '苹果安卓互通区'";
-					break;
-				default:
-					return $os;
-					break;
-			}
-		}
-		private function district($district){
-			if($district && $district <> -1){
-				return 'district = ' . $district;
-			}
-			else{
-				return '';
-			}
-		}
-		private function school($school){
-			switch($school){
-				case '大唐官府':
-					return "school = 1";
-					break;
-				case '方寸山':
-					return "school = 2";
-					break;
-				case '狮驼岭':
-					return "school = 3";
-					break;
-				case '普陀山':
-					return "school = 4";
-					break;
-				case '龙宫':
-					return "school = 5";
-					break;
-				case '阴曹地府':
-					return "school = 6";
-					break;
-				case '魔王寨':
-					return "school = 7";
-					break;
-				case '化生寺':
-					return "school = 8";
-					break;
-				case '月宫':
-					return "school = 9";
-					break;
-				case '物理':
-					return "school in (1,3,9)";
-					break;
-				case '法系':
-					return "school in (5,7)";
-					break;
-			}
-		}
-		private function category($category){
-			switch($category){
-				case '成品号':
-					return "category='成品号'";
-					break;
-				case '金币号':
-					return "category='金币号'";
-					break;
-				case '装备专区':
-					return "category='装备专区'";
-					break;
-				case '宠物专区':
-					return "category='宠物专区'";
-					break;
-			}
-		}
-		private function level($level){
-			switch($level){
-				case -3:
-					return 'level>=0 and level <= 69';
-					break;
-				case -2:
-					return 'level>=70 and level <= 89';
-					break;
-				case -1:
-					return 'level>=90 and level <= 109';
-					break;
+		private function createCondition($item, $name){
+			if(isset($item) && $item > 0){
+				return $name . ' = ' . $item;
 			}
 		}
 

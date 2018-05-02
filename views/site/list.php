@@ -16,6 +16,7 @@ use app\models\Arm;
 use app\models\Os;
 use app\models\Bind;
 use app\models\Category;
+use app\models\Defence;
 
 $this->title = '列表';
 $this->params['breadcrumbs'][] = $this->title;
@@ -251,6 +252,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:1px solid #ccc;
 			border-radius:5px;
 		}
+		.list-img{
+			width:100%;
+		}
 		.list-line{
 			float:left;
 			width:73%;
@@ -293,13 +297,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		<p id="p4" onclick="showMask()">价格<img src="images/ad.png" /></p>
 	</div>
 	<div id="filter-div1" class="filter-div">
-		<a href="<?=Url::current(['os' => '苹果专区'])?>">
+		<a href="<?=Url::current(['os' => '1'])?>">
 			<div class="two-box"><img src="images/apple.png" /> <p>苹果专区</p></div>
 		</a>
-		<a href="<?=Url::current(['os' => '安卓官服'])?>">
+		<a href="<?=Url::current(['os' => '2'])?>">
 			<div class="two-box"><img src="images/android.png" /> <p>安卓官服</p></div>
 		</a>
-		<a href="<?=Url::current(['os' => '苹果安卓互通区'])?>">
+		<a href="<?=Url::current(['os' => '3'])?>">
 			<div class="two-box"><img src="images/apple.png" /> <img src="images/android.png" /> <p>苹果安卓互通区</p></div>
 		</a>
 		<a href="<?=Url::current(['os' => null])?>"><div class="two-box"><p>全部</p></div></a>
@@ -494,12 +498,12 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="filter-div3" class="filter-div">
 
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'bind')->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['100' => '不限', '1'=>'男','0'=>'女']) ?>
-        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['100' => '不限', '1'=>'能','0'=>'否']) ?>
+		<?= $form->field($model, 'bind')->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限', '1'=>'男','0'=>'女']) ?>
+        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限', '1'=>'能','0'=>'否']) ?>
         <?= $form->field($model, 'level') ?>
-        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '不限']) ?>
+        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'price1') ?>
         <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
         <?= $form->field($model, 'monster1') ?>
@@ -524,20 +528,21 @@ $this->params['breadcrumbs'][] = $this->title;
 				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 					echo "<div class='list'>\n";
 						echo '<div class="list-img-div">';
-							switch($add){
-								case 'role':
+								if($e->role <> ''){
 									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
-									break;
-								case 'pets':
-									echo '<img class="list-img" src="sysimg/role/fyn.gif" />';
-									break;
-								case 'arm':
-									echo '<img class="list-img" src="sysimg/role/fyn.gif" />';
-									break;
-								case 'coin':
+								}
+								elseif($e->pets <> ''){
+									echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								elseif($e->arm <> ''){
+									echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								elseif($e->defence  <> ''){
+									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								else{
 									echo '<img class="list-img" src="sysimg/index/coin.jpg" />';
-									break;
-							}
+								}
 
 						echo '</div>';
 						echo '<div class="list-line">';
@@ -548,10 +553,10 @@ $this->params['breadcrumbs'][] = $this->title;
 						echo '</div>';
 						echo '<div class="list-line">';
 							echo '(' . $e->id . ')';
-							echo $e->os . ' ';
+							echo Os::findOne($e->os)->name . ' ';
 
-
-							echo $e->bind . ' ';
+							echo Category::findOne($e->category)->name . ' ';
+							echo Bind::findOne($e->bind)->name . ' ';
 
 							echo ($e->sex ==0 ? '女': '男') . ' ';
 							echo $e->monster . '神兽 ';

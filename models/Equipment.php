@@ -45,17 +45,18 @@ class Equipment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'district', 'level', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
+            [['price', 'district', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
             [['price', 'role', 'coin', 'level', 'sex', 'monster', 'discuss'], 'integer'],
-            [['os', 'category', 'pets', 'bind', 'arm', 'district', 'school'], 'integer', 'message' => '{attribute} 必须选择'],
+            [['os', 'category', 'pets', 'bind', 'arm', 'defence', 'district', 'school'], 'integer', 'message' => '{attribute} 必须选择'],
             [['updatetime'], 'safe'],
-            [['category', 'os', 'bind'], 'string', 'max' => 16],
             [['note'], 'string', 'max' => 512],
         ];
     }
 
-	public function scenario(){
-		return ['category', 'os', 'district', 'level', 'bind', 'school', 'sex', 'discuss', 'monster'];
+    public function scenarios(){
+		$scenarios = parent::scenarios();
+        $scenarios['seek'] = ['category', 'os', 'district', 'level', 'bind', 'school', 'sex', 'discuss', 'monster'];
+        return $scenarios;
 	}
     /**
      * @inheritdoc
