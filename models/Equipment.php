@@ -54,6 +54,9 @@ class Equipment extends \yii\db\ActiveRecord
         ];
     }
 
+	public function scenario(){
+		return ['category', 'os', 'district', 'level', 'bind', 'school', 'sex', 'discuss', 'monster'];
+	}
     /**
      * @inheritdoc
      */

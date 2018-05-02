@@ -10,6 +10,7 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use yii\web\Response;
+use yii\Roc\Tools;
 use app\models\Equipment;
 use app\models\News;
 use app\models\User;
@@ -37,20 +38,6 @@ class SiteController extends Controller
         ];
     }
 
-	public function actionChange(){
-		$pet = Defence::find()->orderBy('id')->all();
-		$i=1;
-		echo '<meta charset="utf-8">';
-		foreach($pet as $p){
-			$p->img = 'sysimg/def/' . $i++ . '.png';
-			$p->save();
-			echo '<div style="float:left;width:100px;text-align:center;">';
-			echo '<img style="width:100%;" src="' . $p->img . '" />';
-
-			echo '<p>' . $p->name . '</p> ';
-			echo '</div>';
-		}
-	}
 	public function actionD(){
 		$base = "http://my.163.com/2015/3/26/18021_506805.html";
 		//$urls = Download::getCurrentPageUrls($base);
@@ -115,26 +102,33 @@ private function curl_file_get_contents($durl){
 		}
 	}
 
-	public function actionList($add= '', $os= '', $district ='', $level = '', $category = '', $school = ''){
+	public function actionList($add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
+		$model = new Equipment(['scenario' => 'seek']);
 		$condition = "";
+		if($model->load(Yii::$app->request->post())){
+			Tools::RealAssignment($category, $model->category);
+			Tools::RealAssignment($os,$model->os);
+			Tools::RealAssignment($district, $model->district);
+			Tools::RealAssignment($level, $model->level);
+			Tools::RealAssignment($bind, $model->bind);
+			Tools::RealAssignment($school, $model->school);
+echo 'condition: ' . $model->category . ' category<br />';
+			$condition = $this->joinCondition($condition, $this->sex($model->sex));
+			$condition = $this->joinCondition($condition, $this->discuss($model->discuss));
+			$condition = $this->joinCondition($condition, $this->monster($model->monster1, $model->monster2));
+		}
+
+
+		$condition = $this->joinCondition($condition, $this->category($category));
 		$condition = $this->joinCondition($condition, $this->os($os));
 		$condition = $this->joinCondition($condition, $this->district($district));
 		$condition = $this->joinCondition($condition, $this->level($level));
-		$condition = $this->joinCondition($condition, $this->category($category));
+		$condition = $this->joinCondition($condition, $this->bind($model->bind));
 		$condition = $this->joinCondition($condition, $this->school($school));
 
-		$model = new Equipment(['scenario' => 'seek']);
-		if($model->load(Yii::$app->request->post())){
-			$condition = $this->joinCondition($condition, $this->bind($model->bind));
-			$condition = $this->joinCondition($condition, $this->sex($model->sex));
-			$condition = $this->joinCondition($condition, $this->discuss($model->discuss));
-			$condition = $this->joinCondition($condition, $this->category($model->category));
-			$condition = $this->joinCondition($condition, $this->school($model->school));
-			$condition = $this->joinCondition($condition, $this->price($model->price1, $model->price2));
-			$condition = $this->joinCondition($condition, $this->level($model->level));
-			$condition = $this->joinCondition($condition, $this->monster($model->monster1, $model->monster2));
+		if($condition <> ''){
+			echo 'condition: ' . $condition . ' condition<br />';
 		}
-		//echo $condition;
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -153,6 +147,7 @@ private function curl_file_get_contents($durl){
 					'search'		=> new Search(),
 					]);
 	}
+
 		private function bind($bind){
 			switch($bind){
 				case '手机账号':
@@ -174,7 +169,7 @@ private function curl_file_get_contents($durl){
 			}
 		}
 		private function sex($sex){
-			if($sex <> 100){
+			if($sex <> '' && $sex <> 100){
 				return 'sex = ' . $sex;
 			}
 			else{
@@ -182,7 +177,7 @@ private function curl_file_get_contents($durl){
 			}
 		}
 		private function discuss($discuss){
-			if($discuss <> 100){
+			if($discuss <> '' && $discuss <> 100){
 				return 'discuss = ' . $discuss;
 			}
 			else{

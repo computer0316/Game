@@ -494,11 +494,11 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="filter-div3" class="filter-div">
 
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'bind')->dropDownList(['不限' => '不限', '手机账号' => '手机账号', '签合同账号' => '签合同账号', '找回包赔账号' => '找回包赔账号', '三无账号' => '三无账号']) ?>
-        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'男','0'=>'女']) ?>
-        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList([100 => '不限', '1'=>'能','0'=>'否']) ?>
+		<?= $form->field($model, 'bind')->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['100' => '不限', '1'=>'男','0'=>'女']) ?>
+        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['100' => '不限', '1'=>'能','0'=>'否']) ?>
         <?= $form->field($model, 'level') ?>
-        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['不限' => '不限', '成品号' => '成品号', '金币号' => '金币号', '装备专区' => '装备专区', '宠物专区' => '宠物专区']) ?>
+        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(School::find()->select(['name', 'id'])->indexBy('id')->column(), ['prompt' => '不限']) ?>
         <?= $form->field($model, 'price1') ?>
         <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
@@ -516,7 +516,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 
 		if(!$equipments){
-			echo '还没有任何信息';
+			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
 		else{
 
