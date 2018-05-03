@@ -1,7 +1,17 @@
 <?php
 
 use yii\helpers\Url;
-use app\models\District;
+
+	use app\models\Community;
+	use app\models\District;
+	use app\models\School;
+	use app\models\Role;
+	use app\models\Pets;
+	use app\models\Arm;
+	use app\models\Os;
+	use app\models\Bind;
+	use app\models\Category;
+	use app\models\Defence;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -32,12 +42,12 @@ $(function () {
 			width:100%;
 			background-color:#ffffff;
 			margin:0 auto;
-			margin-top:30px;
 		}
 		.four-box{
 			width:25%;
 			float:left;
 			text-align:center;
+			margin-top:20px;
 		}
 		.four-box img{
 			width:60px;
@@ -61,8 +71,64 @@ $(function () {
 		.list .p2{
 			float:right;
 			margin-right:10px;
-			color:deepskyblue;
+			color:red;
 			line-height:48px;
+		}
+</style>
+<style>
+			.list{
+			float:left;
+			width:100%;
+			font-size:0.9rem;
+			border-bottom:1px dashed #ccc;
+			margin-top:10px;
+			padding-bottom:10px;
+		}
+		.list-img-div{
+			float:left;
+			width:15%;
+			padding:1%;
+			margin:1% 2%;
+			border:1px solid #ccc;
+			border-radius:5px;
+		}
+		.list-img{
+			width:100%;
+		}
+		.list-line{
+			float:left;
+			width:73%;
+			margin:5px 1%;
+		}
+		.list-icon{
+			float:left;
+			width:1.5rem;
+		}
+		.list-line p{
+			padding:0;
+			margin:0;
+		}
+		.list-title{
+			float:left;
+			font-size:1rem;
+		}
+		.list-item{
+			float:left;
+			font-size:0.8rem;
+			color:#999;
+		}
+		.right-item{
+			float:right;
+			font-size:0.8rem;
+			color:#999;
+		}
+		.title-div{
+			border:1px solid deepskyblue;
+			border-radius:5px;
+			text-align:center;
+			margin:15px 0px;
+			padding:5px 0;
+			float:left;
 		}
 </style>
 <!-- Slideshow -->
@@ -73,7 +139,7 @@ $(function () {
 		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
 	</ul>
 </div>
-<div class="container">
+<div class="container"">
 	<a href="<?=Url::toRoute(['site/list', 'category' => '金币号'])?>">
 		<div class="four-box">
 			<img src="sysimg/index/coin.jpg" />
@@ -125,7 +191,65 @@ $(function () {
 		</div>
 	</a>
 </div>
-<div class="box">
+<div class="container">
+	<div class="title-div" style="width:99%;">
+		每日精品
+	</div>
+	<?php
+		if(!$bests){
+			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
+		}
+		else{
+
+			foreach($bests as $e){
+				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
+					echo "<div class='list'>\n";
+						echo '<div class="list-img-div">';
+								if($e->role <> ''){
+									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								elseif($e->pets <> ''){
+									echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								elseif($e->arm <> ''){
+									echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								elseif($e->defence  <> ''){
+									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+								}
+								else{
+									echo '<img class="list-img" src="sysimg/index/coin.jpg" />';
+								}
+
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo ($e->discuss=="0" ? '' : '<img class="list-icon" src="sysimg/index/discuss.png" />') . ' ';
+							echo '<p class="list-title">' . School::findOne($e->school)->name . '</p>';
+							echo '<p class="list-item">&nbsp;|&nbsp;' . $e->level . '级</p>';
+							echo '<p class="right-item">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo '(' . $e->id . ')';
+							echo Os::findOne($e->os)->name . ' ';
+
+							echo Category::findOne($e->category)->name . ' ';
+							echo Bind::findOne($e->bind)->name . ' ';
+
+							echo ($e->sex ==0 ? '女': '男') . ' ';
+							echo $e->monster . '神兽 ';
+
+						echo '</div>';
+						echo '<div class="list-line">';
+							echo '<span style="color:red">￥'. $e->price . '.00</span>';
+							echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
+						echo "</div>";
+					echo "</div>\n";
+				echo '</a>';
+			}
+		}
+		?>
+</div>
+<div class="container">
 	<p style="color:deepskyblue;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
 	<?php
 		foreach($equi as $e){
@@ -138,4 +262,4 @@ $(function () {
 		}
 	?>
 </div>
-<div style="margin-bottom:80px;"> </div>
+<div class="container" style="margin-bottom:80px;"> </div>

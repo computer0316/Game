@@ -10,13 +10,13 @@
 	use app\models\Community;
 	use app\models\District;
 	use app\models\School;
-use app\models\Role;
-use app\models\Pets;
-use app\models\Arm;
-use app\models\Os;
-use app\models\Bind;
-use app\models\Category;
-use app\models\Defence;
+	use app\models\Role;
+	use app\models\Pets;
+	use app\models\Arm;
+	use app\models\Os;
+	use app\models\Bind;
+	use app\models\Category;
+	use app\models\Defence;
 
 $this->title = '列表';
 $this->params['breadcrumbs'][] = $this->title;

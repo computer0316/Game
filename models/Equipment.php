@@ -46,7 +46,7 @@ class Equipment extends \yii\db\ActiveRecord
     {
         return [
             [['price', 'district', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
-            [['price', 'role', 'coin', 'level', 'sex', 'monster', 'discuss'], 'integer'],
+            [['price', 'bestone', 'role', 'coin', 'level', 'sex', 'monster', 'discuss'], 'integer'],
             [['os', 'category', 'pets', 'bind', 'arm', 'defence', 'district', 'school'], 'integer', 'message' => '{attribute} 必须选择'],
             [['updatetime'], 'safe'],
             [['note'], 'string', 'max' => 512],

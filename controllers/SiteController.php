@@ -209,8 +209,17 @@ private function curl_file_get_contents($durl){
 
 	public function actionIndex(){
 		$equi = Equipment::find()->orderBy('id desc')->limit(10)->all();
+		$bests = Equipment::find()->where(['bestone' => 1])->orderBy('id desc')->all();
+		return $this->render('index', [
+			'equi' => $equi,
+			'bests' => $bests,
+			]);
+	}
 
-		return $this->render('index', ['equi' => $equi,]);
+	public function actionCategory(){
+		return $this->render('category',[
+			'search' => new Search(),
+		]);
 	}
 
 	// 用于添加500个虚拟数据
