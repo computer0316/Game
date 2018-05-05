@@ -469,16 +469,19 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="filter-div3" class="filter-div">
 
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'bind')->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'sex', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限', '1'=>'男','0'=>'女']) ?>
+		<?= $form->field($model, 'school')->dropDownList(['-1' => '不限'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		<?= $form->field($model, 'bind', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		<?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		
+        <?= $form->field($model, 'sex')->dropDownList(['-1' => '不限', '1'=>'男','0'=>'女']) ?>
         <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限', '1'=>'能','0'=>'否']) ?>
         <?= $form->field($model, 'level') ?>
-        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        
+        
         <?= $form->field($model, 'price1') ?>
-        <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
+        <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("- ") ?>
         <?= $form->field($model, 'monster1') ?>
-        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("&nbsp;") ?>
+        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("- ") ?>
 
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>

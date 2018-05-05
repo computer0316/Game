@@ -8,16 +8,18 @@ use Yii;
  * This is the model class for table "equipment".
  *
  * @property integer $id
- * @property string $category
+ * @property integer $bestone
+ * @property integer $category
  * @property integer $price
  * @property integer $role
  * @property integer $coin
  * @property integer $pets
  * @property integer $arm
- * @property string $os
+ * @property integer $defence
+ * @property integer $os
  * @property integer $district
  * @property integer $level
- * @property string $bind
+ * @property integer $bind
  * @property integer $sex
  * @property integer $school
  * @property integer $monster
@@ -45,9 +47,8 @@ class Equipment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['price', 'district', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
-            [['price', 'bestone', 'role', 'coin', 'level', 'sex', 'monster', 'discuss'], 'integer'],
-            [['os', 'category', 'pets', 'bind', 'arm', 'defence', 'district', 'school'], 'integer', 'message' => '{attribute} 必须选择'],
+            [['bestone', 'category', 'price', 'role', 'coin', 'pets', 'arm', 'defence', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 'integer'],
+            [['category', 'price', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required'],
             [['updatetime'], 'safe'],
             [['note'], 'string', 'max' => 512],
         ];
@@ -58,28 +59,33 @@ class Equipment extends \yii\db\ActiveRecord
         $scenarios['seek'] = ['category', 'os', 'district', 'level', 'bind', 'school', 'sex', 'discuss', 'monster'];
         return $scenarios;
 	}
-    /**
+	
+   /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'category' => 'Category',
-            'price' => 'Price',
-            'role' => 'Role',
-            'coin' => 'Coin',
-            'pets' => 'Pets',
-            'arm' => 'Arm',
-            'os' => 'Os',
-            'district' => 'District',
-            'level' => 'Level',
-            'bind' => 'Bind',
-            'sex' => 'Sex',
-            'school' => 'School',
-            'monster' => 'Monster',
-            'discuss' => 'Discuss',
-            'note' => 'Note',
+            'id'		=> 'ID',
+            'bestone'	=> '精选',
+            'category'	=> '种类',
+            'price'		=> '价格',
+            'role'		=> '角色',
+            'coin'		=> '金币',
+            'pets'		=> '宠物',
+            'arm'		=> '武器',
+            'defence'	=> '防具',
+            'os'		=> '操作系统',
+            'district'	=> '服务器',
+            'level'		=> '级别',
+            'bind'		=> '绑定类型',
+            'sex'		=> '性别',
+            'school'	=> '门派',
+            'monster'	=> '神兽',
+            'discuss'	=> '能否议价',
+            'note'		=> '说明',
+            'price1'	=> '价格',
+            'monster1'	=> '神兽',
             'updatetime' => 'Updatetime',
         ];
     }

@@ -283,7 +283,7 @@ class SiteController extends Controller
 		echo count($pets) . '--';
 		echo count($arms) . '--';
 
-		for($i=0;$i<500;$i++){
+		for($i=0;$i<5000;$i++){
 			$e = new Equipment();
 			$e->price	= rand(2500, 48000);
 			$e->category	= rand(1,5);
@@ -320,7 +320,7 @@ class SiteController extends Controller
 			$e->note	= $note[rand(0,56)];
 			$e->updatetime= date("Y-m-d H:i:s", time());
 			if($e->save()){
-				echo District::findOne($e->district)->name . '<br />';
+				echo $i . ' ' . District::findOne($e->district)->name . '<br />';
 				ob_flush();
 				flush();
 			}
