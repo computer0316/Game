@@ -29,8 +29,8 @@ class Pets extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'img', 'high'], 'required'],
-            [['low', 'high'], 'integer'],
+            [['name', 'img', 'level'], 'required'],
+            [['level'], 'integer'],
             [['name'], 'string', 'max' => 16],
             [['img'], 'string', 'max' => 128],
         ];
@@ -45,8 +45,7 @@ class Pets extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'img' => 'Img',
-            'low' => 'Low',
-            'high' => 'High',
+            'level' => 'Level',
         ];
     }
 }

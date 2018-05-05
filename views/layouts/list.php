@@ -34,7 +34,7 @@ use yii\helpers\VarDumper;
 <body>
 <?php $this->beginBody() ?>
 <div class="header">
-	<img style="width:100%;margin:0;" src="sysimg/index/top.jpg" />
+	<img src="sysimg/index/top.jpg" />
 </div>
 <div class="container">
 	<?= $content ?>

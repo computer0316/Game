@@ -1,4 +1,4 @@
-		html{background: #f7f7f7;margin:0;padding:0;}
+		html{background: #f7f7f7;}
 		body{font-size: 14px; color:#333;}
 		html,body{margin:0;padding:0;}
 		body{position:relative; min-height:100%; min-width: 320px;max-width: 760px;margin:0 auto; background-color:#ffffff;}
@@ -11,11 +11,33 @@
 		.header{
 			margin:0;
 			padding:0;
-			font-size:32px;
 			text-align:center;
 			color:blue;
-			line-height:56px;
 		}
+		#search{		
+			float:left;
+			margin:5px 2%;
+			width:95%;	
+			border:1px solid #ccc;
+			border-radius:5px;
+		}
+		#search input[type="image"]{
+			width:30px;
+			float:right;
+			border:0;
+		}
+		#search .search-form{
+			float:left;
+			width:90%;
+		}
+		#search input[type="text"]{
+			margin-left:5px;
+			outline:none;
+			height:30px;
+			width:100%;
+			border:0px;
+		}
+		
 		.footer-div{
 			position:fixed;
 			bottom:0;

@@ -33,76 +33,121 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="container">
 	<div id="left">
 		<ul id="list">
-			<li>推荐</li>
-			<li>角色</li>
-			<li>召唤兽</li>
-			<li>武器</li>
-			<li>防具</li>
+			<li data-type="recomment">推荐</li>
+			<li data-type="role">门派</li>
+			<li data-type="pets">召唤兽</li>
+			<li data-type="arm">武器</li>
+			<li data-type="defence">防具</li>
 		</ul>
 	</div>
 	<div id="right">
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
+		<div class="category" data-type="role" id="role">
+			<div class="block">
+				<img src="sysimg/school/dt.png" />
+				<p>大唐官府</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/fc.png" />
+				<p>方寸山</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/st.png" />
+				<p>狮驼岭</p>
+			</div>			
+			<div class="block">
+				<img src="sysimg/school/pt.png" />
+				<p>普陀山</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/lg.png" />
+				<p>龙宫</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/yc.png" />
+				<p>阴曹地府</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/mw.png" />
+				<p>魔王寨</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/hs.png" />
+				<p>化生寺</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/school/yg.png" />
+				<p>月宫</p>
+			</div>
 		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
+		<div class="category" data-type="pets" id="pets">
+			<div class="block">
+				<img src="sysimg/pets/2.png">
+				<p>0级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/pets/30.png">
+				<p>65级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/pets/13.png">
+				<p>80级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/pets/26.png">
+				<p>85级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/pets/21.png">
+				<p>95级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/pets/1.png">
+				<p>105级</p>
+			</div>
 		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
+		<div class="category" data-type="arm" id="arm">
+			<div class="block">
+				<img src="sysimg/arm/1.png">
+				<p>70级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/arm/2.png">
+				<p>90级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/arm/3.png">
+				<p>100级</p>
+			</div>
 		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
-		</div>
-		<div class="block">
-			<img src="sysimg/role/gxx.gif" />
-			<p>普陀山</p>
+		<div class="category" data-type="defence" id="defence">
+			<div class="block">
+				<img src="sysimg/def/8.png">
+				<p>70级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/def/65.png">
+				<p>90级</p>
+			</div>
+			<div class="block">
+				<img src="sysimg/def/33.png">
+				<p>100级</p>
+			</div>
 		</div>
 	</div>
 </div>
+
 <style>
 	#left{
 		height:500px;
 		width:20%;
 		float:left;
-		border-top:1px solid blue;
+		border-top:1px solid #ccc;
 	}
 	#list{margin:0;padding:0;}
 	#list li{
 		width:100%;
 		height:64px;
-		font-size:24px;
+		font-size:14px;
 		color:#666;
 		text-align:center;
 		line-height:64px;
@@ -111,8 +156,8 @@ $this->params['breadcrumbs'][] = $this->title;
 		float:left;
 		width:79%;
 		height:500px;
-		border-top:1px solid blue;
-		border-left:1px solid blue;
+		border-top:1px solid #ccc;
+		border-left:1px solid #ccc;
 	}
 	.block{
 		float:left;
@@ -122,6 +167,19 @@ $this->params['breadcrumbs'][] = $this->title;
 		text-align:center;
 	}
 	.block img{
-		width:90%;
+		width:60%;
+	}
+	.category{
+		display:none;
 	}
 </style>
+<script>
+	$(document).ready(function(){
+		$(".category[data-type=role]").show();
+		$("#list li").click(function(){
+			var category = $(this).data("type");
+			$(".category").hide();
+			$(".category[data-type=" + category + "]").show();
+		});
+	});
+</script>
