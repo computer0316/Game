@@ -82,26 +82,26 @@ class SiteController extends Controller
         ]);
     }
 
-	public function actionSearch(){
-		$model = new Search();
-		if($model->load(yii::$app->request->post())){
-			
-			$this->search(Arm::className(), $model->text)
-			if($item){
-				$equips = Equipment::find()->where(['arm' => $item->id])->all();
-			}
-		}
-		else{
-			return $this->redirect(Url::toRoute('site/list'));
-		}
-	}
-		
-		private function search($class, $find){
-			$item = $class::find()->where('name like %' . $find . '%')->all();
-			it($item){
-				return Equipment::find()->where([$class => $item->id])->all();
-			}
-		}
+//	public function actionSearch(){
+//		$model = new Search();
+//		if($model->load(yii::$app->request->post())){
+//			
+//			$this->search(Arm::className(), $model->text)
+//			if($item){
+//				$equips = Equipment::find()->where(['arm' => $item->id])->all();
+//			}
+//		}
+//		else{
+//			return $this->redirect(Url::toRoute('site/list'));
+//		}
+//	}
+//		
+//		private function search($class, $find){
+//			$item = $class::find()->where('name like %' . $find . '%')->all();
+//			it($item){
+//				return Equipment::find()->where([$class => $item->id])->all();
+//			}
+//		}
 
 	public function actionList($add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
 		$model = new Equipment(['scenario' => 'seek']);
