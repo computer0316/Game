@@ -39,10 +39,17 @@ class SiteController extends Controller
     }
 
 	public function actionTemp(){
-		$items = Defence::find()->where('level>-1')->orderBy('level')->all();
+		$items = Arm::find()->where('level > -1')->orderBy('level')->all();
 		echo '<meta charset="utf-8">';
 		foreach($items as $item){
-			echo $item->level . ' ' . $item->name . '<br />';
+			
+			if($item){
+				echo $item->level . ' ' . $item->img . ' '. $item->name . '<br />';
+			}
+			else{
+				var_dump($item->errors);
+				die();
+			}
 		}
 	}
 
@@ -78,12 +85,23 @@ class SiteController extends Controller
 	public function actionSearch(){
 		$model = new Search();
 		if($model->load(yii::$app->request->post())){
-			$model->text;
+			
+			$this->search(Arm::className(), $model->text)
+			if($item){
+				$equips = Equipment::find()->where(['arm' => $item->id])->all();
+			}
 		}
 		else{
 			return $this->redirect(Url::toRoute('site/list'));
 		}
 	}
+		
+		private function search($class, $find){
+			$item = $class::find()->where('name like %' . $find . '%')->all();
+			it($item){
+				return Equipment::find()->where([$class => $item->id])->all();
+			}
+		}
 
 	public function actionList($add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
 		$model = new Equipment(['scenario' => 'seek']);
@@ -91,7 +109,7 @@ class SiteController extends Controller
 		if($model->load(Yii::$app->request->post())){
 			$category	= $this->setVal($model->category);
 			$district	= $this->setVal($model->district);
-			$level		= $this->setVal($model->level);
+			$level		= $this->setLevel($model->level);
 			$bind		= $this->setVal($model->bind);
 			$school		= $this->setVal($model->school);
 
@@ -107,9 +125,6 @@ class SiteController extends Controller
 		$condition = $this->joinCondition($condition, $this->createCondition($bind, 	'bind'));
 		$condition = $this->joinCondition($condition, $this->createCondition($school, 	'school'));
 
-		if($condition <> ''){
-			echo 'condition: ' . $condition . ' condition<br />';
-		}
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
@@ -135,6 +150,15 @@ class SiteController extends Controller
 			}
 		}
 
+		private function setLevel($value){
+			if(isset($value) && $value <> ''){
+				return $value;
+			}
+			else{
+				return -1;
+			}
+		}
+
 
 		private function price($price1, $price2){
 			if($price1 <> '' && $price2 <> ''){
@@ -147,11 +171,11 @@ class SiteController extends Controller
 			}
 		}
 		private function createCondition($item, $name){
-			if(isset($item) && $item > 0){
+			if(isset($item) && $item <> ''){
 				return $name . ' = ' . $item;
 			}
 		}
-
+		
 		private function joinCondition($old, $new){
 			if($old <> '' && $new <> ''){
 				return $old . ' and ' . $new;
@@ -192,12 +216,9 @@ class SiteController extends Controller
 
 	// 用于添加500个虚拟数据
 	public function actionAddtemp(){
-		die('用于填充虚拟数据');
+		//die('用于填充虚拟数据');
 		echo '<meta charset="utf-8">';
 		ob_start();
-		$cate = ["成品号", "金币号", "装备专区", "宠物专区"];
-		$type = ['手机账号', '签合同账号', '无绑定账号', '有绑定账号'];
-		$os  = ['苹果专区', '安卓官服', '苹果安卓互通区'];
 		$note =["恢复（上限3%+200）的气血，对单人使用",
 "恢复（上限6%+400）的气血，对单人使用",
 "恢复（上限9%+600）的气血，对单人使用",
@@ -255,15 +276,43 @@ class SiteController extends Controller
 "减少敌全体同等于自己“魔力”属性/3的HP及MP。",
 "给己方指定目标笼罩一个可抵御目标等级×6伤害的护甲，持续2个回合。（即笼罩该状态的目标在回合内所受的伤害会先被抵挡，回合到或抵挡伤害上限到则状态消失。）",
 "给己方所有目标增加一个临时屏障，可抵御目标等级×5伤害，持续2个回合。（即笼罩该状态的目标在回合内所受的伤害会先被抵挡，回合到或抵挡伤害上限到则状态消失。）"];
+		$defences	= Defence::find()->where('level>-1')->orderBy('level')->all();
+		$pets		= Pets::find()->where('level>-1')->orderBy('level')->all();
+		$arms		= Arm::find()->where('level>-1')->orderBy('level')->all();
+		echo count($defences) . '--';
+		echo count($pets) . '--';
+		echo count($arms) . '--';
 
 		for($i=0;$i<500;$i++){
 			$e = new Equipment();
 			$e->price	= rand(2500, 48000);
-			$e->os		= $os[rand(0,2)];
+			$e->category	= rand(1,5);
+			switch($e->category){
+				case 1:
+					$e->role = rand(1,18);
+					break;
+				case 2:
+					$e->coin = rand(20000,200000);
+					break;
+				case 3:
+					$def = $defences[rand(0, count($defences)-1)];
+					$e->defence = $def->id ;
+					$e->level	= $def->level;
+					break;
+				case 4:
+					$pet = $pets[rand(0, count($pets)-1)];
+					$e->pets	= $pet->id ;
+					$e->level	= $pet->level;
+					break;
+				case 5:
+					$arm = $arms[rand(0, count($arms)-1)];
+					$e->arm		= $arm->id ;
+					$e->level	= $arm->level;
+					break;
+			}
+			$e->os		= rand(1,3);
 			$e->district= rand(1,162);
-			$e->level	= rand(0,109);
-			$e->bind	= $type[rand(0,3)];
-			$e->category= $cate[rand(0,3)];
+			$e->bind	= rand(1,4);
 			$e->sex		= rand(0,1);
 			$e->school	= rand(1,9);
 			$e->monster	= rand(1,100);

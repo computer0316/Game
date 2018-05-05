@@ -42,96 +42,114 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div id="right">
 		<div class="category" data-type="role" id="role">
-			<div class="block">
-				<img src="sysimg/school/dt.png" />
-				<p>大唐官府</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/fc.png" />
-				<p>方寸山</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/st.png" />
-				<p>狮驼岭</p>
-			</div>			
-			<div class="block">
-				<img src="sysimg/school/pt.png" />
-				<p>普陀山</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/lg.png" />
-				<p>龙宫</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/yc.png" />
-				<p>阴曹地府</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/mw.png" />
-				<p>魔王寨</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/hs.png" />
-				<p>化生寺</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/school/yg.png" />
-				<p>月宫</p>
-			</div>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 1]) ?>">
+				
+					<img src="sysimg/school/dt.png" />
+					<p>大唐官府</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 2]) ?>">
+				
+					<img src="sysimg/school/fc.png" />
+					<p>方寸山</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 3]) ?>">
+				
+					<img src="sysimg/school/st.png" />
+					<p>狮驼岭</p>
+							
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 4]) ?>">
+				
+					<img src="sysimg/school/pt.png" />
+					<p>普陀山</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 5]) ?>">
+				
+					<img src="sysimg/school/lg.png" />
+					<p>龙宫</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 6]) ?>">
+				
+					<img src="sysimg/school/yc.png" />
+					<p>阴曹地府</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 7]) ?>">
+				
+					<img src="sysimg/school/mw.png" />
+					<p>魔王寨</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 8]) ?>">
+				
+					<img src="sysimg/school/hs.png" />
+					<p>化生寺</p>
+				
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 9]) ?>">
+				
+					<img src="sysimg/school/yg.png" />
+					<p>月宫</p>
+				
+			</a>
 		</div>
 		<div class="category" data-type="pets" id="pets">
-			<div class="block">
-				<img src="sysimg/pets/2.png">
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 0]) ?>">
+				<img src="sysimg/pets/2.png">			
 				<p>0级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 65]) ?>">
 				<img src="sysimg/pets/30.png">
 				<p>65级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 80]) ?>">
 				<img src="sysimg/pets/13.png">
 				<p>80级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 85]) ?>">
 				<img src="sysimg/pets/26.png">
 				<p>85级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 95]) ?>">
 				<img src="sysimg/pets/21.png">
 				<p>95级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 4, 'level' => 105]) ?>">
 				<img src="sysimg/pets/1.png">
 				<p>105级</p>
-			</div>
+			</a>
 		</div>
 		<div class="category" data-type="arm" id="arm">
-			<div class="block">
-				<img src="sysimg/arm/1.png">
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 5, 'level' => 70]) ?>">
+				<img src="sysimg/arm/8.png">
 				<p>70级</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/arm/2.png">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 5, 'level' => 90]) ?>">
+				<img src="sysimg/arm/21.png">
 				<p>90级</p>
-			</div>
-			<div class="block">
-				<img src="sysimg/arm/3.png">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 5, 'level' => 100]) ?>">
+				<img src="sysimg/arm/66.png">
 				<p>100级</p>
-			</div>
+			</a>
 		</div>
 		<div class="category" data-type="defence" id="defence">
-			<div class="block">
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 3, 'level' => 70]) ?>">
 				<img src="sysimg/def/8.png">
 				<p>70级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 3, 'level' => 90]) ?>">
 				<img src="sysimg/def/65.png">
 				<p>90级</p>
-			</div>
-			<div class="block">
+			</a>
+			<a class="block" href="<?= Url::toRoute(['site/list', 'category' => 3, 'level' => 100]) ?>">
 				<img src="sysimg/def/33.png">
 				<p>100级</p>
-			</div>
+			</a>			
 		</div>
 	</div>
 </div>
@@ -161,9 +179,10 @@ $this->params['breadcrumbs'][] = $this->title;
 	}
 	.block{
 		float:left;
-		margin-left:3%;
-		margin-top:20px;
+		display:block;		
 		width:30%;
+		margin-left:3%;
+		margin-top:20px;		
 		text-align:center;
 	}
 	.block img{

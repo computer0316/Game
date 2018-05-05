@@ -204,36 +204,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:1px solid #d7d7d7;
 			background-color:#d7d7d7;
 		}
-		#search{
-			width:100%;
-			float:left;
-			margin:10px 0;
-		}
-		#search{
-			float:left;
-			width:95%;
-			margin:0 10px;
-			border:1px solid deepskyblue;
-			border-radius:10px;
-			height:30px;
-		}
-		#search-text{
-			float:left;
-			width:82%;
-			border:0px white;
-			outline:none;
-			margin:0 15px;
-			height:25px;
-		}
-		#searchimg{
-			float:right;
-			margin-right:5px;
-			margin-top:2px;
-			outline:none;
-			width:25px;
-			height:25px;
-			border:0;
-		}
+
 </style>
 <style>
 		.list{

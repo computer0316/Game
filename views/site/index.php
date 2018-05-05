@@ -140,25 +140,25 @@ $(function () {
 	</ul>
 </div>
 <div class="container"">
-	<a href="<?=Url::toRoute(['site/list', 'category' => '金币号'])?>">
+	<a href="<?=Url::toRoute(['site/list', 'category' => 2])?>">
 		<div class="four-box">
 			<img src="sysimg/index/coin.jpg" />
 			<p>梦幻币</p>
 		</div>
 	</a>
-	<a href="<?=Url::toRoute(['site/list'])?>">
+	<a href="<?=Url::toRoute(['site/list', 'category' => 1])?>">
 		<div class="four-box">
 			<img src="sysimg/index/role.jpg" />
 			<p>角色</p>
 		</div>
 	</a>
-	<a href="<?=Url::toRoute(['site/list', ])?>">
+	<a href="<?=Url::toRoute(['site/list', 'category' => 4])?>">
 		<div class="four-box">
 			<img src="sysimg/index/monster.png" />
 			<p>召唤兽</p>
 		</div>
 	</a>
-	<a href="<?=Url::toRoute(['site/list', 'category' => '装备专区'])?>">
+	<a href="<?=Url::toRoute(['site/list', 'category' => 3])?>">
 		<div class="four-box">
 			<img src="sysimg/index/arm.png" />
 			<p>装备</p>

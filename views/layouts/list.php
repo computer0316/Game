@@ -42,14 +42,14 @@ use yii\helpers\VarDumper;
 	<div id="footer-div" class="footer-div">
 		<a href="?r=site/index">
 		<div>
-				<img id="abc" class="footerimg" src="images/shou.png" />
-				<p>首页</p>
+			<img id="abc" class="footerimg" src="images/shou.png" />
+			<p>首页</p>
 		</div>
 		</a>
-		<a href="?r=site/list">
+		<a href="?r=site/category">
 		<div>
-				<img class="footerimg" src="images/fen.png" />
-				<p>分类</p>
+			<img class="footerimg" src="images/fen.png" />
+			<p>分类</p>
 		</div>
 		</a>
 		<div>
