@@ -42,7 +42,7 @@ class SiteController extends Controller
 		$items = Arm::find()->where('level > -1')->orderBy('level')->all();
 		echo '<meta charset="utf-8">';
 		foreach($items as $item){
-			
+
 			if($item){
 				echo $item->level . ' ' . $item->img . ' '. $item->name . '<br />';
 			}
@@ -82,26 +82,54 @@ class SiteController extends Controller
         ]);
     }
 
-//	public function actionSearch(){
-//		$model = new Search();
-//		if($model->load(yii::$app->request->post())){
-//			
-//			$this->search(Arm::className(), $model->text)
-//			if($item){
-//				$equips = Equipment::find()->where(['arm' => $item->id])->all();
-//			}
-//		}
-//		else{
-//			return $this->redirect(Url::toRoute('site/list'));
-//		}
-//	}
-//		
-//		private function search($class, $find){
-//			$item = $class::find()->where('name like %' . $find . '%')->all();
-//			it($item){
-//				return Equipment::find()->where([$class => $item->id])->all();
-//			}
-//		}
+	public function actionSearch($add=''){
+		$model = new Search();
+		if($model->load(yii::$app->request->post())){
+
+			$condition = $this->condition(Arm::className(), $model->text);
+//			echo '<meta charset="utf-8">';
+//			var_dump($condition);
+//			die();
+		$query	= Equipment::find()->where($condition);
+		$count	= $query->count();
+		$pagination = new Pagination(['totalCount' => $count]);
+		$pagination->pageSize = 15;
+		$equipments	= $query->offset($pagination->offset)
+					->limit($pagination->limit)
+					->orderBy('id desc')
+					->all();
+			$equipments = Equipment::find()->where($condition)->all();
+					$this->layout = 'list';
+		return $this->render('list', [
+					'add'			=> $add,
+					'equipments'	=> $equipments,
+					'pagination'	=> $pagination,
+					'model'			=> $model,
+					'search'		=> new Search(),
+					]);
+		}
+		else{
+			return $this->redirect(Url::toRoute('site/list'));
+		}
+	}
+
+		private function condition($class, $find){
+			$items = $class::find()->where("name like '%" . $find . "%'")->column();
+			$className = explode('\\', $class);
+			$className = $className[2];
+			$str = '(';
+			if($items){
+				foreach($items as $item){
+					$str .= $item . ',';
+				}
+				$str = trim($str, ',');
+				$str .= ')';
+				return strtolower($className) . ' in ' . $str;
+			}
+			else{
+				return '';
+			}
+		}
 
 	public function actionList($add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
 		$model = new Equipment(['scenario' => 'seek']);
@@ -175,7 +203,7 @@ class SiteController extends Controller
 				return $name . ' = ' . $item;
 			}
 		}
-		
+
 		private function joinCondition($old, $new){
 			if($old <> '' && $new <> ''){
 				return $old . ' and ' . $new;

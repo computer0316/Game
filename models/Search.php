@@ -18,7 +18,6 @@ class Search extends Model
     public function rules()
     {
         return [
-            [['text'], 'required'],
             [['text'], 'string', 'max' => 16],
         ];
     }

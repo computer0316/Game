@@ -33,9 +33,11 @@ use yii\helpers\VarDumper;
 </head>
 <body>
 <?php $this->beginBody() ?>
+<!--
 <div class="header">
 	壹折手游交易平台
 </div>
+-->
 <div class="container">
 	<?= $content ?>
 
