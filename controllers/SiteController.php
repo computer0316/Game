@@ -19,8 +19,10 @@ use app\models\District;
 use app\models\UploadForm;
 use app\models\Download;
 use app\models\Search;
+use app\models\School;
 use app\models\Pets;
 use app\models\Arm;
+use app\models\Role;
 use app\models\Defence;
 
 class SiteController extends Controller
@@ -37,21 +39,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
-	public function actionTemp(){
-		$items = Arm::find()->where('level > -1')->orderBy('level')->all();
-		echo '<meta charset="utf-8">';
-		foreach($items as $item){
-
-			if($item){
-				echo $item->level . ' ' . $item->img . ' '. $item->name . '<br />';
-			}
-			else{
-				var_dump($item->errors);
-				die();
-			}
-		}
-	}
 
     public function actionArticle($id = 0){
     	return $this->render('know', [
@@ -86,25 +73,29 @@ class SiteController extends Controller
 		$model = new Search();
 		if($model->load(yii::$app->request->post())){
 
-			$condition = $this->condition(Arm::className(), $model->text);
-//			echo '<meta charset="utf-8">';
-//			var_dump($condition);
-//			die();
+		$condition = $this->condition(Arm::className(), $model->text);
+		$condition = $this->joinCondition($condition, $this->condition(School::className(), $model->text));
+		$condition = $this->joinCondition($condition, $this->condition(District::className(), $model->text));
+		$condition = $this->joinCondition($condition, $this->condition(Defence::className(), $model->text));
+		$condition = $this->joinCondition($condition, $this->condition(Pets::className(), $model->text));
+		$condition = $this->joinCondition($condition, $this->condition(Role::className(), $model->text));
+
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
 		$pagination->pageSize = 15;
 		$equipments	= $query->offset($pagination->offset)
+					->where($condition)
 					->limit($pagination->limit)
 					->orderBy('id desc')
 					->all();
-			$equipments = Equipment::find()->where($condition)->all();
+
 					$this->layout = 'list';
 		return $this->render('list', [
 					'add'			=> $add,
 					'equipments'	=> $equipments,
 					'pagination'	=> $pagination,
-					'model'			=> $model,
+					'model'			=> new Equipment(['scenario' => 'seek']),
 					'search'		=> new Search(),
 					]);
 		}
@@ -131,7 +122,7 @@ class SiteController extends Controller
 			}
 		}
 
-	public function actionList($add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
+	public function actionList($po = '', $add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
 		$model = new Equipment(['scenario' => 'seek']);
 		$condition = "";
 		if($model->load(Yii::$app->request->post())){
@@ -153,17 +144,30 @@ class SiteController extends Controller
 		$condition = $this->joinCondition($condition, $this->createCondition($bind, 	'bind'));
 		$condition = $this->joinCondition($condition, $this->createCondition($school, 	'school'));
 
+		$order = '';
+		if($po <> ''){
+			if($po == 'up'){
+				$order = 'price';
+			}
+			else{
+				$order = 'price desc';
+			}
+		}
+		else{
+			$order = 'id desc';
+		}
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
 		$pagination = new Pagination(['totalCount' => $count]);
 		$pagination->pageSize = 15;
 		$equipments	= $query->offset($pagination->offset)
 					->limit($pagination->limit)
-					->orderBy('id desc')
+					->orderBy($order)
 					->all();
 		$this->layout = 'list';
 		return $this->render('list', [
 					'add'			=> $add,
+					'Order'	=> $po,
 					'equipments'	=> $equipments,
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,

@@ -151,10 +151,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		.form-group{
 			float:left;
-			clear:both;
+			height:65px;
+			margin:10px;
+		}
+		.form-group1{
+			float:left;
 			height:65px;
 		}
+		.form-group1 input{
+			width:230px;
+		}
+		.form-group1 label{
+			width:60px;
+			float:left;
+			text-align:right;
+			font-size:14px;
+			margin:0 10px;
+			line-height:35px;
+
+		}
 		.form-group label{
+			width:80px;
 			float:left;
 			text-align:right;
 			font-size:14px;
@@ -177,7 +194,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		select,input{
 			border:1px solid deepskyblue;
 			height:35px;
-			width:60px;
+			width:180px;
 			padding-left:5px;
 		}
 
@@ -265,7 +282,17 @@ $this->params['breadcrumbs'][] = $this->title;
 		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
 		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
 		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
-		<p id="p4" onclick="showMask()">价格<img src="images/ad.png" /></p>
+		<?php
+			if($Order =='up'){
+				echo '<a href="' . Url::current(['po' => 'down']) . '"><p id="p4">价格<img src="images/au.png" /></p></a>';
+			}
+			if($Order =='down'){
+				echo '<a href="' . Url::current(['po' => 'up']) . '"><p id="p4">价格<img src="images/ad.png" /></p></a>';
+			}
+			if($Order == ''){
+				echo '<a href="' . Url::current(['po' => 'up']) . '"><p id="p4">价格</p></a>';
+			}
+		?>
 	</div>
 	<div id="filter-div1" class="filter-div">
 		<a href="<?=Url::current(['os' => '1'])?>">
@@ -469,19 +496,17 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="filter-div3" class="filter-div">
 
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'school')->dropDownList(['-1' => '不限'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-		<?= $form->field($model, 'bind', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-		<?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-		
-        <?= $form->field($model, 'sex')->dropDownList(['-1' => '不限', '1'=>'男','0'=>'女']) ?>
-        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['-1' => '不限', '1'=>'能','0'=>'否']) ?>
-        <?= $form->field($model, 'level') ?>
-        
-        
-        <?= $form->field($model, 'price1') ?>
-        <?= $form->field($model, 'price2', ['options' => ['class' => 'in-line']])->label("- ") ?>
-        <?= $form->field($model, 'monster1') ?>
-        <?= $form->field($model, 'monster2', ['options' => ['class' => 'in-line']])->label("- ") ?>
+		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		<?= $form->field($model, 'bind')->label(false)->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		<?= $form->field($model, 'category')->label(false)->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
+        <?= $form->field($model, 'sex')->label(false)->dropDownList(['-1' => '性别', '1'=>'男','0'=>'女']) ?>
+        <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
+
+        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '级别', '70'=>'70级','90'=>'90级', '105' => '105级']) ?>
+
+		<?= $form->field($model, 'price', ['options' => ['class' => 'form-group1']]) ?>
+
 
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>

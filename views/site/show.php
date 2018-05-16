@@ -3,9 +3,17 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\models\District;
-use app\models\School;
-use app\models\Picture;
+	use app\models\Community;
+	use app\models\District;
+	use app\models\School;
+	use app\models\Role;
+	use app\models\Pets;
+	use app\models\Arm;
+	use app\models\Os;
+	use app\models\Bind;
+	use app\models\Category;
+	use app\models\Defence;
+	use app\models\Picture;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Equipment */
@@ -76,16 +84,31 @@ use app\models\Picture;
 		</div>
 		<div class="item-div">
 			<?php
-			echo '<p class="label">操作系统</p><p class="item">' . $e->os . '</p>';
 			echo '<p class="label">商品编号</p><p class="item">' . $e->id . '</p>';
+			echo '<p class="label">操作系统</p><p class="item">' . Os::findOne($e->os)->name . '</p>';
 			echo '<p class="label">所在大区</p><p class="item">' . District::findOne($e->district)->big . '</p>';
 			echo '<p class="label">服务器</p><p class="item">' . District::findOne($e->district)->name . '</p>';
 			echo '<p class="label">等级</p><p class="item">' . $e->level . '</p>';
-			echo '<p class="label">账号类型</p><p class="item">' . $e->bind . '</p>';
+			echo '<p class="label">账号类型</p><p class="item">' . Bind::findOne($e->bind)->name . '</p>';
 			echo '<p class="label">门派</p><p class="item">' . School::findOne($e->school)->name . '</p>';
 			echo '<p class="label">性别</p><p class="item">' . ($e->sex = 0 ? '女'  : '男') . '</p>';
 			echo '<p class="label">能否议价</p><p class="item">' . ($e->discuss = 0 ? '不可议价' : '可以议价') . '</p>';
 			echo '<p class="label">神兽数量</p><p class="item">' . $e->monster . '</p>';
+			if($e->role <> ''){
+				echo '<p class="label">角色</p><p class="item">' . Role::findOne($e->role)->name . '</p>';
+			}
+			if($e->arm <> ''){
+				echo '<p class="label">武器</p><p class="item">' . Arm::findOne($e->arm)->name . '</p>';
+			}
+			if($e->defence <> ''){
+				echo '<p class="label">防具</p><p class="item">' . Defence::findOne($e->defence)->name . '</p>';
+			}
+			if($e->pets <> ''){
+				echo '<p class="label">宠物</p><p class="item">' . Pets::findOne($e->pets)->name . '</p>';
+			}
+			if($e->coin <> ''){
+				echo '<p class="label">金币</p><p class="item">' . $e->coin . '</p>';
+			}
 			?>
 		</div>
 	<div class="title-div" style="width:99%;">
