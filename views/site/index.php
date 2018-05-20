@@ -47,14 +47,14 @@ $(function () {
 			width:25%;
 			float:left;
 			text-align:center;
-			margin-top:20px;
+			margin-top:10px;
 		}
 		.four-box img{
-			width:60px;
+			width:50px;
 			border-radius:30px;
 		}
 		.four-box p{
-			margin-top:20px;
+			margin-top:5px;
 		}
 		.list{
 			float:left;
@@ -134,9 +134,12 @@ $(function () {
 <!-- Slideshow -->
 <div class="callbacks_container">
 	<ul class="rslides" id="slider">
-		<li><a href="#"><img src="images/11.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/22.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/44.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/2.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/4.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/5.jpg" alt=""></a></li>
+		<li><a href="#"><img src="images/6.jpg" alt=""></a></li>
 	</ul>
 </div>
 <div class="container"">

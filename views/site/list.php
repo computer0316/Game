@@ -229,8 +229,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			width:100%;
 			font-size:0.9rem;
 			border-bottom:1px dashed #ccc;
-			margin-top:10px;
-			padding-bottom:10px;
+			margin-top:5px;
+			padding-bottom:5px;
 		}
 		.list-img-div{
 			float:left;
@@ -246,7 +246,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		.list-line{
 			float:left;
 			width:73%;
-			margin:5px 1%;
+			margin:3px 1%;
 		}
 		.list-icon{
 			float:left;

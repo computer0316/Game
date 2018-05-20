@@ -95,6 +95,7 @@ class SiteController extends Controller
 					'add'			=> $add,
 					'equipments'	=> $equipments,
 					'pagination'	=> $pagination,
+					'Order'			=> '',
 					'model'			=> new Equipment(['scenario' => 'seek']),
 					'search'		=> new Search(),
 					]);
