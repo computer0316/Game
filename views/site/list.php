@@ -134,25 +134,42 @@ $this->params['breadcrumbs'][] = $this->title;
         	height:100%;
         	display:block;
         }
+</style>
+<style>
 /*************  form   *************/
-		.l10 input{width:10px;}
-		.l12 input{width:20px;}
-		.l30 input{width:30px;}
-		.l40 input{width:40px;}
-		.l50 input{width:50px;}
-		.l80 input{width:80px;}
-		.l100 input{width:100px;}
-		.l120 input{width:120px;}
-		.l150 input{width:150px;}
-		.l180 input{width:180px;}
-		.l240 input{width:240px;}
-		.l300 input{width:300px;}
-		.l360 input{width:360px;}
 
 		.form-group{
 			float:left;
-			height:65px;
+			width:100%;
+			margin:3px 0;
+			border-bottom:1px solid #ddd;
+		}
+		select,input{
+			outline:none;
+			border:0;
+			height:35px;
+			width:95%;
+			padding-left:4%;
+			background:white;
+		}
+		input[type=radio]{
+			width:15px;
+			height:15px;
+			border:1px solid blue;
+		}
+		.form-group label{
+			width:30%;
+			float:left;
+			text-align:right;
+			font-size:16px;
 			margin:10px;
+		}
+		select{
+		  appearance:none;
+		  -moz-appearance:none;
+		  -webkit-appearance:none;
+		  background:url("images/up.png") no-repeat scroll right center transparent;
+		  background-size:20px 20px;
 		}
 		.form-group1{
 			float:left;
@@ -170,14 +187,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			line-height:35px;
 
 		}
-		.form-group label{
-			width:80px;
-			float:left;
-			text-align:right;
-			font-size:14px;
-			margin:0 10px;
-			line-height:35px;
-		}
 		.form-group .help-block{
 			margin-left:110px;
 			font-size:12px;
@@ -190,14 +199,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			text-align:center;
 			margin:25px 0;
 		}
-
-		select,input{
-			border:1px solid deepskyblue;
-			height:35px;
-			width:180px;
-			padding-left:5px;
-		}
-
 		.in-line{
 			float:left;
 		}
@@ -221,7 +222,32 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:1px solid #d7d7d7;
 			background-color:#d7d7d7;
 		}
-
+		.price, .price1{
+			float:left;
+		}
+		.price label{
+			padding-left:15px;
+			line-height:35px;
+		}
+		 .price1 label{
+		 	line-height:30px;
+		 	font-weight:bold;
+		 	padding-left:10px;
+		 }
+		.price input,.price1 input{
+			float:right;
+			width:80px;
+			height:28px;
+			border:1px solid red;
+			border-radius:5px;
+		}
+		.price{
+			width:50%;
+		}
+		.price1{
+			width:35%;
+			margin-left:15px;
+		}
 </style>
 <style>
 		.list{
@@ -496,17 +522,21 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="filter-div3" class="filter-div">
 
 		<?php $form = ActiveForm::begin(); ?>
-		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
+		<?= $form->field($model, 'price', ['options' => ['class' => 'price']])->label('价格范围') ?>
+		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
+
 		<?= $form->field($model, 'bind')->label(false)->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
 		<?= $form->field($model, 'category')->label(false)->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
-        <?= $form->field($model, 'sex')->label(false)->dropDownList(['-1' => '性别', '1'=>'男','0'=>'女']) ?>
         <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
 
-        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '级别', '70'=>'70级','90'=>'90级', '105' => '105级']) ?>
+        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '70'=>'70级','90'=>'90级', '105' => '105级']) ?>
 
-		<?= $form->field($model, 'price', ['options' => ['class' => 'form-group1']]) ?>
+		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
+		<?= $form->field($model, 'sex')->label(false)->radioList(['1'=>'男','0'=>'女']) ?>
 
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
