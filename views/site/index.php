@@ -145,13 +145,13 @@ $(function () {
 <div class="container"">
 	<a href="<?=Url::toRoute(['site/list', 'category' => 2])?>">
 		<div class="four-box">
-			<img src="sysimg/index/coin.jpg" />
+			<img src="sysimg/index/coin.png" />
 			<p>梦幻币</p>
 		</div>
 	</a>
 	<a href="<?=Url::toRoute(['site/list', 'category' => 1])?>">
 		<div class="four-box">
-			<img src="sysimg/index/role.jpg" />
+			<img src="sysimg/index/role.png" />
 			<p>角色</p>
 		</div>
 	</a>
