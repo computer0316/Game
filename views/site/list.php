@@ -223,6 +223,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			background-color:#d7d7d7;
 		}
 		.price, .price1{
+			margin-top:10px;
 			float:left;
 		}
 		.price label{
@@ -267,7 +268,8 @@ $this->params['breadcrumbs'][] = $this->title;
 			border-radius:5px;
 		}
 		.list-img{
-			width:100%;
+			width:110px;
+			height:80px;
 		}
 		.list-line{
 			float:left;
@@ -296,6 +298,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			font-size:0.8rem;
 			color:#999;
 		}
+
 </style>
 <div class="site-about">
 	<div id="search">
@@ -328,9 +331,9 @@ $this->params['breadcrumbs'][] = $this->title;
 			<div class="two-box"><img src="images/android.png" /> <p>安卓官服</p></div>
 		</a>
 		<a href="<?=Url::current(['os' => '3'])?>">
-			<div class="two-box"><img src="images/apple.png" /> <img src="images/android.png" /> <p>苹果安卓互通区</p></div>
+			<div class="two-box"><img src="images/apple.png" /> <img src="images/android.png" /> <p>双平台</p></div>
 		</a>
-		<a href="<?=Url::current(['os' => null])?>"><div class="two-box"><p>全部</p></div></a>
+		<a href="<?=Url::current(['os' => null])?>"><div class="two-box"><p>专区</p></div></a>
 	</div>
 	<div id="filter-div2" class="filter-div">
 		<ul class="ul1">
@@ -523,18 +526,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 		<?php $form = ActiveForm::begin(); ?>
 
-		<?= $form->field($model, 'price', ['options' => ['class' => 'price']])->label('价格范围') ?>
-		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
-
 		<?= $form->field($model, 'bind')->label(false)->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
 		<?= $form->field($model, 'category')->label(false)->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
         <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
 
-        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '70'=>'70级','90'=>'90级', '105' => '105级']) ?>
+        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
 
-		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '1' => '物理输出', '2' => '法系输出', '3' => '辅助门派']) ?>
+
+		<?= $form->field($model, 'price', ['options' => ['class' => 'price']])->label('价格范围') ?>
+		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
 
 		<?= $form->field($model, 'sex')->label(false)->radioList(['1'=>'男','0'=>'女']) ?>
 
@@ -547,7 +550,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="mask" class="mask" onclick="hideMask()"></div>
 
 <?php
-
+echo $condition;
 		if(!$equipments){
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}

@@ -24,7 +24,7 @@ use yii\helpers\VarDumper;
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/responsiveslides.min.js"></script>
 
-	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/site1.css">
     <?= Html::csrfMetaTags() ?>
     <title>壹折手游交易平台</title>
 	<meta http-equiv="refresh1" content="2">

@@ -131,23 +131,27 @@ class SiteController extends Controller
 		$model = new Equipment(['scenario' => 'seek']);
 		$condition = "";
 		if($model->load(Yii::$app->request->post())){
-			$category	= $this->setVal($model->category);
-			$district	= $this->setVal($model->district);
-			$level		= $this->setLevel($model->level);
 			$bind		= $this->setVal($model->bind);
+			$category	= $this->setVal($model->category);
+			$discuss	= $this->setVal($model->discuss);
+			$level		= $this->setVal($model->level);
 			$school		= $this->setVal($model->school);
+			// price
+			// sex
+
 
 			$condition = $this->joinCondition($condition, $this->createCondition($model->sex, 'sex'));
 			$condition = $this->joinCondition($condition, $this->createCondition($model->discuss, 'discuss'));
-			$condition = $this->joinCondition($condition, $this->monster($model->monster1, $model->monster2));
 		}
 
-		$condition = $this->joinCondition($condition, $this->createCondition($level, 	'level'));
+		$condition = $this->joinCondition($condition, $this->createLevel($level, 	'level'));
+		$condition = $this->joinCondition($condition, $this->createSchool($school, 	'school'));
+
 		$condition = $this->joinCondition($condition, $this->createCondition($category, 'category'));
 		$condition = $this->joinCondition($condition, $this->createCondition($os, 		'os'));
 		$condition = $this->joinCondition($condition, $this->createCondition($district, 'district'));
 		$condition = $this->joinCondition($condition, $this->createCondition($bind, 	'bind'));
-		$condition = $this->joinCondition($condition, $this->createCondition($school, 	'school'));
+
 
 		$order = '';
 		if($po <> ''){
@@ -171,8 +175,9 @@ class SiteController extends Controller
 					->all();
 		$this->layout = 'list';
 		return $this->render('list', [
+					'condition'		=> $condition,
 					'add'			=> $add,
-					'Order'	=> $po,
+					'Order'			=> $po,
 					'equipments'	=> $equipments,
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,
@@ -182,34 +187,56 @@ class SiteController extends Controller
 	}
 
 		private function setVal($value){
-			if(isset($value) && $value <> ''){
-				return $value;
-			}
-		}
-
-		private function setLevel($value){
-			if(isset($value) && $value <> ''){
+			if(isset($value) && $value <> '' && $value <> -1){
 				return $value;
 			}
 			else{
 				return -1;
 			}
+
 		}
 
-
-		private function price($price1, $price2){
-			if($price1 <> '' && $price2 <> ''){
-				return 'price > ' . $price1 . ' and price < ' . $price2;
-			}
-		}
-		private function monster($monster1, $monster2){
-			if($monster1 <> '' && $monster2 <> ''){
-				return 'monster > '. $monster1 .' and ' . 'monster < ' . $monster2;
-			}
-		}
+//
+//		private function price($price1, $price2){
+//			if($price1 <> '' && $price2 <> ''){
+//				return 'price > ' . $price1 . ' and price < ' . $price2;
+//			}
+//		}
+//		private function monster($monster1, $monster2){
+//			if($monster1 <> '' && $monster2 <> ''){
+//				return 'monster > '. $monster1 .' and ' . 'monster < ' . $monster2;
+//			}
+//		}
 		private function createCondition($item, $name){
-			if(isset($item) && $item <> ''){
+			if(isset($item) && $item <> -1 && $item <> ''){
 				return $name . ' = ' . $item;
+			}
+		}
+		private function createSchool($school){
+			switch($school){
+				case 1:
+					return 'school in (1,3,9)';
+					break;
+				case 2:
+					return 'school in (5,7)';
+					break;
+				case 3:
+					return 'school in (2,4,6,8)';
+					break;
+			}
+		}
+
+		private function createLevel($level){
+			switch($level){
+				case 1:
+					return 'level >=0 and level < 70';
+					break;
+				case 2:
+					return 'level >=70 and level < 90';
+					break;
+				case 3:
+					return 'level >= 90';
+					break;
 			}
 		}
 
