@@ -40,6 +40,10 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionTest(){
+    	return $this->render('test');
+    }
+
     public function actionArticle($id = 0){
     	return $this->render('know', [
     		'id' => $id,

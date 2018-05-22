@@ -570,7 +570,7 @@ $this->params['breadcrumbs'][] = $this->title;
 									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
 								}
 								else{
-									echo '<img class="list-img" src="sysimg/index/coin.jpg" />';
+									echo '<img class="list-img" src="sysimg/index/coin.png" />';
 								}
 
 						echo '</div>';

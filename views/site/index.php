@@ -50,11 +50,12 @@ $(function () {
 			margin-top:10px;
 		}
 		.four-box img{
-			width:50px;
+			width:40px;
 			border-radius:30px;
 		}
 		.four-box p{
 			margin-top:5px;
+			font-size:12px;
 		}
 		.list{
 			float:left;
@@ -221,7 +222,7 @@ $(function () {
 									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
 								}
 								else{
-									echo '<img class="list-img" src="sysimg/index/coin.jpg" />';
+									echo '<img class="list-img" src="sysimg/index/coin.png" />';
 								}
 
 						echo '</div>';

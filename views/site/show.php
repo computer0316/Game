@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 			float:left;
 			width:100%;
 			padding:5px 0;
-			border-bottom:1px dashed #ccc;
+			border-bottom:1px dashed #ddd;
 		}
 			.brief-div .p1{
 				float:left;
@@ -53,11 +53,11 @@ use yii\widgets\ActiveForm;
 			margin:3px 0;
 		}
 			.label{
-				width:14%;
+				width:16%;
 				color:#aaa;
 			}
 			.item{
-				width:30%;
+				width:20%;
 			}
 		.title-div{
 			border:1px solid deepskyblue;
@@ -67,50 +67,102 @@ use yii\widgets\ActiveForm;
 			padding:5px 0;
 			float:left;
 		}
+		.top-div{
+			text-align:center;
+			font-weight:bold;
+			font-size:16px;
+			margin:15px 0;
+		}
+		.portrait{
+		}
+		.portrait img{
+			float:left;
+			width:20%;
+			margin:3%;
+		}
+		.name-level{
+			float:left;
+			margin:10px;
+			width:60%;
+		}
+		.name{
+			font-size:14px;
+			font-weight:bold;
+		}
+		.level{
+			margin-left:10px;
+			color:#999;
+		}
+		.price{
+			float:left;
+			color:red;
+			margin:0 10px;
+			font-weight:bold;
+		}
 </style>
-
-		<div class="brief-div">
+		<div class="top-div">
+			商品详情
+		</div>
+		<div class="brief-div" style="border-top:1px dashed #ddd;">
 			<?php
-			echo '<p class="p1">（' . $e->id . '）';
-			echo '售价：' . $e->price . ' ';
-			echo $e->note . '</p>';
+				echo '<p class="p1">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
 			?>
 		</div>
 		<div class="brief-div">
 			<?php
-			echo '<p class="p2">售价：' . $e->price . ' </p>';
-			echo '<p class="p3">' . $e->updatetime . '</p>';
+					$name = '';
+						echo '<div class="portrait">';
+							if($e->role <> ''){
+								echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+								$name = Role::findOne($e->role)->name;
+							}
+							elseif($e->pets <> ''){
+								echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+								$name = Pets::findOne($e->pets)->name;
+							}
+							elseif($e->arm <> ''){
+								echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+								$name = Arm::findOne($e->arm)->name;
+							}
+							elseif($e->defence  <> ''){
+								echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+								$name = Defence::findOne($e->defence)->name;
+							}
+							else{
+								echo '<img class="list-img" src="sysimg/index/coin.png" />';
+								$name = $e->coin;
+							}
+							echo '<p class="name-level"><span class="name">' . $name . '</span>';
+							echo '<span class="level">' . $e->level . '级</span></p>';
+							echo '<p class="price">￥' . $e->price . ' </p>';
+						echo '</div>';
+			?>
+		</div>
+		<div>
+			<?php
+				echo '<p style="float:left;font-size:12px;color:#999;margin:10px;">编号：' . $e->id . '&nbsp;&nbsp;';
+				echo '操作系统：' . Os::findOne($e->os)->name  . '&nbsp;&nbsp;';
+				echo '账号类型：' . Bind::findOne($e->bind)->name . '</p>';
 			?>
 		</div>
 		<div class="item-div">
 			<?php
-			echo '<p class="label">商品编号</p><p class="item">' . $e->id . '</p>';
-			echo '<p class="label">操作系统</p><p class="item">' . Os::findOne($e->os)->name . '</p>';
-			echo '<p class="label">所在大区</p><p class="item">' . District::findOne($e->district)->big . '</p>';
-			echo '<p class="label">服务器</p><p class="item">' . District::findOne($e->district)->name . '</p>';
-			echo '<p class="label">等级</p><p class="item">' . $e->level . '</p>';
-			echo '<p class="label">账号类型</p><p class="item">' . Bind::findOne($e->bind)->name . '</p>';
 			echo '<p class="label">门派</p><p class="item">' . School::findOne($e->school)->name . '</p>';
 			echo '<p class="label">性别</p><p class="item">' . ($e->sex = 0 ? '女'  : '男') . '</p>';
-			echo '<p class="label">能否议价</p><p class="item">' . ($e->discuss = 0 ? '不可议价' : '可以议价') . '</p>';
+			echo '<p class="label">是否议价</p><p class="item">' . ($e->discuss = 0 ? '否' : '是') . '</p>';
 			echo '<p class="label">神兽数量</p><p class="item">' . $e->monster . '</p>';
-			if($e->role <> ''){
-				echo '<p class="label">角色</p><p class="item">' . Role::findOne($e->role)->name . '</p>';
-			}
-			if($e->arm <> ''){
-				echo '<p class="label">武器</p><p class="item">' . Arm::findOne($e->arm)->name . '</p>';
-			}
-			if($e->defence <> ''){
-				echo '<p class="label">防具</p><p class="item">' . Defence::findOne($e->defence)->name . '</p>';
-			}
-			if($e->pets <> ''){
-				echo '<p class="label">宠物</p><p class="item">' . Pets::findOne($e->pets)->name . '</p>';
-			}
-			if($e->coin <> ''){
-				echo '<p class="label">金币</p><p class="item">' . $e->coin . '</p>';
-			}
+			echo '<p class="label">发布时间</p><p>' . $e->updatetime . '</p>';
+
 			?>
 		</div>
+		<div class="brief-div">
+			<?php
+			//echo '<p class="p1">（' . $e->id . '）';
+			//echo '售价：' . $e->price . ' ';
+			echo '<p class="p1">' . $e->note . '</p>';
+			?>
+		</div>
+
 	<div class="title-div" style="width:99%;">
 		详情介绍
 	</div>
