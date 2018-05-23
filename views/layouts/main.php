@@ -54,7 +54,7 @@ use yii\helpers\VarDumper;
 			<p>分类</p>
 		</div>
 		</a>
-		<div>
+		<div id="kefu-button">
 			<img class="footerimg" src="images/ke.png" />
 			<p>客服</p>
 		</div>
@@ -74,47 +74,68 @@ use yii\helpers\VarDumper;
 		background:black;
 	}
 	#kefu{
+		display:none;
 		margin:auto;
 		position:absolute;
 		width:65%;
 		left:0;right:0;
 		top:100px;
-		background:#ddd;
+		background-color:white;
 		z-index:100;
 		text-align:center;
 	}
 	#kefu-title{
 		width:100%;
 		height:60px;
-		font-size:32px;
 		line-height:60px;
+		font-size:32px;
 		color:white;
 		background:red;
 		text-align:center;
+		margin:0;
 	}
-	#kefu p{
+	.wx{
 		width:100%;
+		margin-top:10px;
 	}
 	.kefu-img{
 		float:none;
-		margin:20px;
+		margin:10px;
 		width:50%;
+	}
+	.wx-img{
+		width:20px;
+		margin:5px 15px;
+		border-radius:5px;
 	}
 </style>
 <div id="kefu-mask">&nbsp;</div>
 <div id="kefu">
 	<p id="kefu-title">人工客服</p>
-	<img class="kefu-img" src="images/kf1.png" />
-	<p>微信：abcd</p>
+	<img class="kefu-img" src="images/y677867.jpg" />
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707</p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y677867</p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y670767</p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707</p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y767076</p>
+	<p style="margin:10px;">网站仅供看号选号 议价交易请加微信</p>
 </div>
+<script>
+	$(document).ready(function(){
+		$("#kefu-button").click(function(){
+			$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
+			$("#kefu").css("display","block");
+		});
+		$("#kefu-mask").click(function(){
+			$("#kefu-mask").css('display', "none");
+			$("#kefu").css("display","none");
+		});
+	});
+</script>
 <?php $this->endBody() ?>
 </body>
 </html>
-<script>
-	$(document).ready(function(){
-		$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
-	});
-</script>
+
 <?php
 	$this->endPage();
 	if(Yii::$app->session->hasFlash('message')){
