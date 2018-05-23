@@ -64,10 +64,57 @@ use yii\helpers\VarDumper;
 		</div>
 	</div>
 </div>
+<style>
+	#kefu-mask{
+		display:none;
+		position:absolute;
+		left:0;top:0;
+		opacity:0.5;
+		z-index:10;
+		background:black;
+	}
+	#kefu{
+		margin:auto;
+		position:absolute;
+		width:65%;
+		left:0;right:0;
+		top:100px;
+		background:#ddd;
+		z-index:100;
+		text-align:center;
+	}
+	#kefu-title{
+		width:100%;
+		height:60px;
+		font-size:32px;
+		line-height:60px;
+		color:white;
+		background:red;
+		text-align:center;
+	}
+	#kefu p{
+		width:100%;
+	}
+	.kefu-img{
+		float:none;
+		margin:20px;
+		width:50%;
+	}
+</style>
+<div id="kefu-mask">&nbsp;</div>
+<div id="kefu">
+	<p id="kefu-title">人工客服</p>
+	<img class="kefu-img" src="images/kf1.png" />
+	<p>微信：abcd</p>
+</div>
 <?php $this->endBody() ?>
 </body>
 </html>
-
+<script>
+	$(document).ready(function(){
+		$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
+	});
+</script>
 <?php
 	$this->endPage();
 	if(Yii::$app->session->hasFlash('message')){
