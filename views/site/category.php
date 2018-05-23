@@ -42,13 +42,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		width:79%;
 		border-top:1px solid #ccc;
 		border-left:1px solid #ccc;
+		margin-bottom:60px;
 	}
 	.block{
 		float:left;
 		display:block;
 		width:30%;
 		margin-left:3%;
-		margin-top:20px;
 		text-align:center;
 	}
 	.block img{
