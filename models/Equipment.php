@@ -56,10 +56,10 @@ class Equipment extends \yii\db\ActiveRecord
 
     public function scenarios(){
 		$scenarios = parent::scenarios();
-        $scenarios['seek'] = ['category', 'os', 'district', 'level', 'bind', 'school', 'sex', 'discuss', 'monster'];
+        $scenarios['seek'] = ['bind', 'category', 'discuss', 'level', 'school', 'sex',  'price', 'price1', 'os', 'district'];
         return $scenarios;
 	}
-	
+
    /**
      * @inheritdoc
      */

@@ -24,6 +24,7 @@ use app\models\Pets;
 use app\models\Arm;
 use app\models\Role;
 use app\models\Defence;
+use app\models\Condition;
 
 class SiteController extends Controller
 {
@@ -78,11 +79,11 @@ class SiteController extends Controller
 		if($model->load(yii::$app->request->post())){
 
 		$condition = $this->condition(Arm::className(), $model->text);
-		$condition = $this->joinCondition($condition, $this->condition(School::className(), $model->text));
-		$condition = $this->joinCondition($condition, $this->condition(District::className(), $model->text));
-		$condition = $this->joinCondition($condition, $this->condition(Defence::className(), $model->text));
-		$condition = $this->joinCondition($condition, $this->condition(Pets::className(), $model->text));
-		$condition = $this->joinCondition($condition, $this->condition(Role::className(), $model->text));
+		$condition = Condition::join($condition, $this->condition(School::className(), $model->text));
+		$condition = Condition::join($condition, $this->condition(District::className(), $model->text));
+		$condition = Condition::join($condition, $this->condition(Defence::className(), $model->text));
+		$condition = Condition::join($condition, $this->condition(Pets::className(), $model->text));
+		$condition = Condition::join($condition, $this->condition(Role::className(), $model->text));
 
 		$query	= Equipment::find()->where($condition);
 		$count	= $query->count();
@@ -127,35 +128,46 @@ class SiteController extends Controller
 			}
 		}
 
-	public function actionList($po = '', $add= '', $category = '', $os= '', $district ='', $level = '', $bind= '', $school = ''){
+	public function actionList($priceOrder = '', $bind= '-1', $category = '', $district ='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
 		$model = new Equipment(['scenario' => 'seek']);
 		$condition = "";
 		if($model->load(Yii::$app->request->post())){
-			$bind		= $this->setVal($model->bind);
-			$category	= $this->setVal($model->category);
-			$discuss	= $this->setVal($model->discuss);
-			$level		= $this->setVal($model->level);
-			$school		= $this->setVal($model->school);
-			// price
-			// sex
-
-
-			$condition = $this->joinCondition($condition, $this->createCondition($model->sex, 'sex'));
-			$condition = $this->joinCondition($condition, $this->createCondition($model->discuss, 'discuss'));
+			$bind		= Condition::setValue($model->bind);
+			$category	= Condition::setValue($model->category);
+			$discuss	= Condition::setValue($model->discuss);
+			$level		= Condition::setValue($model->level);
+			$school		= Condition::setValue($model->school);
+			$price1		= Condition::setValue($model->price1);
+			$price		= Condition::setValue($model->price);
+			$sex		= Condition::setValue($model->sex);
+			return $this->redirect(Url::current([
+			//echo Url::current([
+					'bind'		=> $bind,
+					'category'	=> $category,
+					'discuss'	=> $discuss,
+					'level'		=> $level,
+					'school'	=> $school,
+					'price1'	=> $price1,
+					'price'		=> $price,
+					'sex'		=> $sex,
+				]));
 		}
-
-		$condition = $this->joinCondition($condition, $this->createLevel($level, 	'level'));
-		$condition = $this->joinCondition($condition, $this->createSchool($school, 	'school'));
-
-		$condition = $this->joinCondition($condition, $this->createCondition($category, 'category'));
-		$condition = $this->joinCondition($condition, $this->createCondition($os, 		'os'));
-		$condition = $this->joinCondition($condition, $this->createCondition($district, 'district'));
-		$condition = $this->joinCondition($condition, $this->createCondition($bind, 	'bind'));
+		else{
+			$condition = Condition::join($condition, Condition::create($bind, 	'bind'));
+			$condition = Condition::join($condition, Condition::create($category, 'category'));
+			$condition = Condition::join($condition, Condition::create($model->discuss, 'discuss'));
+			$condition = Condition::join($condition, Condition::createLevel($level));
+			$condition = Condition::join($condition, Condition::createSchool($school));
+			$condition = Condition::join($condition, Condition::createPrice($price, $price1));
+			$condition = Condition::join($condition, Condition::create($model->sex, 'sex'));
+			$condition = Condition::join($condition, Condition::create($os, 		'os'));
+			$condition = Condition::join($condition, Condition::create($district, 'district'));
+		}
 
 
 		$order = '';
-		if($po <> ''){
-			if($po == 'up'){
+		if($priceOrder <> ''){
+			if($priceOrder == 'up'){
 				$order = 'price';
 			}
 			else{
@@ -176,8 +188,7 @@ class SiteController extends Controller
 		$this->layout = 'list';
 		return $this->render('list', [
 					'condition'		=> $condition,
-					'add'			=> $add,
-					'Order'			=> $po,
+					'Order'			=> $priceOrder,
 					'equipments'	=> $equipments,
 					'condition'		=> $condition,
 					'pagination'	=> $pagination,
@@ -186,71 +197,6 @@ class SiteController extends Controller
 					]);
 	}
 
-		private function setVal($value){
-			if(isset($value) && $value <> '' && $value <> -1){
-				return $value;
-			}
-			else{
-				return -1;
-			}
-
-		}
-
-//
-//		private function price($price1, $price2){
-//			if($price1 <> '' && $price2 <> ''){
-//				return 'price > ' . $price1 . ' and price < ' . $price2;
-//			}
-//		}
-//		private function monster($monster1, $monster2){
-//			if($monster1 <> '' && $monster2 <> ''){
-//				return 'monster > '. $monster1 .' and ' . 'monster < ' . $monster2;
-//			}
-//		}
-		private function createCondition($item, $name){
-			if(isset($item) && $item <> -1 && $item <> ''){
-				return $name . ' = ' . $item;
-			}
-		}
-		private function createSchool($school){
-			switch($school){
-				case 1:
-					return 'school in (1,3,9)';
-					break;
-				case 2:
-					return 'school in (5,7)';
-					break;
-				case 3:
-					return 'school in (2,4,6,8)';
-					break;
-			}
-		}
-
-		private function createLevel($level){
-			switch($level){
-				case 1:
-					return 'level >=0 and level < 70';
-					break;
-				case 2:
-					return 'level >=70 and level < 90';
-					break;
-				case 3:
-					return 'level >= 90';
-					break;
-			}
-		}
-
-		private function joinCondition($old, $new){
-			if($old <> '' && $new <> ''){
-				return $old . ' and ' . $new;
-			}
-			if($old <> ''){
-				return $old;
-			}
-			if($new <> ''){
-				return $new;
-			}
-		}
 
 	public function actionShow($id = 0){
 		if($id>0){
