@@ -216,11 +216,12 @@ $this->params['breadcrumbs'][] = $this->title;
 			border:none;
 		}
 		button{
-			width:20%;
-			height:35px;
+			width:25%;
+			height:30px;
 			border-radius:10px;
-			border:1px solid #d7d7d7;
-			background-color:#d7d7d7;
+			border:1px solid deepskyblue;
+			background-color:deepskyblue;
+			color:white;
 		}
 		.price, .price1{
 			margin-top:10px;
@@ -239,7 +240,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			float:right;
 			width:80px;
 			height:28px;
-			border:1px solid red;
+			border:1px solid deepskyblue;
 			border-radius:5px;
 		}
 		.price{
@@ -313,13 +314,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
 		<?php
 			if($Order =='up'){
-				echo '<a href="' . Url::current(['po' => 'down']) . '"><p id="p4">价格<img src="images/au.png" /></p></a>';
+				echo '<a href="' . Url::current(['priceOrder' => 'down']) . '"><p id="p4">价格<img src="images/au.png" /></p></a>';
 			}
 			if($Order =='down'){
-				echo '<a href="' . Url::current(['po' => 'up']) . '"><p id="p4">价格<img src="images/ad.png" /></p></a>';
+				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格<img src="images/ad.png" /></p></a>';
 			}
 			if($Order == ''){
-				echo '<a href="' . Url::current(['po' => 'up']) . '"><p id="p4">价格</p></a>';
+				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格</p></a>';
 			}
 		?>
 	</div>
@@ -550,7 +551,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	<div id="mask" class="mask" onclick="hideMask()"></div>
 
 <?php
-echo $condition;
+
 		if(!$equipments){
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
@@ -628,21 +629,21 @@ echo $condition;
 
 	/* 筛选菜单遮罩 */
 	function showMask1() {
-        $("#filter-div1").css('display', 'block');
+        $("#filter-div1").toggle();
         $("#filter-div2").css('display', 'none');
         $("#filter-div3").css('display', 'none');
         show();
 	}
 	function showMask2() {
-	    $("#filter-div2").css('display', 'block');
 	    $("#filter-div1").css('display', 'none');
+	    $("#filter-div2").toggle();
 	    $("#filter-div3").css('display', 'none');
         show();
 	}
 	function showMask3() {
-	    $("#filter-div3").css('display', 'block');
 	    $("#filter-div1").css('display', 'none');
 	    $("#filter-div2").css('display', 'none');
+	    $("#filter-div3").toggle();
         show();
 	}
 	function show(){

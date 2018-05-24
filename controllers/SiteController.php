@@ -128,8 +128,9 @@ class SiteController extends Controller
 			}
 		}
 
-	public function actionList($priceOrder = '', $bind= '-1', $category = '', $district ='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
+	public function actionList($priceOrder = '', $bind= '-1', $category = '', $discuss='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
 		$model = new Equipment(['scenario' => 'seek']);
+		$model->sex = 1;
 		$condition = "";
 		if($model->load(Yii::$app->request->post())){
 			$bind		= Condition::setValue($model->bind);
@@ -152,17 +153,17 @@ class SiteController extends Controller
 					'sex'		=> $sex,
 				]));
 		}
-		else{
+
 			$condition = Condition::join($condition, Condition::create($bind, 	'bind'));
 			$condition = Condition::join($condition, Condition::create($category, 'category'));
-			$condition = Condition::join($condition, Condition::create($model->discuss, 'discuss'));
+			$condition = Condition::join($condition, Condition::create($discuss, 'discuss'));
 			$condition = Condition::join($condition, Condition::createLevel($level));
 			$condition = Condition::join($condition, Condition::createSchool($school));
 			$condition = Condition::join($condition, Condition::createPrice($price, $price1));
 			$condition = Condition::join($condition, Condition::create($model->sex, 'sex'));
 			$condition = Condition::join($condition, Condition::create($os, 		'os'));
 			$condition = Condition::join($condition, Condition::create($district, 'district'));
-		}
+
 
 
 		$order = '';

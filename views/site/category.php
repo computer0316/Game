@@ -87,7 +87,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div id="right">
 		<div class="category" data-type="role" id="role">
-			<p class="school-title">物理输出</p>
 				<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 1]) ?>">
 						<img src="sysimg/school/dt.png" /><p>大唐官府</p>
 				</a>
@@ -97,14 +96,12 @@ $this->params['breadcrumbs'][] = $this->title;
 				<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 3]) ?>">
 						<img src="sysimg/school/st.png" /><p>狮驼岭</p>
 				</a>
-			<p class="school-title">法系输出</p>
 				<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 5]) ?>">
 						<img src="sysimg/school/lg.png" /><p>龙宫</p>
 				</a>
 				<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 7]) ?>">
 						<img src="sysimg/school/mw.png" /><p>魔王寨</p>
 				</a>
-			<p class="school-title">辅助门派</p>
 				<a class="block" href="<?= Url::toRoute(['site/list', 'school' => 6]) ?>">
 						<img src="sysimg/school/yc.png" /><p>阴曹地府</p>
 				</a>
