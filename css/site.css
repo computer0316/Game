@@ -23,16 +23,18 @@
 			margin:5px 2%;
 			width:95%;
 			border:1px solid #ccc;
-			border-radius:5px;
+			border-radius:20px;
 		}
 		#search input[type="image"]{
 			width:30px;
 			float:right;
 			border:0;
+			margin-right:15px;
 		}
 		#search .search-form{
 			float:left;
-			width:90%;
+			margin:0 10px;
+			width:75%;
 		}
 		#search input[type="text"]{
 			margin-left:5px;
@@ -52,7 +54,7 @@
 		}
 		.footer-div div{
 			float:left;
-			width:24%;
+			width:25%;
 			text-align:center;
 
 		}
@@ -61,6 +63,7 @@
 		}
 		.footer-div p{
 			text-align:center;
+			font-size:12px;
 		}
 		.footer-div a{
 			color:black;

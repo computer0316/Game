@@ -23,8 +23,8 @@ use yii\helpers\VarDumper;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/responsiveslides.min.js"></script>
-
-	<link rel="stylesheet" href="css/site1.css">
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
+	<link rel="stylesheet" href="css/site.css">
     <?= Html::csrfMetaTags() ?>
     <title>壹折手游交易平台</title>
 	<meta http-equiv="refresh1" content="2">
@@ -83,20 +83,17 @@ use yii\helpers\VarDumper;
 		background-color:white;
 		z-index:100;
 		text-align:center;
+		border-radius:5px;
 	}
-	#kefu-title{
+	.kefu-title{
 		width:100%;
-		height:60px;
-		line-height:60px;
-		font-size:32px;
-		color:white;
-		background:red;
-		text-align:center;
 		margin:0;
+		padding:0;
 	}
 	.wx{
 		width:100%;
-		margin-top:10px;
+		margin-top:0;
+		margin-bottom:0;
 	}
 	.kefu-img{
 		float:none;
@@ -106,20 +103,28 @@ use yii\helpers\VarDumper;
 	.wx-img{
 		width:20px;
 		margin:5px 15px;
+		border-radius:10px;
+	}
+	.wx span{
+		background:deepskyblue;
 		border-radius:5px;
+		color:white;
+		margin-left:5px;
+		padding:1px 3px;
 	}
 </style>
 <div id="kefu-mask">&nbsp;</div>
 <div id="kefu">
-	<p id="kefu-title">人工客服</p>
+	<img class="kefu-title" src="images/kefutitle.png" />
 	<img class="kefu-img" src="images/y677867.jpg" />
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707</p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y677867</p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y670767</p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707</p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y767076</p>
-	<p style="margin:10px;">网站仅供看号选号 议价交易请加微信</p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707<span class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y677867<span class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y670767<span class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y766707<span class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />微信：Y767076<span class="copy">复制</span></p>
+	<p style="margin:10px;color:deepskyblue;">网站仅供看号选号 议价交易请加微信</p>
 </div>
+
 <script>
 	$(document).ready(function(){
 		$("#kefu-button").click(function(){
