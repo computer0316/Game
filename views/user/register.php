@@ -3,34 +3,32 @@
 	use yii\widgets\ActiveForm;
 	use yii\helpers\Url;
 	use yii\widgets\LinkPager;
-	use yii\captcha\Captcha;
+
 	// 客户信息窗体
 
 ?>
 
 	<div class="form1">
 		<div class="form">
-			<div id="logintitle">壹折手游交易平台用户登录</div>
+			<div id="logintitle">壹折手游交易平台用户注册</div>
 <?php
 
 	$form = ActiveForm::begin([
 		'id' => 'clientform',
-		'enableAjaxValidation'   => false,
-    	'enableClientValidation' => false,
 	]);
 
 ?>
 
 	<?= $form->field($loginForm, 'mobile')->textInput(['autofocus' => true, 'class' => 'menu1']) ?>
 
-	<?= $form->field($loginForm, 'password1')->passwordInput() ?>
+	<?= $form->field($loginForm, 'verifyCode') ?>
+	<img style="float:left;margin-left:130px;" title="点击刷新" src="<?= Url::toRoute('user/captcha') ?>" align="absbottom" onclick="this.src='<?= Url::toRoute('user/captcha') ?>'+'&'+Math.random();"></img>
 
 
 <div class="form-group button-group">
 
 	<?= Html::submitButton('提交', ['class' => 'submit']) ?>
-	<a href="<?= Url::toRoute('user/register') ?>">用户注册</a>
-
+	<a href="<?= Url::toRoute('user/login') ?>">登录</a>
 </div>
 
 <?php

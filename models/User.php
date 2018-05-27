@@ -7,6 +7,8 @@ use yii\helpers\Url;
 use yii\base\Exception;
 use yii\helpers\VarDumper;
 
+
+
 /**
  * This is the model class for table "user".
  *
@@ -63,20 +65,13 @@ class User extends \yii\db\ActiveRecord
 		return 'user';
 	}
 
-
-	// 关联UserRole表
-	public function getUserRole(){
-		return $this->hasMany(UserRole::className(), ['userid' => 'id']);
-	}
-
-
     /*
     */
-	public static function login($loginForm){
+	public static function register($loginForm){
 		$user = self::find()->where(['mobile'	=> $loginForm->mobile])->one();
 		if($user){
 			Yii::$app->session->set('userid', $user->id);
-			$user->updatetime	= date("Y-m-d H:i:s");
+			$user->updatetime	= date("Y-m-d H:i:s", time());
 			$user->ip			= Yii::$app->request->userIP;
 			$user->save();
 			return $user;
@@ -84,15 +79,37 @@ class User extends \yii\db\ActiveRecord
 		else{
 			$user = new User();
 			$user->name			= $loginForm->mobile;
-			$user->password		= "1";
+			$user->password		= md5($loginForm->password);
 			$user->mobile 		= $loginForm->mobile;
-			$user->firsttime 	= date("Y-m-d H:i:s");
-			$user->updatetime	= date("Y-m-d H:i:s");
+			$user->firsttime 	= date("Y-m-d H:i:s", time());
+			$user->updatetime	= date("Y-m-d H:i:s", time());
 			$user->ip			= Yii::$app->request->userIP;
 			$user->save();
 			Yii::$app->session->set('userid', $user->id);
 			return $user;
 		}
+	}
+
+	public static function login($loginForm){
+		$user = self::find()->where([
+			'mobile'	=> $loginForm->mobile,
+			'password'	=> md5($loginForm->password1),
+			])->one();
+		if($user){
+			Yii::$app->session->set('userid', $user->id);
+			$user->updatetime	= date("Y-m-d H:i:s", time());
+			$user->ip			= Yii::$app->request->userIP;
+			$user->save();
+			return $user;
+		}
+		else{
+			return false;
+		}
+	}
+
+	// 检查手机号是否注册
+	public static function checkMobile($mobile){
+		return User::find()->where(['mobile' => $mobile])->one();
 	}
 
 	public function changePassword($userLoad){
@@ -119,16 +136,29 @@ class User extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			//[['name', 'mobile', 'password', 'firsttime', 'updatetime', 'ip'], 'required'],
-			[['name', 'mobile', 'password', 'firsttime', 'updatetime', 'ip'], 'required'],
+			[['mobile', 'password', 'firsttime', 'updatetime', 'ip'], 'required'],
 			[['password', 'password1', 'password2'], 'required', 'on' => 'changepassword'],
 			[['firsttime', 'updatetime'], 'safe'],
-			[['name', 'mobile'], 'string', 'max' => 16],
+			[['name'], 'string', 'max' => 16],
+			[['mobile'], 'string', 'length' => [11,11]],
 			[['password'], 'string', 'max' => 64],
 			[['ip'], 'string', 'max' => 32]
 		];
 	}
 
+
+
+
+
+//    public function scenarios()
+//    {
+//    	$scenarios = parent::scenarios();
+//        $scenatios['login'] = ['username', 'password'];
+//        $scenarios['register1'] = ['mobile', 'verifyCode'];
+//        $scenarios['register2'] = ['name', 'mobile', 'password1', 'password'];
+//        $scenarios['identification'] = ['name', 'identification'];
+//        return $scenarios;
+//	}
 	/**
 	 * @inheritdoc
 	 */
@@ -138,12 +168,14 @@ class User extends \yii\db\ActiveRecord
 			'id' => 'ID',
 			'name' => '姓名',
 			'mobile' => '手机号',
+			'identification' => '身份证号',
 			'password' => '密码',
 			'firsttime' => '首次登陆',
 			'updatetime' => '最后登陆',
 			'ip' => 'IP地址',
 			'password1'	=> '新密码',
 			'password2'	=> '确认新密码',
+			'company'	=> '所属公司',
 		];
 	}
 }

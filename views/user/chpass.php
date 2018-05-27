@@ -17,3 +17,22 @@
 
 	ActiveForm::end();
 
+?>
+<style>
+	.form-group{
+		width:100%;
+		margin:20px;
+	}
+	input {
+		width:200px;
+		height:35px;
+		padding:0 5px;
+	}
+	.control-label{
+		float:left;
+		width:100px;
+	}
+	button{
+		margin-left:100px;
+	}
+</style>
