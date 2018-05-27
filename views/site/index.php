@@ -266,4 +266,3 @@ $(function () {
 		}
 	?>
 </div>
-<div class="container" style="margin-bottom:80px;"> </div>

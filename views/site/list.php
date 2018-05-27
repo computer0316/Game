@@ -607,7 +607,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			}
 			echo '</div>';
 
-			echo '<div style="width:100%;float:left;margin:5px 0 90px 0;">';
+			echo '<div style="width:100%;float:left;margin:5px 0 0 0;">';
 			echo LinkPager::widget(['pagination' => $pagination,]);
 			echo '</div>';
 		}

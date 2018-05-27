@@ -40,7 +40,13 @@ use yii\helpers\VarDumper;
 -->
 <div class="container">
 	<?= $content ?>
-
+	<div style="width:100%;float:left;font-size:12px;color:#999;text-align:center;margin-bottom:80px;line-height:30px;">
+		<p>首页&nbsp;|&nbsp;我要买&nbsp;|&nbsp;我要卖&nbsp;|&nbsp;联系客服</p>
+		<p>壹折手游交易平台</p>
+		<p>&copy;www.yizhecbg.com</p>
+		<p>唐山市壹折信息技术有限公司</p>
+		<p>冀ICP备00000000号</p>
+	</div>
 	<div id="footer-div" class="footer-div">
 		<a href="?r=site/index">
 		<div>

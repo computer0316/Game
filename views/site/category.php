@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <style>
 	#left{
-		height:500px;
 		width:20%;
 		float:left;
 		border-top:1px solid #ccc;
@@ -42,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		width:79%;
 		border-top:1px solid #ccc;
 		border-left:1px solid #ccc;
-		margin-bottom:60px;
+		margin-bottom:10px;
 	}
 	.block{
 		float:left;
