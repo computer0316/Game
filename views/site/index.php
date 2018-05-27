@@ -131,6 +131,27 @@ $(function () {
 			padding:5px 0;
 			float:left;
 		}
+		.new-title{
+			color:deepskyblue;
+			float:left;
+			margin:5px 10px;
+			font-weight:bold;
+		}
+		.more{
+			float:right;
+			color:#ccc;
+			margin:5px
+		}
+		.gonggao{
+			width:100%;
+			float:left;
+		}
+		.gonggao li{
+			font-size:12px;
+			color:deepskyblue;
+			padding:10px;
+			border-bottom:1px dashed #ddd;
+		}
 </style>
 <!-- Slideshow -->
 <div class="callbacks_container">
@@ -254,7 +275,7 @@ $(function () {
 		?>
 </div>
 <div class="container">
-	<p style="color:deepskyblue;float:left;margin:5px 10px;font-weight:bold;">最新上架</p><p><a style="float:right;color:#ccc;margin:5px;" href="?r=site/list">更多></a></p>
+	<p class="new-title">最新上架</p><p><a class="more" href="?r=site/list">更多></a></p>
 	<?php
 		foreach($equi as $e){
 			echo '<div class="list">';
@@ -265,4 +286,10 @@ $(function () {
 			echo '</div>';
 		}
 	?>
+</div>
+<div class="container">
+	<p class="new-title">公告</p><a href="?r=site/article"><p class="more">更多></p></a>
+	<ul class="gonggao">
+		<a href="?r=site/article&id=1"><li>壹折手游交易平台收款账号</li></a>
+	</ul>
 </div>

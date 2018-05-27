@@ -25,6 +25,7 @@ use yii\helpers\VarDumper;
 	<script type="text/javascript" src="js/responsiveslides.min.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/article.css">
     <?= Html::csrfMetaTags() ?>
     <title>壹折手游交易平台</title>
 	<meta http-equiv="refresh1" content="3">
@@ -33,11 +34,15 @@ use yii\helpers\VarDumper;
 </head>
 <body>
 <?php $this->beginBody() ?>
-<!--
 <div class="header">
-	壹折手游交易平台
+	<?php
+		if($this->context->action->id <> 'index' && $this->context->action->id <> 'category'){
+			echo '<a href="javascript:history.back()"><img style="position:absolute;left:20px;top:0;width:20px;height:20px;" src="images/back.png" /></a>';
+			echo '<p style="color:#999;font-size:14px;">' . $this->title . '</p>';
+		}
+	?>
+
 </div>
--->
 <div class="container">
 	<?= $content ?>
 	<div style="width:100%;float:left;font-size:12px;color:#999;text-align:center;margin-bottom:80px;line-height:30px;">

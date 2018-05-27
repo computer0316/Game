@@ -46,9 +46,7 @@ class SiteController extends Controller
     }
 
     public function actionArticle($id = 0){
-    	return $this->render('know', [
-    		'id' => $id,
-    	]);
+    	return $this->render('a' . $id);
     }
 
     public function actionCreate($add){

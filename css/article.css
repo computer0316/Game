@@ -1,0 +1,51 @@
+
+	.title-div{
+		text-align:center;
+		margin-top:15px;
+	}
+	.a-title{
+		color:deepskyblue;
+		padding-top:15px;
+		padding-bottom:5px;
+	}
+	.a-content{
+	}
+	.gradient{
+		width:auto;
+		height:20px;
+		margin:0 auto;
+		background: -webkit-linear-gradient(top,#99ffff 0,#0099cc 100%);
+		background: -moz-linear-gradient(top,#99ffff 0,#0099cc 100%);
+		background: -o-linear-gradient(top,#99ffff 0,#0099cc 100%);
+		background: linear-gradient(to bottom,#99ffff 0,#0099cc 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f99621,endColorstr=#f65539,GradientType=0);
+		border-radius:3px;
+		padding:2px 8px;
+		color:white;
+	}
+	.gradientred{
+		width:auto;
+		height:20px;
+		margin:0 auto;
+		background: -webkit-linear-gradient(top,#f3a59b 0,#e17171 100%);
+		background: -moz-linear-gradient(top,#f3a59b 0,#e17171 100%);
+		background: -o-linear-gradient(top,#f3a59b 0,#e17171 100%);
+		background: linear-gradient(to bottom,#f3a59b 0,#e17171 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#f99621,endColorstr=#f65539,GradientType=0);
+		border-radius:3px;
+		padding:2px 8px;
+		color:white;
+	}
+	.content-div{
+		width:92%;
+		margin:10px auto;
+		border:1px dashed deepskyblue;
+		border-radius:5px;
+		padding:5px;
+	}
+	.content-div p{
+		margin:1%;
+	}
+	.lier{
+		color:#e17171;
+	}
