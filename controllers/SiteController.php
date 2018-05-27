@@ -95,7 +95,7 @@ class SiteController extends Controller
 					->orderBy('id desc')
 					->all();
 
-					$this->layout = 'list';
+		//$this->layout = 'list';
 		return $this->render('list', [
 					'add'			=> $add,
 					'equipments'	=> $equipments,
@@ -186,7 +186,7 @@ class SiteController extends Controller
 					->limit($pagination->limit)
 					->orderBy($order)
 					->all();
-		$this->layout = 'list';
+		//$this->layout = 'main';
 		return $this->render('list', [
 					'condition'		=> $condition,
 					'Order'			=> $priceOrder,
@@ -203,7 +203,7 @@ class SiteController extends Controller
 		if($id>0){
 			$e = Equipment::findOne($id);
 			if($e){
-				$this->layout = 'list';
+				//$this->layout = 'list';
 				return $this->render('show', ['e' => $e]);
 			}
 		}
@@ -219,7 +219,7 @@ class SiteController extends Controller
 	}
 
 	public function actionCategory(){
-		$this->layout = 'list';
+		//$this->layout = 'list';
 		return $this->render('category',[
 			'search' => new Search(),
 		]);

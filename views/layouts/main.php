@@ -112,8 +112,22 @@ use yii\helpers\VarDumper;
 		margin-left:5px;
 		padding:1px 3px;
 	}
+	#message{
+		display:none;
+		position:absolute;
+		top:400px;
+		width:65%;
+		padding:8Px 0;
+		text-align:center;
+		left:0;right:0;
+		margin:auto;
+		background:black;
+		color:white;
+		opaCity:0.5;
+	}
 </style>
 <div id="kefu-mask">&nbsp;</div>
+<p id="message"></p>
 <div id="kefu">
 	<img class="kefu-title" src="images/kefutitle.png" />
 	<img class="kefu-img" src="images/y677867.jpg" />
@@ -121,12 +135,18 @@ use yii\helpers\VarDumper;
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />订单微信：Y670767<span data-clipboard-text="Y670767" class="copy">复制</span></p>
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />咨询微信：ccbgz18<span data-clipboard-text="ccbgz18" class="copy">复制</span></p>
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />寄售微信：Y677867<span data-clipboard-text="Y677867" class="copy">复制</span></p>
-	<p style="margin:10px;color:deepskyblue;">网站仅供看号选号 议价交易请加微信</p>
+	<p style="margin:10px;font-size:12px;color:deepskyblue;">网站仅供看号选号 议价交易请加微信</p>
 </div>
 <script>
 	/* 复制客服ID到剪贴板 */
 	var btns = document.querySelectorAll('.copy');
     var clipboard = new ClipboardJS(btns);
+	clipboard.on('success', function(e) {
+		$("#message").html("复制成功").show(300).delay(2000).hide(300).css('z-index', 3000);
+	});
+	clipboard.on('error', function(e) {
+		$("#message").html("您的浏览器不支持，请手动复制。").show(300).delay(3000).hide(300).css('z-index', 3000);
+	});
 	$(document).ready(function(){
 		/* 弹出客服蒙版，客服DIV */
 		$("#kefu-button").click(function(){
