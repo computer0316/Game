@@ -14,8 +14,8 @@ $this->title = '收款账号详情';
 		<span class="gradient">支付宝账号</span>
 	</div>
 	<div class="content-div">
-		<p>支付宝账号：17774777777</p>
 		<p>支付宝名称：王超</p>
+		<p>支付宝账号：17774777777</p>
 	</div>
 	<div class="title-div">
 		<span class="gradient">银行账号</span>
