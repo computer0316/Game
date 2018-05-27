@@ -292,7 +292,7 @@ $(function () {
 	<ul class="gonggao">
 		<a href="?r=site/article&id=1"><li>壹折手游交易平台收款账号</li></a>
 		<a href="?r=site/article&id=2"><li>约定中介交易及常见问题</li></a>
-		<a href="?r=site/article&id=3"><li>签订合同-卖家常见问题</li></a>
+		<a href="?r=site/article&id=3"><li>签订合同-买家常见问题</li></a>
 		<a href="?r=site/article&id=4"><li>签订合同-卖家常见问题</li></a>
 	</ul>
 </div>
