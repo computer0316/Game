@@ -160,6 +160,7 @@ class AdminController extends Controller
 	    	$upload = new UploadForm();
 
 	    	if($model->load(yii::$app->request->post()) && $model->save()){
+	    		var_dump($model);
 	        	$upload->imageFiles = UploadedFile::getInstances($upload, 'imageFiles');
 	            $filepaths = $upload->upload(1312);
 

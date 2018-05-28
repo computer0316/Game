@@ -556,7 +556,6 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
 		else{
-
 			foreach($equipments as $e){
 				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 					echo "<div class='list'>\n";

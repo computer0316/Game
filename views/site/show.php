@@ -148,8 +148,8 @@ use yii\widgets\ActiveForm;
 		<div class="item-div">
 			<?php
 			echo '<p class="label">门派</p><p class="item">' . School::findOne($e->school)->name . '</p>';
-			echo '<p class="label">性别</p><p class="item">' . ($e->sex = 0 ? '女'  : '男') . '</p>';
-			echo '<p class="label">是否议价</p><p class="item">' . ($e->discuss = 0 ? '否' : '是') . '</p>';
+			echo '<p class="label">性别</p><p class="item">' . ($e->sex == 0 ? '女'  : '男') . '</p>';
+			echo '<p class="label">是否议价</p><p class="item">' . ($e->discuss == 0 ? '否' : '可') . '</p>';
 			echo '<p class="label">神兽数量</p><p class="item">' . $e->monster . '</p>';
 			echo '<p class="label">发布时间</p><p>' . $e->updatetime . '</p>';
 

@@ -280,7 +280,7 @@ $(function () {
 		foreach($equi as $e){
 			echo '<div class="list">';
 			echo '<a href="?r=site/show&id=' . $e->id . '">';
-			echo '<p class="p1">（' . $e->id . '） ' . $e->os . '：' . District::findOne($e->district)->name . ' ' . $e->note. '</p>';
+			echo '<p class="p1">（' . $e->id . '） ' . Os::findOne($e->os)->name . '：' . District::findOne($e->district)->name . ' ' . $e->note. '</p>';
 			echo '</a>';
 			echo '<p class="p2">￥ ' . $e->price . "</p>\n";
 			echo '</div>';

@@ -113,7 +113,7 @@ use app\models\Category;
 
 
         <?= $form->field($model, 'sex')->dropDownList(['1'=>'男','0'=>'女'], ['style'=>'width:120px']) ?>
-        <?= $form->field($model, 'discuss')->dropDownList(['1'=>'能','0'=>'否'], ['style'=>'width:120px']) ?>
+        <?= $form->field($model, 'discuss')->dropDownList(['1'=>'可','0'=>'否'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'level') ?>
         <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>
         <?= $form->field($model, 'note') ?>

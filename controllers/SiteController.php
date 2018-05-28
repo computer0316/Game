@@ -131,7 +131,7 @@ class SiteController extends Controller
 			$condition = Condition::join($condition, Condition::createLevel($level));
 			$condition = Condition::join($condition, Condition::createSchool($school));
 			$condition = Condition::join($condition, Condition::createPrice($price, $price1));
-			$condition = Condition::join($condition, Condition::create($model->sex, 'sex'));
+			$condition = Condition::join($condition, Condition::create($sex, 'sex'));
 			$condition = Condition::join($condition, Condition::create($os, 		'os'));
 			$condition = Condition::join($condition, Condition::create($district, 'district'));
 
