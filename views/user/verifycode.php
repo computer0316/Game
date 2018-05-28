@@ -29,7 +29,7 @@
 		<?= $form->field($loginForm, 'mobile')->hiddenInput()->label(false) ?>
 
 
-		<?= $form->field($loginForm, 'smsCode')->textInput(['placeholder' => Yii::$app->session->get('smsCode')]) ?>
+		<?= $form->field($loginForm, 'smsCode')->textInput(['placeholder' => Yii::$app->session->get('smscode')]) ?>
 		<?= $form->field($loginForm, 'password1')->passwordInput() ?>
 		<?= $form->field($loginForm, 'password')->passwordInput() ?>
 

@@ -47,10 +47,11 @@ class Equipment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bestone', 'category', 'price', 'role', 'coin', 'pets', 'arm', 'defence', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 'integer'],
+            [['bestone', 'category', 'price', 'role', 'pets', 'arm', 'defence', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss'], 'integer'],
             [['category', 'price', 'os', 'district', 'level', 'bind', 'sex', 'school', 'monster', 'discuss', 'note', 'updatetime'], 'required', 'on' => 'default'],
             [['updatetime'], 'safe'],
             [['note'], 'string', 'max' => 512],
+            ['coin', 'string', 'max' => 16],
         ];
     }
 

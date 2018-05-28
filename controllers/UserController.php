@@ -71,7 +71,9 @@ class UserController extends Controller
 			$smsCode = rand(100000,999999);
 			Yii::$app->session->set('smscode', $smsCode);
 			//$loginForm->smsCode = $smsCode;
-			//Sms::send($loginForm->mobile, "房协房产系统", $smsCode);
+			//Sms::send($loginForm->mobile, "壹折手游平台", $smsCode);
+			$smsRecord = new \app\models\Sms();
+			$smsRecord->create($loginForm->mobile);
 			$loginForm->scenario = 'register2';
 			return $this->render('verifycode', ['loginForm' 	=> $loginForm]);
 		}
@@ -113,7 +115,7 @@ class UserController extends Controller
 		if($loginForm->load(Yii::$app->request->post())){
 			$user = User::login($loginForm);
 			if($user){
-				return $this->redirect(Url::toRoute('site/index'));
+				return $this->redirect(Url::toRoute('admin/index'));
 			}
 			else{
 				Yii::$app->session->setFlash('message', '用户名或密码不对');

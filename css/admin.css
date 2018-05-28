@@ -147,7 +147,7 @@ select,input{
 .in-line .help-block{
 	margin-left:10px;
 	font-size:12px;
-	color:red;	
+	color:red;
 }
 input[type="file"]{
 	border:none;
@@ -178,11 +178,12 @@ button{
 #left{
 	float:left;
 	width:13%;
-	height:auto;
-
+	height:835px;
+	background:#e1e1ff;
 }
 #left a{
 	text-decoration:none;
+	color:white;
 }
 
 

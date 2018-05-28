@@ -197,19 +197,19 @@ $(function () {
 			<p>分期购号</p>
 		</div>
 	</a>
-	<a href="?r=site/article&id=1">
+	<a href="?r=site/article&id=2">
 		<div class="four-box">
 			<img src="sysimg/index/vsjx.png" />
 			<p>中介交易</p>
 		</div>
 	</a>
-	<a href="?r=site/article&id=1">
+	<a href="?r=admin/mine">
 		<div class="four-box">
 			<img src="sysimg/index/ubch.png" />
 			<p>我的收藏</p>
 		</div>
 	</a>
-	<a href="?r=site/article&id=1">
+	<a href="?r=admin/mine">
 		<div class="four-box">
 			<img src="sysimg/index/gerf.png" />
 			<p>个人中心</p>

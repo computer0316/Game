@@ -171,7 +171,7 @@ use yii\widgets\ActiveForm;
 			$pics = Picture::find()->where(['equipmentid' => $e->id])->all();
 			if($pics){
 				foreach($pics as $pic){
-					echo '<img src="' . $pic->path . '" />';
+					echo '<img style="width:100%;" src="' . $pic->path . '" />';
 				}
 			}
 		?>

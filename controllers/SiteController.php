@@ -41,35 +41,8 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionTest(){
-    	return $this->render('test');
-    }
-
     public function actionArticle($id = 0){
     	return $this->render('a' . $id);
-    }
-
-    public function actionCreate($add){
-    	$this->layout = 'admin';
-    	$model = new Equipment();
-    	$upload = new UploadForm();
-
-    	if($model->load(yii::$app->request->post()) && $model->save()){
-        	$upload->imageFiles = UploadedFile::getInstances($upload, 'imageFiles');
-            $filepaths = $upload->upload(1312);
-
-            foreach($filepaths as $filepath){
-				$pic = new Picture();
-				$pic->create($model->id, $filepath);
-            }
-            return $this->redirect(Url::toRoute(['site/show', 'id' => $model->id]));
-    		//yii::$app->session->setFlash('message', 'success');
-    	}
-        return $this->render('create', [
-            'model' => $model,
-            'upload'=> $upload,
-            'add'	=> $add,
-        ]);
     }
 
 	public function actionSearch($add=''){

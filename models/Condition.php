@@ -2,6 +2,7 @@
 namespace app\models;
 
 use yii\base\Model;
+use app\models\District;
 
 class Condition extends Model{
 		public static function setValue($value){
@@ -16,6 +17,12 @@ class Condition extends Model{
 		public static function create($item, $name){
 			if(isset($item) && $item <> -1 && $item <> '' && $item <> '-1'){
 				return $name . ' = ' . $item;
+			}
+		}
+
+		public static function createServer($big){
+			if($big <> '不限'){
+				return 'district = ' . District::find()->where("big = '" . $big . "'")->one()->id;
 			}
 		}
 

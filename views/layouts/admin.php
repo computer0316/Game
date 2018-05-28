@@ -22,6 +22,7 @@ use app\models\User;
     <meta charset="<?= Yii::$app->charset ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh1" content="1">
 	<script src="jquery-3.3.1.min.js"></script>
     <link href="./css/admin.css" rel="stylesheet">
     <?= Html::csrfMetaTags() ?>
@@ -47,17 +48,24 @@ use app\models\User;
 
 <section>
 	<div id="left">
-		<p class="menu-title">账号管理</p>
-		<a href="<?=Url::toRoute(['site/create', 'add' => 'coin'])?>"><p class="menu-item">添加金币</p></a>
-		<a href="<?=Url::toRoute(['site/create', 'add' => 'role'])?>"><p class="menu-item">添加角色</p></a>
-		<a href="<?=Url::toRoute(['site/create', 'add' => 'pets'])?>"><p class="menu-item">添加宠物</p></a>
-		<a href="<?=Url::toRoute(['site/create', 'add' => 'arm'])?>"><p class="menu-item">添加装备</p></a>
-		<a href="<?=Url::toRoute('site/index')?>"><p class="menu-item">列表</p></a>
+		<p class="menu-title">个人中心</p>
+		<a href="<?=Url::toRoute('admin/mine')?>"><p class="menu-item">我的收藏</p></a>
+		<a href="<?=Url::toRoute('admin/chpass')?>"><p class="menu-item">修改密码</p></a>
+		<?php
+		if($user->admin ==1){
+		?>
+			<p class="menu-title">商品管理</p>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'coin'])?>"><p class="menu-item">添加金币</p></a>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'role'])?>"><p class="menu-item">添加角色</p></a>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'pets'])?>"><p class="menu-item">添加宠物</p></a>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'arm'])?>"><p class="menu-item">添加装备</p></a>
+			<a href="<?=Url::toRoute('admin/list')?>"><p class="menu-item">列表列表</p></a>
 
-		<p class="menu-title">权限管理</p>
-		<a href="<?=Url::toRoute('user/index')?>"><p class="menu-item">用户管理</p></a>
-		<a href="<?=Url::toRoute('test/index')?>"><p class="menu-item">测试</p></a>
-
+			<p class="menu-title">权限管理</p>
+			<a href="<?=Url::toRoute('admin/user')?>"><p class="menu-item">用户管理</p></a>
+		<?php
+		}
+		?>
 	</div>
 	<div id="right">
 		<?= Breadcrumbs::widget([
