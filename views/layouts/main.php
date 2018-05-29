@@ -86,7 +86,7 @@ use yii\helpers\VarDumper;
 	}
 	#kefu{
 		display:none;
-		margin:auto;
+
 		position:absolute;
 		width:65%;
 		left:0;right:0;
@@ -162,6 +162,11 @@ use yii\helpers\VarDumper;
 		/* 弹出客服蒙版，客服DIV */
 		$("#kefu-button").click(function(){
 			$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
+			var top = ($(window).height() - $("#kefu").height())/2;
+        	var left = ($(window).width() - $("#kefu").width())/2;
+        	var scrollTop = $(document).scrollTop();
+        	var scrollLeft = $(document).scrollLeft();
+        	$("#kefu").css({position: 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();
 			$("#kefu").css("display","block");
 		});
 		$("#kefu-mask").click(function(){

@@ -3,7 +3,7 @@
 use yii\helpers\Url;
 /* @var $this yii\web\View */
 
-$this->title = '约定中介交易及常见问题';
+$this->title = '约定中介交易简介及常见问题';
 
 ?>
 
@@ -113,10 +113,6 @@ $this->title = '约定中介交易及常见问题';
 		<p class="a-title" data-in="q5">（5）换绑后多久会给卖家打款？<span style="float:right;">></span></p>
 		<div id="q5" style="display:none;">
 			<p>24小时后买家确认资料换绑成功后，客服安排财务打款给卖家。打款慢投诉微信：ccbgz18</p>
-		</div>
-		<p class="a-title" data-in="q6">（6）怎么验证微信客服的真伪？<span style="float:right;">></span></p>
-		<div id="q6" style="display:none;">
-			<p></p>
 		</div>
 	</div>
 </div>

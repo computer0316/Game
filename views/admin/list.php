@@ -120,6 +120,7 @@
 			</div>
 		<?php } ?>
 	</div>
+	<!--
 	<div class="cb"></div>
 	<div id="filter-div3" class="filter-div">
 
@@ -147,63 +148,199 @@
 	    <?php ActiveForm::end(); ?>
 	</div>
 	<div id="mask" class="mask" onclick="hideMask()"></div>
-
+-->
+<style>
+	#list{
+		margin:10px;
+		list-style-type:none;
+	}
+	#list li{
+		float:left;
+		width:100%;
+		padding:10px 5px;
+	}
+	#list li:nth-child(even){
+		background:#ddd;
+	}
+	#list li span{
+		margin-left:10px;
+		display:block;
+		float:left;
+	}
+	.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin:10px;
+  border-radius: 4px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  z-index: 2;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 3;
+  color: #fff;
+  cursor: default;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.pager {
+  padding-left: 0;
+  margin: 20px 0;
+  text-align: center;
+  list-style: none;
+}
+.pager li {
+  display: inline;
+}
+.pager li > a,
+.pager li > span {
+  display: inline-block;
+  padding: 5px 14px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  text-decoration: none;
+  background-color: #eee;
+}
+.pager .next > a,
+.pager .next > span {
+  float: right;
+}
+.pager .previous > a,
+.pager .previous > span {
+  float: left;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+  color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+}
+</style>
 <?php
-
 		if(!$equipments){
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
 		else{
-
+			echo '<ul id="list">';
 			foreach($equipments as $e){
-				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
-					echo "<div class='list'>\n";
-						echo '<div class="list-img-div">';
+				echo "<li>\n";
+					echo '<a onclick="return confirm(\'确认要删除吗？\')" href="' . Url::toRoute(['admin/delete', 'id' => $e->id]) . '"><span>删除</span></a>';
+						echo '<span>';
 								if($e->role <> ''){
-									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+									echo '角色';
 								}
 								elseif($e->pets <> ''){
-									echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+									echo '宠物';
 								}
 								elseif($e->arm <> ''){
-									echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+									echo '武器';
 								}
 								elseif($e->defence  <> ''){
-									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+									echo '防具';
 								}
 								else{
-									echo '<img class="list-img" src="sysimg/index/coin.png" />';
+									echo '金币';
 								}
 
-						echo '</div>';
-						echo '<div class="list-line">';
-							echo ($e->discuss=="0" ? '' : '<img class="list-icon" src="sysimg/index/discuss.png" />') . ' ';
-							echo '<p class="list-title">' . School::findOne($e->school)->name . '</p>';
-							echo '<p class="list-item">&nbsp;|&nbsp;' . $e->level . '级</p>';
-							echo '<p class="right-item">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
-						echo '</div>';
-						echo '<div class="list-line">';
-							echo '(' . $e->id . ')';
-							echo Os::findOne($e->os)->name . ' ';
-
-							echo Category::findOne($e->category)->name . ' ';
-							echo Bind::findOne($e->bind)->name . ' ';
-
-							echo ($e->sex ==0 ? '女': '男') . ' ';
-							echo $e->monster . '神兽 ';
-
-						echo '</div>';
-						echo '<div class="list-line">';
-							echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
-							echo '<span style="color:red">￥'. $e->price . '.00</span>';
-							echo '<span style="float:right;color:#ccc;">' . $e->updatetime . '</span>';
-							echo '</a>';
-							echo "</td>";
-						echo "</div>";
-					echo "</div>\n";
-				echo '</a>';
+						echo '</span>';
+						echo '<span style="color:red;width:100px;">￥'. $e->price . '.00</span>';
+						echo '<span style="width:100px;">' . Os::findOne($e->os)->name . '</span>';
+						echo '<span style="width:80px;">' . School::findOne($e->school)->name . '</span>';
+						echo '<span style="width:120px;">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</span>';
+						echo '<span style="width:60px;">' . $e->level . '级</span>';
+						echo '<span style="width:80px;">' . Category::findOne($e->category)->name . '</span>';
+						echo '<span style="width:80px;">' . Bind::findOne($e->bind)->name . '</span>';
+						echo '<span style="width:20px;">' . ($e->sex ==0 ? '女': '男') . '</span>';
+						echo '<span style="width:180px;">' . $e->updatetime . '</span>';
+					echo '</li>';
 			}
-			echo '</div>';
+			echo '</ul>';
 
 			echo '<div style="width:100%;float:left;margin:5px 0 0 0;">';
 			echo LinkPager::widget(['pagination' => $pagination,]);
