@@ -69,6 +69,25 @@ class AdminController extends Controller
 		}
 	}
 
+	// 设置或者取消加精（首页每日精品）
+	public function actionBestone($id){
+		$user = User::checkLogin();
+    	if(!$user){
+    		return $this->redirect(Url::toRoute('user/login'));
+    	}
+    	if($user->admin == 1 ){
+    		$e = Equipment::findOne($id);
+    		if($e->bestone ==0 ){
+    			$e->bestone = 1;
+    		}
+    		else{
+    			$e->bestone = 0;
+    		}
+    		$e->save();
+    		return $this->redirect(Url::toRoute("admin/list"));
+		}
+	}
+
 	public function actionList($big='不限', $priceOrder = '', $bind= '-1', $category = '', $discuss='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
 		$user = User::checkLogin();
     	if(!$user){

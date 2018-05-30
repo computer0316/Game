@@ -47,6 +47,11 @@
 		padding:3px 10px;
 
 	}
+	.form-group{
+		float:left;
+		border:1px solid blue;
+		clear:none;
+	}
 </style>
 <div class="site-about">
 	<!--
@@ -120,7 +125,7 @@
 			</div>
 		<?php } ?>
 	</div>
-	<!--
+
 	<div class="cb"></div>
 	<div id="filter-div3" class="filter-div">
 
@@ -148,7 +153,7 @@
 	    <?php ActiveForm::end(); ?>
 	</div>
 	<div id="mask" class="mask" onclick="hideMask()"></div>
--->
+
 <style>
 	#list{
 		margin:10px;
@@ -311,6 +316,12 @@
 			foreach($equipments as $e){
 				echo "<li>\n";
 					echo '<a onclick="return confirm(\'确认要删除吗？\')" href="' . Url::toRoute(['admin/delete', 'id' => $e->id]) . '"><span>删除</span></a>';
+					if($e->bestone == 0){
+						echo '<a href="' . Url::toRoute(['admin/bestone', 'id' => $e->id]) . '"><span>加精</span></a>';
+					}
+					else{
+						echo '<a href="' . Url::toRoute(['admin/bestone', 'id' => $e->id]) . '"><span>取消</span></a>';
+					}
 						echo '<span>';
 								if($e->role <> ''){
 									echo '角色';
