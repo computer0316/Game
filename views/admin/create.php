@@ -88,7 +88,7 @@ use app\models\Category;
 <div class="create">
 
     <?php $form = ActiveForm::begin(); ?>
-
+		<input name="_csrf" type="hidden" id="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
         <?= $form->field($model, 'price') ?>
         <?php
            	switch($add){

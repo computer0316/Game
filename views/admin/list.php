@@ -23,136 +23,6 @@
 	$this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<style>
-	.menu-ul{
-		float:left;
-		width:100%;
-		margin:5px 10px;
-		list-style-type:none;
-	}
-	.title-li{
-		float:left;
-		width:100px;
-		color:#999;
-		margin-left:10px;
-		margin-top:5px;
-		padding:3px 10px;
-	}
-	.item-li{
-		float:left;
-		border:1px solid #ddd;
-		color:#999;
-		margin-left:10px;
-		margin-top:5px;
-		padding:3px 10px;
-
-	}
-	.form-group{
-		float:left;
-		border:1px solid blue;
-		clear:none;
-	}
-</style>
-<div class="site-about">
-	<!--
-	<div id="search">
-		<?php $form = ActiveForm::begin(['action' => Url::toRoute('site/search'), 'method' => 'post']); ?>
-			<?= $form->field($search, 'text', ['options' => ['class' => 'search-form']])->textInput(['class' => 'search-input'])->label(false) ?>
-			<input type="image" id="searchimg" src="images/search.png" />
-		<?php ActiveForm::end(); ?>
-	</div>
-	<div id="menu">
-
-		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
-		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
-		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
-
-		<?php
-			if($Order =='up'){
-				echo '<a href="' . Url::current(['priceOrder' => 'down']) . '"><p id="p4">价格<img src="images/au.png" /></p></a>';
-			}
-			if($Order =='down'){
-				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格<img src="images/ad.png" /></p></a>';
-			}
-			if($Order == ''){
-				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格</p></a>';
-			}
-		?>
-	</div>
-	-->
-	<ul id="os" class="menu-ul">
-		<li class="title-li">操作系统</li>
-		<a href="<?=Url::current(['os' => '1'])?>"><li class="item-li">苹果专区</li></a>
-		<a href="<?=Url::current(['os' => '1'])?>"><li class="item-li">安卓官服</li></a>
-		<a href="<?=Url::current(['os' => '1'])?>"><li class="item-li">双平台</li></a>
-		<a href="<?=Url::current(['os' => null])?>"><li class="item-li">专区</li></a>
-	</ul>
-	<div id="filter-div2" class="filter-div">
-		<!-- 大区列表 -->
-		<ul class="menu-ul">
-			<li class="title-li">服务器大区</li>
-	    	<a href="<?=Url::current(['big' => '不限'])?>"><li class="item-li">不限</li></a>
-			<a href="<?=Url::current(['big' => '一区'])?>"><li class="item-li">一区</li></a>
-			<a href="<?=Url::current(['big' => '二区'])?>"><li class="item-li">二区</li></a>
-			<a href="<?=Url::current(['big' => '三区'])?>"><li class="item-li">三区</li></a>
-			<a href="<?=Url::current(['big' => '四区'])?>"><li class="item-li">四区</li></a>
-			<a href="<?=Url::current(['big' => '五区'])?>"><li class="item-li">五区</li></a>
-			<a href="<?=Url::current(['big' => '六区'])?>"><li class="item-li">六区</li></a>
-			<a href="<?=Url::current(['big' => '七区'])?>"><li class="item-li">七区</li></a>
-			<a href="<?=Url::current(['big' => '八区'])?>"><li class="item-li">八区</li></a>
-			<a href="<?=Url::current(['big' => '九区'])?>"><li class="item-li">九区</li></a>
-			<a href="<?=Url::current(['big' => '十区'])?>"><li class="item-li">十区</li></a>
-			<a href="<?=Url::current(['big' => '十一区'])?>"><li class="item-li">十一区</li></a>
-			<a href="<?=Url::current(['big' => '十二区'])?>"><li class="item-li">十二区</li></a>
-			<a href="<?=Url::current(['big' => '十三区'])?>"><li class="item-li">十三区</li></a>
-			<a href="<?=Url::current(['big' => '十四区'])?>"><li class="item-li">十四区</li></a>
-			<a href="<?=Url::current(['big' => '双平台'])?>"><li class="item-li">双平台</li></a>
-			<a href="<?=Url::current(['big' => '安卓混服'])?>"><li class="item-li">安卓混服</li></a>
-	    </ul>
-	    <!-- 服务器列表 -->
-	    <?php if($servers){ ?>
-		    <div style="width:100%;float:left;">
-			    <p class="title-li" style="margin-left:20px;">服务器</p>
-			    <div style="float:left;clear:right;width:1400px;">
-					<ul class="menu-ul" style="margin-left:0;">
-						<?php
-							foreach($servers as $s){
-								echo '<a href="' . Url::current(['district' => $s->id]) . '"><li class="item-li">' . $s->name . '</li></a>';
-							}
-						?>
-					</ul>
-				</div>
-			</div>
-		<?php } ?>
-	</div>
-
-	<div class="cb"></div>
-	<div id="filter-div3" class="filter-div">
-
-		<?php $form = ActiveForm::begin(); ?>
-
-		<?= $form->field($model, 'bind')->label(false)->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-
-		<?= $form->field($model, 'category')->label(false)->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-
-        <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
-
-        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
-
-		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '1' => '物理输出', '2' => '法系输出', '3' => '辅助门派']) ?>
-
-		<?= $form->field($model, 'price', ['options' => ['class' => 'price']])->label('价格范围') ?>
-		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
-
-		<?= $form->field($model, 'sex')->label(false)->radioList(['1'=>'男','0'=>'女']) ?>
-
-        <div class="button-group">
-        	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
-            <?= Html::submitButton('确认', ['class' => 'btn btn-primary']) ?>
-        </div>
-	    <?php ActiveForm::end(); ?>
-	</div>
-	<div id="mask" class="mask" onclick="hideMask()"></div>
 
 <style>
 	#list{
@@ -307,6 +177,177 @@
   background-color: #fff;
 }
 </style>
+<style>
+	.menu-ul{
+		float:left;
+		width:100%;
+		margin:5px 10px;
+		list-style-type:none;
+	}
+	.title-li{
+		float:left;
+		width:100px;
+		color:#999;
+		margin-left:10px;
+		margin-top:5px;
+		padding:3px 10px;
+	}
+	.item-li{
+		float:left;
+		border:1px solid #ddd;
+		color:#999;
+		margin-left:10px;
+		margin-top:5px;
+		padding:3px 10px;
+
+	}
+	.form-group{
+		float:left;
+		clear:none;
+	}
+	.form-group1{
+		 width:100%;
+		 float:left;
+		 margin-left:150px;
+		 margin-top:10px;
+	}
+	.button-group{
+		float:left;
+		width:100%;
+	}
+</style>
+<div class="site-about">
+	<!--
+	<div id="search">
+		<?php $form = ActiveForm::begin(['action' => Url::toRoute('site/search'), 'method' => 'post']); ?>
+			<?= $form->field($search, 'text', ['options' => ['class' => 'search-form']])->textInput(['class' => 'search-input'])->label(false) ?>
+			<input type="image" id="searchimg" src="images/search.png" />
+		<?php ActiveForm::end(); ?>
+	</div>
+	<div id="menu">
+
+		<p id="p1" onclick="showMask1()">平台<img src="images/down.png" /></p>
+		<p id="p2" onclick="showMask2()">服务器<img src="images/down.png" /></p>
+		<p id="p3" onclick="showMask3()">筛选<img src="images/down.png" /></p>
+
+		<?php
+			if($Order =='up'){
+				echo '<a href="' . Url::current(['priceOrder' => 'down']) . '"><p id="p4">价格<img src="images/au.png" /></p></a>';
+			}
+			if($Order =='down'){
+				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格<img src="images/ad.png" /></p></a>';
+			}
+			if($Order == ''){
+				echo '<a href="' . Url::current(['priceOrder' => 'up']) . '"><p id="p4">价格</p></a>';
+			}
+		?>
+	</div>
+	-->
+	<ul id="os" class="menu-ul">
+		<li class="title-li">操作系统</li>
+		<?php
+		if(isset($os)){
+			switch($os){
+				case 1:
+					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
+					break;
+				case 2:
+					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li-active">安卓官服</li></a>';
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
+					break;
+				case 3:
+					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li-active">双平台</li></a>';
+					break;
+				default:
+					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li-active">不限</li></a>';
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
+					break;
+			}
+		}
+		?>
+	</ul>
+	<div id="filter-div2" class="filter-div">
+		<!-- 大区列表 -->
+		<ul class="menu-ul">
+			<li class="title-li">服务器大区</li>
+	    	<a href="<?=Url::current(['district' => null, 'big' => '不限'])?>"><li class="item-li">不限</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '一区'])?>"><li class="item-li">一区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '二区'])?>"><li class="item-li">二区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '三区'])?>"><li class="item-li">三区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '四区'])?>"><li class="item-li">四区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '五区'])?>"><li class="item-li">五区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '六区'])?>"><li class="item-li">六区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '七区'])?>"><li class="item-li">七区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '八区'])?>"><li class="item-li">八区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '九区'])?>"><li class="item-li">九区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '十区'])?>"><li class="item-li">十区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '十一区'])?>"><li class="item-li">十一区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '十二区'])?>"><li class="item-li">十二区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '十三区'])?>"><li class="item-li">十三区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '十四区'])?>"><li class="item-li">十四区</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '双平台'])?>"><li class="item-li">双平台</li></a>
+			<a href="<?=Url::current(['district' => null, 'big' => '安卓混服'])?>"><li class="item-li">安卓混服</li></a>
+	    </ul>
+	    <!-- 服务器列表 -->
+	    <?php if($servers){ ?>
+		    <div style="width:100%;float:left;">
+			    <p class="title-li" style="margin-left:20px;">服务器</p>
+			    <div style="float:left;clear:right;width:1400px;">
+					<ul class="menu-ul" style="margin-left:0;">
+						<?php
+							foreach($servers as $s){
+								echo '<a href="' . Url::current(['district' => $s->id]) . '"><li class="item-li">' . $s->name . '</li></a>';
+							}
+						?>
+					</ul>
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+
+	<div class="cb"></div>
+	<?php
+		//echo $condition;
+	?>
+	<div id="filter-div3" class="filter-div">
+
+		<?php $form = ActiveForm::begin(); ?>
+<div class="form-group1">
+		<?= $form->field($model, 'bind')->label(false)->dropDownList(['-1' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
+		<?= $form->field($model, 'category')->label(false)->dropDownList(['-1' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+
+        <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
+
+        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
+
+		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '1' => '物理输出', '2' => '法系输出', '3' => '辅助门派']) ?>
+</div>
+<p class="title-li" style="margin-left:20px;margin-right:10px;">价格范围</p>
+		<?= $form->field($model, 'price')->label(false) ?>
+		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
+
+<!--
+		<?= $form->field($model, 'sex')->label(false)->radioList(['1'=>'男','0'=>'女']) ?>
+-->
+        <div class="button-group">
+        	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('确认', ['class' => 'btn btn-primary']) ?>
+        </div>
+	    <?php ActiveForm::end(); ?>
+	</div>
+	<div id="mask" class="mask" onclick="hideMask()"></div>
+
 <?php
 		if(!$equipments){
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';

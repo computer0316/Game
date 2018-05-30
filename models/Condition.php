@@ -20,9 +20,22 @@ class Condition extends Model{
 			}
 		}
 
-		public static function createServer($big){
+		public static function createDistrict($district){
+			if($district <> ''){
+				return 'district = ' . $district;
+			}
+		}
+
+		public static function createBig($big){
 			if($big <> '不限'){
-				return 'district = ' . District::find()->where("big = '" . $big . "'")->one()->id;
+				$str = 'district in (';
+				$servers = District::find()->where("big = '" . $big . "'")->column();
+				foreach($servers as $server){
+					$str .= $server . ',';
+				}
+				$str = trim($str, ",");
+				$str .= ')';
+				return $str;
 			}
 		}
 
