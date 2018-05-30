@@ -10,6 +10,7 @@ use app\models\Pets;
 use app\models\Arm;
 use app\models\Os;
 use app\models\Bind;
+use app\models\Defence;
 use app\models\Category;
 
 /* @var $this yii\web\View */
@@ -101,7 +102,10 @@ use app\models\Category;
         			 echo $form->field($model, 'pets')->dropDownlist(['空' => '选择宠物'] + Pets::find()->select(['name', 'id'])->indexBy('id')->column());
         			break;
         		case 'arm':
-        			 echo $form->field($model, 'arm')->dropDownlist(['空' => '选择装备'] + Arm::find()->select(['name', 'id'])->indexBy('id')->column());
+        			 echo $form->field($model, 'arm')->dropDownlist(['空' => '选择武器'] + Arm::find()->select(['name', 'id'])->indexBy('id')->column());
+        			break;
+        		case 'defence':
+        			 echo $form->field($model, 'defence')->dropDownlist(['空' => '选择防具'] + Defence::find()->select(['name', 'id'])->indexBy('id')->column());
         			break;
 			}
         ?>
@@ -117,12 +121,11 @@ use app\models\Category;
         <?= $form->field($model, 'level') ?>
         <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>
         <?= $form->field($model, 'note') ?>
-        <?= $form->field($model, 'updatetime')->textInput(['value' => date("Y-m-d H:i:s", time())]) ?>
         <?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*'])->label('上传图片') ?>
-
         <div class="button-group">
             <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
         </div>
+        <?= $form->field($model, 'updatetime')->hiddenInput(['value' => date("Y-m-d H:i:s", time())])->label(false) ?>
     <?php ActiveForm::end(); ?>
 
 </div><!-- create -->

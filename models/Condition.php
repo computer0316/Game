@@ -27,16 +27,21 @@ class Condition extends Model{
 		}
 
 		public static function createSchool($school){
-			switch($school){
-				case 1:
-					return 'school in (1,3,9)';
-					break;
-				case 2:
-					return 'school in (5,7)';
-					break;
-				case 3:
-					return 'school in (2,4,6,8)';
-					break;
+			if($school > 20){
+				switch($school){
+					case 100:
+						return 'school in (1,3,9)';
+						break;
+					case 200:
+						return 'school in (5,7)';
+						break;
+					case 300:
+						return 'school in (2,4,6,8)';
+						break;
+				}
+			}
+			if($school<>'' && $school > 0){
+				return 'school = ' . $school;
 			}
 		}
 

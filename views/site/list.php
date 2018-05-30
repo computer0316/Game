@@ -535,7 +535,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
 
-		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '1' => '物理输出', '2' => '法系输出', '3' => '辅助门派']) ?>
+		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '100' => '物理输出', '200' => '法系输出', '300' => '辅助门派']) ?>
 
 		<?= $form->field($model, 'price', ['options' => ['class' => 'price']])->label('价格范围') ?>
 		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
@@ -556,6 +556,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
 		else{
+			//echo $condition;
 			foreach($equipments as $e){
 				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 					echo "<div class='list'>\n";

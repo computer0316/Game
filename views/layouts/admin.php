@@ -58,7 +58,8 @@ use app\models\User;
 			<a href="<?=Url::toRoute(['admin/create', 'add' => 'coin'])?>"><p class="menu-item">添加金币</p></a>
 			<a href="<?=Url::toRoute(['admin/create', 'add' => 'role'])?>"><p class="menu-item">添加角色</p></a>
 			<a href="<?=Url::toRoute(['admin/create', 'add' => 'pets'])?>"><p class="menu-item">添加宠物</p></a>
-			<a href="<?=Url::toRoute(['admin/create', 'add' => 'arm'])?>"><p class="menu-item">添加装备</p></a>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'arm'])?>"><p class="menu-item">添加武器</p></a>
+			<a href="<?=Url::toRoute(['admin/create', 'add' => 'defence'])?>"><p class="menu-item">添加防具</p></a>
 			<a href="<?=Url::toRoute('admin/list')?>"><p class="menu-item">列表列表</p></a>
 
 			<p class="menu-title">权限管理</p>
