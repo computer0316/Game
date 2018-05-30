@@ -69,10 +69,12 @@ use yii\helpers\VarDumper;
 			<img class="footerimg" src="images/ke.png" />
 			<p>客服</p>
 		</div>
+		<a href="?r=site/readme">
 		<div>
 			<img class="footerimg" src="images/shuo.png" />
 			<p>说明</p>
 		</div>
+		</a>
 	</div>
 </div>
 <style>

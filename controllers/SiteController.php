@@ -41,6 +41,10 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionReadme(){
+    	return $this->render('readme');
+    }
+
     public function actionArticle($id = 0){
     	return $this->render('a' . $id);
     }

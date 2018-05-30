@@ -27,9 +27,10 @@ class Condition extends Model{
 		}
 
 		public static function createBig($big){
-			if($big <> '不限'){
+			$d_names = ['0' => '不限','1' => '一区','2' => '二区','3' => '三区','4' => '四区','5' => '五区','6' => '六区','7' => '七区','8' => '八区','9' => '九区','10' => '十区','11' => '十一区','12' => '十二区','13' => '十三区','14' => '十四区','15' => '双平台','16' => '安卓混服'];
+			if($big <> 0){
 				$str = 'district in (';
-				$servers = District::find()->where("big = '" . $big . "'")->column();
+				$servers = District::find()->where("big = '" . $d_names[$big] . "'")->column();
 				foreach($servers as $server){
 					$str .= $server . ',';
 				}

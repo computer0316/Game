@@ -201,6 +201,15 @@
 		padding:3px 10px;
 
 	}
+	.item-li-active{
+		float:left;
+		border:1px solid deepbluesky;
+		color:white;
+		margin-left:10px;
+		margin-top:5px;
+		padding:3px 10px;
+		background:deepskyblue;
+	}
 	.form-group{
 		float:left;
 		clear:none;
@@ -214,6 +223,10 @@
 	.button-group{
 		float:left;
 		width:100%;
+	}
+	select{
+		margin-right:20px;
+		padding:0 20px;
 	}
 </style>
 <div class="site-about">
@@ -246,57 +259,70 @@
 	<ul id="os" class="menu-ul">
 		<li class="title-li">操作系统</li>
 		<?php
-		if(isset($os)){
-			switch($os){
-				case 1:
-					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
-					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
-					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
-					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
-					break;
-				case 2:
-					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
-					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
-					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li-active">安卓官服</li></a>';
-					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
-					break;
-				case 3:
-					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
-					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
-					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
-					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li-active">双平台</li></a>';
-					break;
-				default:
-					echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li-active">不限</li></a>';
-					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
-					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
-					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
-					break;
+			if(!isset($os) || $os == ''){
+				echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li-active">不限</li></a>';
+				echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li">苹果专区</li></a>';
+				echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
+				echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
 			}
-		}
+			else{
+				echo '<a href="' . Url::current(['os' => null]) . '"><li class="item-li">不限</li></a>';
+				if($os == 1){
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li-active">苹果专区</li></a>';
+				}
+				else{
+					echo '<a href="' . Url::current(['os' => '1']) . '"><li class="item-li">苹果专区</li></a>';
+				}
+				if($os == 2){
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li-active">安卓官服</li></a>';
+				}
+				else{
+					echo '<a href="' . Url::current(['os' => '2']) . '"><li class="item-li">安卓官服</li></a>';
+				}
+				if($os == 3){
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li-active">双平台</li></a>';
+				}
+				else{
+					echo '<a href="' . Url::current(['os' => '3']) . '"><li class="item-li">双平台</li></a>';
+				}
+			}
 		?>
 	</ul>
+
 	<div id="filter-div2" class="filter-div">
 		<!-- 大区列表 -->
 		<ul class="menu-ul">
-			<li class="title-li">服务器大区</li>
-	    	<a href="<?=Url::current(['district' => null, 'big' => '不限'])?>"><li class="item-li">不限</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '一区'])?>"><li class="item-li">一区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '二区'])?>"><li class="item-li">二区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '三区'])?>"><li class="item-li">三区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '四区'])?>"><li class="item-li">四区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '五区'])?>"><li class="item-li">五区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '六区'])?>"><li class="item-li">六区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '七区'])?>"><li class="item-li">七区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '八区'])?>"><li class="item-li">八区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '九区'])?>"><li class="item-li">九区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '十区'])?>"><li class="item-li">十区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '十一区'])?>"><li class="item-li">十一区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '十二区'])?>"><li class="item-li">十二区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '十三区'])?>"><li class="item-li">十三区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '十四区'])?>"><li class="item-li">十四区</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '双平台'])?>"><li class="item-li">双平台</li></a>
-			<a href="<?=Url::current(['district' => null, 'big' => '安卓混服'])?>"><li class="item-li">安卓混服</li></a>
+			<?php
+				$d_names = [
+					'0' => '不限',
+					'1' => '一区',
+					'2' => '二区',
+					'3' => '三区',
+					'4' => '四区',
+					'5' => '五区',
+					'6' => '六区',
+					'7' => '七区',
+					'8' => '八区',
+					'9' => '九区',
+					'10' => '十区',
+					'11' => '十一区',
+					'12' => '十二区',
+					'13' => '十三区',
+					'14' => '十四区',
+					'15' => '双平台',
+					'16' => '安卓混服',
+				];
+				echo '<li class="title-li">服务器大区</li>';
+				foreach($d_names as $k => $v){
+					if($big == $k){
+						echo '<a href="' . Url::current(['district' => null, 'big' => $k]) . '"><li class="item-li-active">' . $v . '</li></a>';
+					}
+					else{
+						echo '<a href="' . Url::current(['district' => null, 'big' => $k]) . '"><li class="item-li">' . $v . '</li></a>';
+					}
+				}
+			?>
+
 	    </ul>
 	    <!-- 服务器列表 -->
 	    <?php if($servers){ ?>
@@ -306,7 +332,12 @@
 					<ul class="menu-ul" style="margin-left:0;">
 						<?php
 							foreach($servers as $s){
-								echo '<a href="' . Url::current(['district' => $s->id]) . '"><li class="item-li">' . $s->name . '</li></a>';
+								if($district == $s->id){
+									echo '<a href="' . Url::current(['district' => $s->id]) . '"><li class="item-li-active">' . $s->name . '</li></a>';
+								}
+								else{
+									echo '<a href="' . Url::current(['district' => $s->id]) . '"><li class="item-li">' . $s->name . '</li></a>';
+								}
 							}
 						?>
 					</ul>
@@ -332,14 +363,16 @@
         <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
 
 		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '1' => '物理输出', '2' => '法系输出', '3' => '辅助门派']) ?>
+
+		<?= $form->field($model, 'sex')->label(false)->dropDownList(['-1' => '选择性别', '1'=>'男','0'=>'女']) ?>
 </div>
 <p class="title-li" style="margin-left:20px;margin-right:10px;">价格范围</p>
 		<?= $form->field($model, 'price')->label(false) ?>
 		<?= $form->field($model, 'price1', ['options' => ['class' => 'price1']])->label('—') ?>
 
-<!--
-		<?= $form->field($model, 'sex')->label(false)->radioList(['1'=>'男','0'=>'女']) ?>
--->
+
+
+
         <div class="button-group">
         	<?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
             <?= Html::submitButton('确认', ['class' => 'btn btn-primary']) ?>

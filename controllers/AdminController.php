@@ -88,7 +88,7 @@ class AdminController extends Controller
 		}
 	}
 
-	public function actionList($big='不限', $priceOrder = '', $bind= '-1', $category = '', $discuss='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
+	public function actionList($big='0', $priceOrder = '', $bind= '-1', $category = '', $discuss='', $level = '', $school = '', $price1='', $price='', $sex='', $os= '', $district=''){
 		$user = User::checkLogin();
     	if(!$user){
     		return $this->redirect(Url::toRoute('user/login'));
@@ -96,7 +96,7 @@ class AdminController extends Controller
     	if($user->admin == 1 ){
 			$this->layout = 'admin';
 			$model = new Equipment(['scenario' => 'seek']);
-			$model->sex = 1;
+
 			$condition = "";
 			if($model->load(Yii::$app->request->post())){
 				$bind		= Condition::setValue($model->bind);
@@ -119,12 +119,24 @@ class AdminController extends Controller
 						'sex'		=> $sex,
 					]));
 			}
+			$model->bind		= $bind;
+			$model->category	= $category;
+			$model->discuss		= $discuss;
+			$model->level		= $level;
+			$model->school		= $school;
+			$model->price1		= $price1;
+			$model->price		= $price;
+			$model->sex			= $sex;
 
 			if($district == ''){
 				$condition = Condition::join($condition, Condition::createBig($big));
 			}
 
-				$servers = District::find()->where("big = '" . $big . "'")->all();
+			$d_names = ['1' => '一区','2' => '二区','3' => '三区','4' => '四区','5' => '五区','6' => '六区','7' => '七区','8' => '八区','9' => '九区','10' => '十区','11' => '十一区','12' => '十二区','13' => '十三区','14' => '十四区','15' => '双平台','16' => '安卓混服'];
+			$servers = [];
+			if($big>0){
+				$servers = District::find()->where("big = '" . $d_names[$big] . "'")->all();
+			}
 
 				$condition = Condition::join($condition, Condition::create($bind, 	'bind'));
 				$condition = Condition::join($condition, Condition::create($category, 'category'));
@@ -160,15 +172,18 @@ class AdminController extends Controller
 						->all();
 			//$this->layout = 'main';
 			return $this->render('list', [
-						'servers'		=> $servers,
-						'condition'		=> $condition,
-						'Order'			=> $priceOrder,
-						'equipments'	=> $equipments,
-						'condition'		=> $condition,
-						'pagination'	=> $pagination,
-						'model'			=> $model,
-						'search'		=> new Search(),
-						]);
+				'os'			=> $os,
+				'big'			=> $big,
+				'district'		=> $district,
+				'servers'		=> $servers,
+				'condition'		=> $condition,
+				'Order'			=> $priceOrder,
+				'equipments'	=> $equipments,
+				'condition'		=> $condition,
+				'pagination'	=> $pagination,
+				'model'			=> $model,
+				'search'		=> new Search(),
+			]);
 		}
 	}
 
