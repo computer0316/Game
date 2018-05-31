@@ -147,7 +147,13 @@ use yii\widgets\ActiveForm;
 		</div>
 		<div class="item-div">
 			<?php
-			echo '<p class="label">门派</p><p class="item">' . School::findOne($e->school)->name . '</p>';
+			if($e->school ==0){
+				echo '<p class="label">门派</p><p class="item">&nbsp;</p>';
+			}
+			else{
+				echo '<p class="label">门派</p><p class="item">' . School::findOne($e->school)->name . '</p>';
+			}
+
 			echo '<p class="label">性别</p><p class="item">' . ($e->sex == 0 ? '女'  : '男') . '</p>';
 			echo '<p class="label">是否议价</p><p class="item">' . ($e->discuss == 0 ? '否' : '可') . '</p>';
 			echo '<p class="label">神兽数量</p><p class="item">' . $e->monster . '</p>';

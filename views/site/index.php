@@ -230,26 +230,32 @@ $(function () {
 				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 					echo "<div class='list'>\n";
 						echo '<div class="list-img-div">';
+						$name = '';
 								if($e->role <> ''){
 									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Role::findOne($e->role)->name;
 								}
 								elseif($e->pets <> ''){
 									echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Pets::findOne($e->pets)->name;
 								}
 								elseif($e->arm <> ''){
 									echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Arm::findOne($e->arm)->name;
 								}
 								elseif($e->defence  <> ''){
 									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Defence::findOne($e->defence)->name;
 								}
 								else{
 									echo '<img class="list-img" src="sysimg/index/coin.png" />';
+									$name = '梦幻币';
 								}
 
 						echo '</div>';
 						echo '<div class="list-line">';
 							echo ($e->discuss=="0" ? '' : '<img class="list-icon" src="sysimg/index/discuss.png" />') . ' ';
-							echo '<p class="list-title">' . School::findOne($e->school)->name . '</p>';
+							echo '<p class="list-title">' . $name . '</p>';
 							echo '<p class="list-item">&nbsp;|&nbsp;' . $e->level . '级</p>';
 							echo '<p class="right-item">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
 						echo '</div>';

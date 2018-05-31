@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		}
 		.filter-div{
 			position:absolute;
-			top:118px;
+			top:120px;
 			left:0px;
 			display:none;
 			width:100%;
@@ -533,7 +533,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'discuss')->label(false)->dropDownList(['-1' => '能否议价', '1'=>'能','0'=>'否']) ?>
 
-        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1'=>'0~69级','2'=>'70~89级', '3' => '90~109级']) ?>
+        <?= $form->field($model, 'level')->label(false)->dropDownList(['-1' => '人物级别', '1000'=>'0~69级','2000'=>'70~89级', '3000' => '90~109级']) ?>
 
 		<?= $form->field($model, 'school')->label(false)->dropDownList(['-1' => '人物门派', '100' => '物理输出', '200' => '法系输出', '300' => '辅助门派']) ?>
 
@@ -556,31 +556,37 @@ $this->params['breadcrumbs'][] = $this->title;
 			echo '<p style="width:100%;text-align:center;padding:200px 0;">还没有任何信息</p>';
 		}
 		else{
-			echo $condition;
+			//echo $condition;
 			foreach($equipments as $e){
 				echo '<a href="' . Url::toRoute(['site/show', 'id' => $e->id]) . '">';
 					echo "<div class='list'>\n";
 						echo '<div class="list-img-div">';
+							$name = '';
 								if($e->role <> ''){
 									echo '<img class="list-img" src="' . ($e->role <> '' ? Role::findOne($e->role)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Role::findOne($e->role)->name;
 								}
 								elseif($e->pets <> ''){
 									echo '<img class="list-img" src="' . ($e->pets <> '' ? Pets::findOne($e->pets)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Pets::findOne($e->pets)->name;
 								}
 								elseif($e->arm <> ''){
 									echo '<img class="list-img" src="' . ($e->arm <> '' ? Arm::findOne($e->arm)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Arm::findOne($e->arm)->name;
 								}
 								elseif($e->defence  <> ''){
 									echo '<img class="list-img" src="' . ($e->defence <> '' ? Defence::findOne($e->defence)->img : 'sysimg/index/coin.jpg') . '" />';
+									$name = Defence::findOne($e->defence)->name;
 								}
 								else{
 									echo '<img class="list-img" src="sysimg/index/coin.png" />';
+									$name = '梦幻币';
 								}
 
 						echo '</div>';
 						echo '<div class="list-line">';
 							echo ($e->discuss=="0" ? '' : '<img class="list-icon" src="sysimg/index/discuss.png" />') . ' ';
-							echo '<p class="list-title">' . School::findOne($e->school)->name . '</p>';
+							echo '<p class="list-title">' . $name . '</p>';
 							echo '<p class="list-item">&nbsp;|&nbsp;' . $e->level . '级</p>';
 							echo '<p class="right-item">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
 						echo '</div>';

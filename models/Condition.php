@@ -61,15 +61,18 @@ class Condition extends Model{
 
 		public static function createLevel($level){
 			switch($level){
-				case 1:
+				case 1000:
 					return 'level >=0 and level < 70';
 					break;
-				case 2:
+				case 2000:
 					return 'level >=70 and level < 90';
 					break;
-				case 3:
+				case 3000:
 					return 'level >= 90';
 					break;
+			}
+			if($level <> '' && $level > 0){
+				return 'level = ' . $level;
 			}
 		}
 
