@@ -416,10 +416,20 @@
 						echo '</span>';
 						echo '<span style="color:red;width:100px;">￥'. $e->price . '.00</span>';
 						echo '<span style="width:100px;">' . Os::findOne($e->os)->name . '</span>';
-						echo '<span style="width:80px;">' . School::findOne($e->school)->name . '</span>';
+						if($e->school <> 0){
+							echo '<span style="width:80px;">' . School::findOne($e->school)->name . '</span>';
+						}
+						else{
+							echo '<span style="width:80px;">&nbsp;</span>';
+						}
 						echo '<span style="width:120px;">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</span>';
 						echo '<span style="width:60px;">' . $e->level . '级</span>';
-						echo '<span style="width:80px;">' . Category::findOne($e->category)->name . '</span>';
+						if($e->category <> 0){
+							echo '<span style="width:80px;">' . Category::findOne($e->category)->name . '</span>';
+						}
+						else{
+							echo '<span style="width:80px;">&nbsp;</span>';
+						}
 						echo '<span style="width:80px;">' . Bind::findOne($e->bind)->name . '</span>';
 						echo '<span style="width:20px;">' . ($e->sex ==0 ? '女': '男') . '</span>';
 						echo '<span style="width:180px;">' . $e->updatetime . '</span>';

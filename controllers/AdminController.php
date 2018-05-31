@@ -223,6 +223,23 @@ class AdminController extends Controller
 	            ]));
 	    		//yii::$app->session->setFlash('message', 'success');
 	    	}
+	    	switch($add){
+        		case 'role':
+        			 $model->category = 1;
+        			break;
+        		case 'coin':
+        			 $model->category = 2;
+        			break;
+        		case 'defence':
+        			 $model->category = 3;
+        			break;
+        		case 'pets':
+        			 $model->category = 4;
+        			break;
+        		case 'arm':
+        			 $model->category = 5;
+        			break;
+			}
 	        return $this->render('create', [
 	            'model' => $model,
 	            'upload'=> $upload,

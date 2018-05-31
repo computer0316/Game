@@ -88,7 +88,6 @@ use app\models\Category;
 <div class="create">
 
     <?php $form = ActiveForm::begin(); ?>
-		<input name="_csrf" type="hidden" id="_csrf" value="<?= Yii::$app->request->csrfToken ?>">
         <?= $form->field($model, 'price') ?>
         <?php
            	switch($add){
@@ -109,17 +108,25 @@ use app\models\Category;
         			break;
 			}
         ?>
-        <?= $form->field($model, 'category')->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'bind', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'os')->dropDownList(['空' => '选择平台'] + Os::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column(),['disabled' => 'disabled']) ?>
+        <?= $form->field($model, 'bind')->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?= $form->field($model, 'os', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '选择平台'] + Os::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'district', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '服务器'] + District::find()->select(["concat(big, ' ', name) as district", 'id'])->indexBy('id')->column()) ?>
-        <?= $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
+        <?php
+        	if($add == 'role'){
+        		echo $form->field($model, 'school', ['options' => ['class' => 'in-line']])->dropDownList(['0' => '门派'] + School::find()->select(['name', 'id'])->indexBy('id')->column());
+        	}
+        ?>
 
 
         <?= $form->field($model, 'sex')->dropDownList(['1'=>'男','0'=>'女'], ['style'=>'width:120px']) ?>
-        <?= $form->field($model, 'discuss')->dropDownList(['1'=>'可','0'=>'否'], ['style'=>'width:120px']) ?>
+        <?= $form->field($model, 'discuss', ['options' => ['class' => 'in-line']])->dropDownList(['1'=>'可','0'=>'否'], ['style'=>'width:120px']) ?>
         <?= $form->field($model, 'level') ?>
-        <?= $form->field($model, 'monster', ['options' => ['class' => 'in-line']]) ?>
+        <?php
+        	if($add == 'role'){
+        		echo $form->field($model, 'monster', ['options' => ['class' => 'in-line']]);
+        	}
+        ?>
         <?= $form->field($model, 'note') ?>
         <?= $form->field($upload, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*'])->label('上传图片') ?>
         <div class="button-group">
