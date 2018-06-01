@@ -34,15 +34,29 @@
 		width:100%;
 		padding:10px 5px;
 	}
-	#list li:nth-child(even){
-		background:#ddd;
-	}
 	#list li span{
 		margin-left:10px;
 		display:block;
 		float:left;
 	}
-	.pagination {
+	.coin{
+		background:#fff7cd;
+	}
+	.role{
+		background:#d4fdfd;
+	}
+	.pets{
+		background:#fff3f6;
+	}
+	.arm{
+		background:#e2ebfd;
+	}
+	.defence{
+		background:#deffdf;
+	}
+</style>
+<style>
+.pagination {
   display: inline-block;
   padding-left: 0;
   margin:10px;
@@ -388,7 +402,22 @@
 		else{
 			echo '<ul id="list">';
 			foreach($equipments as $e){
-				echo "<li>\n";
+				if($e->role <> ''){
+					echo '<li class="role">\n';
+				}
+				elseif($e->pets <> ''){
+					echo '<li class="pets">\n';
+				}
+				elseif($e->arm <> ''){
+					echo '<li class="arm">\n';
+				}
+				elseif($e->defence  <> ''){
+					echo '<li class="defence">\n';
+				}
+				else{
+					echo '<li class="coin">\n';
+				}
+
 					echo '<a onclick="return confirm(\'确认要删除吗？\')" href="' . Url::toRoute(['admin/delete', 'id' => $e->id]) . '"><span>删除</span></a>';
 					if($e->bestone == 0){
 						echo '<a href="' . Url::toRoute(['admin/bestone', 'id' => $e->id]) . '"><span>加精</span></a>';
