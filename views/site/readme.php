@@ -11,6 +11,9 @@ $this->title = '常见问题';
 		width:100%;
 		text-align:center;
 	}
+	.wrap img{
+		width:90%;
+	}
 	.gonggao-div{
 		float:left;
 		width:100%;
