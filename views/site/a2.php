@@ -9,16 +9,16 @@ $this->title = '约定中介交易简介及常见问题';
 
 
 <div>
-	<img style="width:100%;" src="images/article.jpg" />
+	<img style="width:100%;" src="images/5.jpg" />
 
 	<div class="title-div">
-		<span class="gradient">中介简介</span>
+		<span class="gradientblue">中介简介</span>
 	</div>
 	<div class="content-div">
 		<p>约定中介交易是指买卖双方自己约定好价格等交易条件，壹折手游交易平台做为买卖双方的中介，买家打款到平台指定的收款账号，客服确认收到款后，卖家配合客服把账号资料换绑成买家的资料，换绑成功后平台打款到卖家指定的收款账号，中介完成。</p>
 	</div>
 	<div class="title-div">
-		<span class="gradient">收费标准</span>
+		<span class="gradientblue">收费标准</span>
 	</div>
 	<div class="content-div">
 		<style>
@@ -59,7 +59,7 @@ $this->title = '约定中介交易简介及常见问题';
 		</table>
 	</div>
 	<div class="title-div">
-		<span class="gradient">交易须知</span>
+		<span class="gradientblue">交易须知</span>
 	</div>
 	<div class="content-div">
 		<p>1.约定中介交易过程中，壹折手游交易平台是中介不是担保，买家自己承担交易所具有的风险。</p>
@@ -69,7 +69,7 @@ $this->title = '约定中介交易简介及常见问题';
 		<p>5.中介过程中如果出现纠纷，并且双方协商无果，就让壹折手游交易平台主播仲裁，一定保持公平公正，买卖双方必须接受壹折手游平台的仲裁结果。</p>
 	</div>
 	<div class="title-div">
-		<span class="gradient">交易流程</span>
+		<span class="gradientblue">交易流程</span>
 	</div>
 	<div class="content-div">
 		<p class="a-title">1.买家付款</p>
@@ -87,7 +87,7 @@ $this->title = '约定中介交易简介及常见问题';
 		<p>备注：不同账号类型有不同的交易流程，具体咨询客服。</p>
 	</div>
 	<div class="title-div">
-		<span class="gradient">常见问题</span>
+		<span class="gradientblue">常见问题</span>
 	</div>
 	<div class="content-div">
 		<p class="a-title" data-in="q1">（1）壹折手游交易平台安全可信吗？<span style="float:right;">></span></p>

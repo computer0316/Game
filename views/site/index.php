@@ -156,12 +156,12 @@ $(function () {
 <!-- Slideshow -->
 <div class="callbacks_container">
 	<ul class="rslides" id="slider">
-		<li><a href="#"><img src="images/1.jpg" alt=""></a></li>
+		<li><a href="<?= Url::toRoute(['site/article', 'id' => '11'])?>"><img src="images/1.jpg" alt=""></a></li>
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '5'])?>"><img src="images/2.jpg" alt=""></a></li>
 		<li><a href="#"><img src="images/3.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/4.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/5.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/6.jpg" alt=""></a></li>
+		<li><a href="<?= Url::toRoute(['site/article', 'id' => '10'])?>"><img src="images/4.jpg" alt=""></a></li>
+		<li><a href="<?= Url::toRoute(['site/article', 'id' => '2'])?>"><img src="images/5.jpg" alt=""></a></li>
+		<li><a href="<?= Url::toRoute(['site/article', 'id' => '9'])?>"><img src="images/6.jpg" alt=""></a></li>
 	</ul>
 </div>
 <div class="container"">
@@ -297,8 +297,5 @@ $(function () {
 	<p class="new-title">公告</p><a href="?r=site/article"><p class="more">更多></p></a>
 	<ul class="gonggao">
 		<a href="?r=site/article&id=1"><li>壹折手游交易平台收款账号</li></a>
-		<a href="?r=site/article&id=2"><li>约定中介交易简介及常见问题</li></a>
-		<a href="?r=site/article&id=3"><li>签订合同-买家常见问题</li></a>
-		<a href="?r=site/article&id=4"><li>签订合同-卖家常见问题</li></a>
 	</ul>
 </div>
