@@ -45,7 +45,7 @@ use yii\helpers\VarDumper;
 </div>
 <div class="container">
 	<?= $content ?>
-	<div style="width:100%;float:left;font-size:12px;color:#999;text-align:center;margin-bottom:80px;line-height:25px;">
+	<div class="copy">
 		<p>首页&nbsp;|&nbsp;我要买&nbsp;|&nbsp;我要卖&nbsp;|&nbsp;联系客服</p>
 		<p>壹折手游交易平台</p>
 		<p>&copy;www.yizhecbg.com</p>
@@ -56,23 +56,23 @@ use yii\helpers\VarDumper;
 		<a href="?r=site/index">
 		<div>
 			<img id="abc" class="footerimg" src="images/shou.png" />
-			<p>首页</p>
+			<p class="footer-p">首页</p>
 		</div>
 		</a>
 		<a href="?r=site/category">
 		<div>
 			<img class="footerimg" src="images/fen.png" />
-			<p>分类</p>
+			<p class="footer-p">分类</p>
 		</div>
 		</a>
 		<div id="kefu-button">
 			<img class="footerimg" src="images/ke.png" />
-			<p>客服</p>
+			<p class="footer-p">客服</p>
 		</div>
 		<a href="?r=site/readme">
 		<div>
 			<img class="footerimg" src="images/shuo.png" />
-			<p>说明</p>
+			<p class="footer-p">说明</p>
 		</div>
 		</a>
 	</div>
@@ -88,7 +88,6 @@ use yii\helpers\VarDumper;
 	}
 	#kefu{
 		display:none;
-
 		position:absolute;
 		width:65%;
 		left:0;right:0;
@@ -104,7 +103,6 @@ use yii\helpers\VarDumper;
 		padding:0;
 	}
 	.wx{
-		width:100%;
 		margin-top:0;
 		margin-bottom:0;
 	}
@@ -112,6 +110,10 @@ use yii\helpers\VarDumper;
 		float:none;
 		margin:10px;
 		width:50%;
+	}
+	.wx{
+		width:100%;
+		line-height:30px;
 	}
 	.wx-img{
 		width:20px;
@@ -124,6 +126,8 @@ use yii\helpers\VarDumper;
 		color:white;
 		margin-left:5px;
 		padding:1px 3px;
+		width:auto;
+		float:none;
 	}
 	#message{
 		display:none;

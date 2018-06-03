@@ -56,15 +56,27 @@
 			float:left;
 			width:25%;
 			text-align:center;
-
 		}
 		.footerimg {
 			width:25%;
 		}
-		.footer-div p{
+		.footer-p{
 			text-align:center;
 			font-size:12px;
+			margin:0;
 		}
 		.footer-div a{
 			color:black;
+		}
+		.copy{
+			 width:100%;
+			 float:left;
+			 font-size:12px;
+			 color:#999;
+			 text-align:center;
+			 margin-bottom:80px;
+		}
+		.copy p{
+			line-height:25px;
+			margin:0;
 		}
