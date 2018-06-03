@@ -71,7 +71,7 @@ class Condition extends Model{
 					return 'level >= 90';
 					break;
 			}
-			if($level <> '' && $level > 0){
+			if($level <> '' && $level >= 0){
 				return 'level = ' . $level;
 			}
 		}

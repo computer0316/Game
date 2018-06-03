@@ -108,7 +108,7 @@ use app\models\Category;
         			break;
 			}
         ?>
-        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column(),['disabled' => 'disabled']) ?>
+        <?= $form->field($model, 'category', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '账号类型'] +  Category::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'bind')->dropDownList(['空' => '绑定类型'] + Bind::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'os', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '选择平台'] + Os::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
         <?= $form->field($model, 'district', ['options' => ['class' => 'in-line']])->dropDownList(['空' => '服务器'] + District::find()->select(["concat(big, ' ', name) as district", 'id'])->indexBy('id')->column()) ?>
