@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 	use app\models\Community;
@@ -71,7 +72,7 @@ use yii\widgets\ActiveForm;
 			text-align:center;
 			font-weight:bold;
 			font-size:16px;
-			margin:15px 0;
+			margin:10px 0;
 		}
 		.portrait{
 		}
@@ -99,11 +100,44 @@ use yii\widgets\ActiveForm;
 			margin:0 10px;
 			font-weight:bold;
 		}
+		#fixed-top{
+			position:fixed;
+			top:0;
+			width:100%;
+			text-align:center;
+			background:white;
+		}
+		.button-two{
+			float:left;
+			width:45%;
+			margin:2%;
+			background:skyblue;
+			color:white;
+			border-radius:15px;
+			text-align:center;
+			padding:5px 0;
+		}
+		.p-3{
+			float:left;
+			width:30%;
+			margin:0 1.5%;
+		}
 </style>
+	<div id="fixed-top">
 		<div class="top-div">
 			商品详情
 		</div>
-		<div class="brief-div" style="border-top:1px dashed #ddd;">
+		<div>
+			<p style="text-decoration:underline;" class="p-3">详细信息</p>
+			<a href="<?= Url::toRoute(['site/article', 'id' => 10]) ?>"><p class="p-3">交易流程</p></a>
+			<a href="<?= Url::toRoute(['site/article', 'id' => 2]) ?>"><p class="p-3">常见问题</p></a>
+		</div>
+		<div>
+			<a href="<?= Url::toRoute(['site/article', 'id' => 10]) ?>"><p class="button-two">分期购号</p></a>
+			<a href="<?= Url::toRoute(['site/article', 'id' => 5]) ?>"><p class="button-two">找回包赔</p></a>
+		</div>
+	</div>
+		<div class="brief-div" style="margin-top:90px;border-top:1px dashed #ddd;background:white;">
 			<?php
 				echo '<p class="p1">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';
 			?>

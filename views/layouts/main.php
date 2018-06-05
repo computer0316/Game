@@ -37,7 +37,7 @@ use yii\helpers\VarDumper;
 <div class="header">
 	<?php
 		if($this->context->action->id <> 'index' && $this->context->action->id <> 'category'){
-			echo '<a href="javascript:history.back()"><img style="position:absolute;left:20px;top:0;width:20px;height:20px;" src="images/back.png" /></a>';
+			echo '<a href="javascript:history.back()"><img style="position:fixed;z-index:100;left:20px;top:10px;width:20px;height:20px;" src="images/back.png" /></a>';
 			echo '<p style="color:#999;font-size:14px;">' . $this->title . '</p>';
 		}
 	?>
@@ -147,11 +147,10 @@ use yii\helpers\VarDumper;
 <p id="message"></p>
 <div id="kefu">
 	<img class="kefu-title" src="images/kefutitle.png" />
-	<img class="kefu-img" src="images/y677867.jpg" />
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />订单微信：Y767076<span data-clipboard-text="Y767076" class="copy">复制</span></p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />订单微信：Y670767<span data-clipboard-text="Y670767" class="copy">复制</span></p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />咨询微信：ccbgz18<span data-clipboard-text="ccbgz18" class="copy">复制</span></p>
-	<p class="wx"><img class="wx-img" src="images/wx.jpg" />寄售微信：Y677867<span data-clipboard-text="Y677867" class="copy">复制</span></p>
+	<img class="kefu-img" src="images/wxh.jpg" />
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />订单微信：ccbgz16<span data-clipboard-text="Y767076" class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />寄售微信：Y670767<span data-clipboard-text="Y670767" class="copy">复制</span></p>
+	<p class="wx"><img class="wx-img" src="images/wx.jpg" />售后微信：ccbgz18<span data-clipboard-text="ccbgz18" class="copy">复制</span></p>
 	<p style="margin:10px;font-size:12px;color:deepskyblue;">网站仅供看号选号 议价交易请加微信</p>
 </div>
 <script>
