@@ -103,7 +103,10 @@ use yii\widgets\ActiveForm;
 		#fixed-top{
 			position:fixed;
 			top:0;
+			min-width:320px;
+			max-width:760px;
 			width:100%;
+			margin:0 auto;
 			text-align:center;
 			background:white;
 		}
@@ -123,20 +126,20 @@ use yii\widgets\ActiveForm;
 			margin:0 1.5%;
 		}
 </style>
-	<div id="fixed-top">
-		<div class="top-div">
-			商品详情
+		<div id="fixed-top">
+			<div class="top-div">
+				商品详情
+			</div>
+			<div>
+				<p style="text-decoration:underline;" class="p-3">详细信息</p>
+				<a href="<?= Url::toRoute(['site/article', 'id' => 12]) ?>"><p class="p-3">交易流程</p></a>
+				<a href="<?= Url::toRoute(['site/article', 'id' => 2]) ?>"><p class="p-3">常见问题</p></a>
+			</div>
+			<div>
+				<a href="<?= Url::toRoute(['site/article', 'id' => 10]) ?>"><p class="button-two">分期购号</p></a>
+				<a href="<?= Url::toRoute(['site/article', 'id' => 5]) ?>"><p class="button-two">找回包赔</p></a>
+			</div>
 		</div>
-		<div>
-			<p style="text-decoration:underline;" class="p-3">详细信息</p>
-			<a href="<?= Url::toRoute(['site/article', 'id' => 10]) ?>"><p class="p-3">交易流程</p></a>
-			<a href="<?= Url::toRoute(['site/article', 'id' => 2]) ?>"><p class="p-3">常见问题</p></a>
-		</div>
-		<div>
-			<a href="<?= Url::toRoute(['site/article', 'id' => 10]) ?>"><p class="button-two">分期购号</p></a>
-			<a href="<?= Url::toRoute(['site/article', 'id' => 5]) ?>"><p class="button-two">找回包赔</p></a>
-		</div>
-	</div>
 		<div class="brief-div" style="margin-top:90px;border-top:1px dashed #ddd;background:white;">
 			<?php
 				echo '<p class="p1">' . District::findOne($e->district)->big . '-' . District::findOne($e->district)->name . '</p>';

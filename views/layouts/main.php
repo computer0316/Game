@@ -37,7 +37,7 @@ use yii\helpers\VarDumper;
 <div class="header">
 	<?php
 		if($this->context->action->id <> 'index' && $this->context->action->id <> 'category'){
-			echo '<a href="javascript:history.back()"><img style="position:fixed;z-index:100;left:20px;top:10px;width:20px;height:20px;" src="images/back.png" /></a>';
+			echo '<a style="float:left;margin-left:10px;" href="javascript:history.back()"><img style="position:fixed;z-index:100;top:10px;width:20px;height:20px;" src="images/back.png" /></a>';
 			echo '<p style="color:#999;font-size:14px;">' . $this->title . '</p>';
 		}
 	?>
