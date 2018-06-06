@@ -165,7 +165,14 @@ use yii\helpers\VarDumper;
 	});
 	$(document).ready(function(){
 		/* 弹出客服蒙版，客服DIV */
-		$("#kefu-button").click(function(){
+		$("#kefu-button").click(function(){showMask();});
+		$("#kefu-p").click(function(){showMask();});
+		$("#kefu-mask").click(function(){
+			$("#kefu-mask").css('display', "none");
+			$("#kefu").css("display","none");
+		});
+	});
+	function showMask(){
 			$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
 			var top = ($(window).height() - $("#kefu").height())/2;
         	var left = ($(window).width() - $("#kefu").width())/2;
@@ -173,12 +180,7 @@ use yii\helpers\VarDumper;
         	var scrollLeft = $(document).scrollLeft();
         	$("#kefu").css({position: 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();
 			$("#kefu").css("display","block");
-		});
-		$("#kefu-mask").click(function(){
-			$("#kefu-mask").css('display', "none");
-			$("#kefu").css("display","none");
-		});
-	});
+	}
 </script>
 <?php $this->endBody() ?>
 </body>

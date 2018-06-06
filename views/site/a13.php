@@ -8,7 +8,27 @@ $this->title = '小姐姐喊您卖号啦！';
 ?>
 <style>
 	.pink{
+		float:left;
+		width:43%;
+		margin:1.5%;
+		padding:5px;
+		border:1px solid #ddd;
 		color:#f7564e;
+		text-align:center;
+	}
+	.box{
+		float:left;
+		width:100%;
+		margin-top:10px;
+	}
+	.box1{
+		float:left;
+		display:none;
+		margin:0;
+		background:#f86d65;
+		width:90%;
+		margin-left:5%;
+		border-radius:10px;
 	}
 	table{
 		width:100%;
@@ -20,6 +40,51 @@ $this->title = '小姐姐喊您卖号啦！';
 	td{
 		padding:3px;
 	}
+	.check{
+		padding:0 5px;
+		border:1px solid #f7564e;
+		border-radius:10px;
+	}
+	.circle-div{
+		float:left;
+		position:relative;
+	}
+	.circle{
+		float:left;
+		width:40px;
+		height:40px;
+		border-radius:20px;
+		border:1px solid #05d2e0;
+		background:#05d2e0;
+		text-align:center;
+		font-size:25px;
+		font-weight:bold;
+		color:white;
+	}
+	.down{
+		position:absolute;
+		display:none;
+		top:50px;
+		left:11px;
+		border:10px solid transparent;
+		border-top:10px solid #05d2e0;
+	}
+	.number{
+		float:left;
+		font-size:30px;
+		font-weight:bold;
+		margin:25px 5px 0 20px;
+	}
+	.guess{
+		float:left;
+		font-size:16px;
+		margin:35px 10px;
+	}
+	.right{
+		width:20px;
+		float:right;
+		margin:30px;
+	}
 </style>
 
 <div>
@@ -28,16 +93,19 @@ $this->title = '小姐姐喊您卖号啦！';
 	<div class="title-div">
 		<span class="gradientblue1">我要卖号</span>
 	</div>
-	<table>
-		<tr>
-			<td><span  class="pink">客服上架</span></td>
-			<td><span  class="pink">卖家须知</span></td>
-		</tr>
-	</table>
-	<div class="title-div">
+	<div class="box">
+		<p id="kefu-p" class="pink">客服上架</p>
+		<a href="<?= Url::toRoute(['site/article', 'id'=> 14]) ?>"><p class="pink">卖家须知</p></a>
+	</div>
+	<div class="box" style="text-align:center;">
+		<span class="check">√</span>无差价
+		<span class="check">√</span>价格高
+		<span class="check">√</span>成交快
+	</div>
+	<div class="title-div" style="float:left;width:100%;margin:10px 0;">
 		<span class="gradientblue1">收费标准</span>
 	</div>
-	<div class="content-div">
+	<div class="box">
 		<style>
 			.table tr td{
 				border:1px solid #ddd;
@@ -78,63 +146,98 @@ $this->title = '小姐姐喊您卖号啦！';
 	<div class="title-div">
 		<span class="gradientblue1">挂号流程</span>
 	</div>
-	<div>
-		<p></p>
-		<p>2.签订合同的账号壹折手游交易平台提供找回包赔服务，但是卖家的身份证和相关资料只能提供给平台，否则无法签订合同。</p>
-		<p>3.壹折手游交易平台在中介交易过程中保持中立一定公平公正，充分保障买卖双方的权益，既要保护卖家隐私和账号安全，又要帮买家更换账号的一切资料。</p>
-		<p>4.买卖双方一定要按照客服的提示操作，卖家收到的手机验证码只能发给平台客服防止被骗。</p>
-		<p>5.中介过程中如果出现纠纷，并且双方协商无果，就让壹折手游交易平台主播仲裁，一定保持公平公正，买卖双方必须接受壹折手游平台的仲裁结果。</p>
+	<div class="box" data-roc="1">
+		<p class="number">1</p>
+		<div class="circle-div">
+			<p class="circle">诚</p>
+			<p class="down" data-roc="1"></p>
+		</div>
+		<p class="guess">估价制图</p>
+		<img class="right" src="images/up.png" />
+	</div>
+	<div class="box1" data-roc="1">
+		<p>平台客服上号截图制图 并且根据装备和宝宝服务器进行快速估价</p>
+	</div>
+	<div class="box" data-roc="2">
+		<p class="number">2</p>
+		<div class="circle-div">
+			<p class="circle">信</p>
+			<p class="down" data-roc="2"></p>
+		</div>
+		<p class="guess">估价制图</p>
+		<img class="right" src="images/up.png" />
+	</div>
+	<div class="box1" data-roc="2">
+		<p>确定好标价后 客服把商品上架到网站</p>
+	</div>
+	<div class="box" data-roc="3">
+		<p class="number">3</p>
+		<div class="circle-div">
+			<p class="circle">交</p>
+			<p class="down" data-roc="3"></p>
+		</div>
+		<p class="guess">估价制图</p>
+		<img class="right" src="images/up.png" />
+	</div>
+	<div class="box1" data-roc="3">
+		<p>买家询价 客服协助买卖双方谈价 谈好价格后买家打款 客服协助 买卖双方换绑资料</p>
+	</div>
+	<div class="box" data-roc="4">
+		<p class="number">4</p>
+		<div class="circle-div">
+			<p class="circle">易</p>
+			<p class="down" data-roc="4"></p>
+		</div>
+		<p class="guess">估价制图</p>
+		<img class="right" src="images/up.png" />
+	</div>
+	<div class="box1" data-roc="4">
+		<p>24小时后买家确认换绑定成功 平台打款给买卖家 交易完成</p>
 	</div>
 	<div class="title-div">
 		<span class="gradientblue1">不拿卖家差价</span>
 	</div>
-	<div class="content-div">
-		<p class="a-title">1.买家付款</p>
-		<p>买卖双方自己约定好价格等交易条件，买家打款到壹折手游交易平台客服指定的收款账号。</p>
-		<p class="a-title">2.买家验号</p>
-		<p>确认收到款后，客服帮买家验号，平台客服上号截图账号上的装备宝宝，账号绑定情况等展示给买卖双方，买家确认验号合格后继续交易。</p>
-		<p class="a-title">3.客服换绑</p>
-		<p>卖家确认账号类型后，客服会发对应账号类型的详细交易流程给买卖双方。</p>
-		<p class="a-title">4.换绑成功</p>
-		<p>买卖双方配合平台客服把账号资料换绑成买家的资料。</p>
-		<p class="a-title">5.卖家收款</p>
-		<p>换绑成功后，壹折手游交易平台打款到卖家指定的收款账号。</p>
-		<p class="a-title">6.交易完成</p>
-		<p>卖家收到货款，中介完成。</p>
-		<p>备注：不同账号类型有不同的交易流程，具体咨询客服。</p>
+	<div class="box" style="position:relative;">
+		<p style="width:90%;margin:5%;">如卖家发现有差价平台承诺100倍赔<span style="color:#05d2e0;">（差价是指例如实际成交价格是1.3万,但是平台告诉卖家成交价格是1万,3000元就是差价）</span></p>
+		<img style="position:absolute;top:140px;left:10px;" src="images/sell/6.png" />
+		<img style="position:absolute;top:100px;left:30px;width:40px;" src="images/sell/4.png" />
+		<div class="box" style="height:210px;">&nbsp;</div>
 	</div>
 	<div class="title-div">
-		<span class="gradientblue">常见问题</span>
+		<span class="gradientblue1">保护卖家隐私</span>
+	</div>
+	<div class="box" style="position:relative;">
+		<p style="width:90%;margin:5%;">除必要的换帮资料外 平台在没有取得卖家同意下不泄漏任何卖家信息 否则承担相</p>
+		<img style="position:absolute;top:100px;left:30px;width:40px;" src="images/sell/3.png" />
+		<img style="position:absolute;top:200px;left:30px;width:40px;" src="images/sell/2.png" />
+		<img style="position:absolute;top:300px;left:30px;width:40px;" src="images/sell/1.png" />
+		<img style="position:absolute;top:100px;left:120px;width:200px;" src="images/sell/5.png" />
+		<div class="box" style="height:330px;">&nbsp;</div>
+	</div>
+	<div class="title-div">
+		<span class="gradientblue1">卖家常见问题</span>
 	</div>
 	<div class="content-div">
-		<p class="a-title" data-in="q1">（1）壹折手游交易平台安全可信吗？<span style="float:right;">></span></p>
+		<p class="a-title" data-in="q1">上架后多久能卖掉？<span style="float:right;">></span></p>
 		<div id="q1" style="display:none;">
-			<p>壹折手游交易平台一直致力于：做信誉、做售后、做服务，以信誉求生存以服务求发展！</p>
-			<p>平台正规化公司化运营，为了保护卖家和买家的隐私,员工和公司全部签订保密协议。</p>
-			<p>平台一直不断完善改绑流程，提高客服工作技巧和素质来保障买卖双方权益。</p>
-			<p>平台有非挂机的壹折直播间：方便买卖双方验证客服微信和收款方式防止被骗。</p>
-			<p>平台有自己的官网：www.yizhewy.com买家可以更方便的搜索到自己想要的账号，卖家的账号也能更充分的展示，官网公开全面的展示平台的交易流程，交易须知常见问题等。</p>
+			<p>游戏角色装备宝宝齐全，价格合理当天即可卖掉。如果挂号后长时间无人咨询建议联系客服降价更新重新发布。</p>
 		</div>
-		<p class="a-title" data-in="q2">（2）客服会帮助验号吗？<span style="float:right;">></span></p>
+		<p class="a-title" data-in="q2">成交后多久给卖家打款？<span style="float:right;">></span></p>
 		<div id="q2" style="display:none;">
-			<p>壹折手游交易平台客服有义务帮买家验号，在充分保障卖家账号安全的前提下，买家可以要求客服上号截图账号上的装备宝宝，账号绑定情况等展示给买卖双方，验号合格后继续交易。</p>
+			<p>游戏换绑成功后打款到卖家指定的银行账号，一般24小时即可换绑成功，新签订合同的账号需要等我们收到合同确认无误后打款给卖家。打款慢投诉微信：ccbgz18</p>
 		</div>
-		<p class="a-title" data-in="q3">（3）具体的换绑流程是什么？<span style="float:right;">></span></p>
+		<p class="a-title" data-in="q3">卖号需要提供什么资料吗？？<span style="float:right;">></span></p>
 		<div id="q3" style="display:none;">
-			<p>壹折手游交易平台把梦幻手游账号分为四种类型:①无绑定账号 ②手机账号 ③签订合同账号 ④有绑定账号；卖家确认账号类型后，客服会发对应账号类型的详细交易流程给买卖双方。</p>
-		</div>
-		<p class="a-title" data-in="q4">（4）假如出现争议，买家想退款怎么处理？<span style="float:right;">></span></p>
-		<div id="q4" style="display:none;">
-			<p>首先买卖双方自己先协商，账号款由壹折手游交易平台暂时保管。如果协商不成就让壹折手游交易平台仲裁，壹折手游交易平台一定会保持公平公正根据双方提供的资料以及充分保证账号安全的前提下进行协调，买卖双方必须接受壹折手游交易平台的仲裁结果如果不信任壹折手游交易平台的请不要找我们中介。</p>
-		</div>
-		<p class="a-title" data-in="q5">（5）换绑后多久会给卖家打款？<span style="float:right;">></span></p>
-		<div id="q5" style="display:none;">
-			<p>24小时后买家确认资料换绑成功后，客服安排财务打款给卖家。打款慢投诉微信：ccbgz18</p>
+			<p>卖号的只需要扫码或者给账号密码让客服上号截图做图即可，成交后才会根据账号类型的不同需要卖家提供相应的资料。</p>
 		</div>
 	</div>
 </div>
 <script>
 $(document).ready(function(){
+	$(".box").click(function(){
+		$(".box1[data-roc=" + $(this).data("roc") + "]").toggle();
+		$(".down[data-roc=" + $(this).data("roc") + "]").toggle();
+	});
 	$(".a-title").click(function(){
 		$("div[id=" + $(this).data("in") + "]").toggle();
 	});
