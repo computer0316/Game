@@ -3,22 +3,39 @@
 use yii\helpers\Url;
 /* @var $this yii\web\View */
 
-$this->title = '约定中介交易简介及常见问题';
+$this->title = '小姐姐喊您卖号啦！';
 
 ?>
-
+<style>
+	.pink{
+		color:#f7564e;
+	}
+	table{
+		width:100%;
+		margin-top:10px;
+	}
+	table,tr,td{
+		border:1px solid #ddd;
+	}
+	td{
+		padding:3px;
+	}
+</style>
 
 <div>
-	<img style="width:100%;" src="images/5.jpg" />
+	<img style="width:100%;" src="images/3.jpg" />
 
 	<div class="title-div">
-		<span class="gradientblue">中介简介</span>
+		<span class="gradientblue1">我要卖号</span>
 	</div>
-	<div class="content-div">
-		<p>约定中介交易是指买卖双方自己约定好价格等交易条件，壹折手游交易平台做为买卖双方的中介，买家打款到平台指定的收款账号，客服确认收到款后，卖家配合客服把账号资料换绑成买家的资料，换绑成功后平台打款到卖家指定的收款账号，中介完成。</p>
-	</div>
+	<table>
+		<tr>
+			<td><span  class="pink">客服上架</span></td>
+			<td><span  class="pink">卖家须知</span></td>
+		</tr>
+	</table>
 	<div class="title-div">
-		<span class="gradientblue">收费标准</span>
+		<span class="gradientblue1">收费标准</span>
 	</div>
 	<div class="content-div">
 		<style>
@@ -39,37 +56,37 @@ $this->title = '约定中介交易简介及常见问题';
 			<tr>
 				<td>无绑定账号</td>
 				<td>交易金额*6%（最低150R 2K封顶）</td>
-				<td>双方约定</td>
+				<td>卖家</td>
 			</tr>
 			<tr>
 				<td>手机账号</td>
 				<td>交易金额*6%（最低150R 2K封顶）</td>
-				<td>双方约定</td>
+				<td>卖家</td>
 			</tr>
 			<tr>
 				<td>有绑定账号</td>
 				<td>交易金额*6%（最低150R 2K封顶）</td>
-				<td>双方约定</td>
+				<td>卖家</td>
 			</tr>
 			<tr>
 				<td>签合同账号</td>
 				<td>交易金额*8%（最低200R 3K封顶）</td>
-				<td>双方约定</td>
+				<td>卖家</td>
 			</tr>
 		</table>
 	</div>
 	<div class="title-div">
-		<span class="gradientblue">交易须知</span>
+		<span class="gradientblue1">挂号流程</span>
 	</div>
-	<div class="content-div">
-		<p>1.约定中介交易过程中，壹折手游交易平台是中介不是担保，买家自己承担交易所具有的风险。</p>
+	<div>
+		<p></p>
 		<p>2.签订合同的账号壹折手游交易平台提供找回包赔服务，但是卖家的身份证和相关资料只能提供给平台，否则无法签订合同。</p>
 		<p>3.壹折手游交易平台在中介交易过程中保持中立一定公平公正，充分保障买卖双方的权益，既要保护卖家隐私和账号安全，又要帮买家更换账号的一切资料。</p>
 		<p>4.买卖双方一定要按照客服的提示操作，卖家收到的手机验证码只能发给平台客服防止被骗。</p>
 		<p>5.中介过程中如果出现纠纷，并且双方协商无果，就让壹折手游交易平台主播仲裁，一定保持公平公正，买卖双方必须接受壹折手游平台的仲裁结果。</p>
 	</div>
 	<div class="title-div">
-		<span class="gradientblue">交易流程</span>
+		<span class="gradientblue1">不拿卖家差价</span>
 	</div>
 	<div class="content-div">
 		<p class="a-title">1.买家付款</p>

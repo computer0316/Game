@@ -126,6 +126,8 @@ use yii\widgets\ActiveForm;
 			margin:0 1.5%;
 		}
 </style>
+			echo '<a style="float:left;margin-left:10px;" href="javascript:history.back()"><img style="position:fixed;z-index:100;top:10px;width:20px;height:20px;" src="images/back.png" /></a>';
+			echo '<p style="color:#999;font-size:14px;">' . $this->title . '</p>';
 		<div id="fixed-top">
 			<div class="top-div">
 				商品详情

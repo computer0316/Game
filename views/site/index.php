@@ -158,7 +158,7 @@ $(function () {
 	<ul class="rslides" id="slider">
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '11'])?>"><img src="images/1.jpg" alt=""></a></li>
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '5'])?>"><img src="images/2.jpg" alt=""></a></li>
-		<li><a href="#"><img src="images/3.jpg" alt=""></a></li>
+		<li><a href="<?= Url::toRoute(['site/article', 'id' => '13'])?>"><img src="images/3.jpg" alt=""></a></li>
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '10'])?>"><img src="images/4.jpg" alt=""></a></li>
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '2'])?>"><img src="images/5.jpg" alt=""></a></li>
 		<li><a href="<?= Url::toRoute(['site/article', 'id' => '9'])?>"><img src="images/6.jpg" alt=""></a></li>
