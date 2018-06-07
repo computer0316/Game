@@ -338,7 +338,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div id="filter-div2" class="filter-div">
 		<ul class="ul1">
-	    	<li data-type="-1">不限</li>
+	    	<li data-type="-1">全部</li>
 			<li data-type="1">一区</li>
 			<li data-type="2">二区</li>
 			<li data-type="3">三区</li>
@@ -519,7 +519,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<a href="<?=Url::current(['district' => 160])?>"><li data-type="15">雪之歌</li></a>
 			<a href="<?=Url::current(['district' => 161])?>"><li data-type="15">琉璃城</li></a>
 			<a href="<?=Url::current(['district' => 162])?>"><li data-type="16">安卓混服</li></a>
-			<a href="<?=Url::current(['district' => -1])?>"><li data-type="-1">不限</li></li></a>
+			<a href="<?=Url::current(['district' => -1])?>"><li data-type="-1">全部</li></li></a>
 			<div class="cb"></div>
 		</ul>
 	</div>

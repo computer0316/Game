@@ -19,7 +19,6 @@ $this->title = '小姐姐喊您卖号啦！';
 	.box{
 		float:left;
 		width:100%;
-		margin-top:10px;
 	}
 	.box1{
 		float:left;
@@ -27,8 +26,9 @@ $this->title = '小姐姐喊您卖号啦！';
 		margin:0;
 		background:#f86d65;
 		width:90%;
-		margin-left:5%;
+		padding:0 5%;
 		border-radius:10px;
+		margin-bottom:10px;
 	}
 	table{
 		width:100%;
@@ -42,8 +42,7 @@ $this->title = '小姐姐喊您卖号啦！';
 	}
 	.check{
 		padding:0 5px;
-		border:1px solid #f7564e;
-		border-radius:10px;
+		margin:0;
 	}
 	.circle-div{
 		float:left;
@@ -71,8 +70,9 @@ $this->title = '小姐姐喊您卖号啦！';
 	}
 	.number{
 		float:left;
-		font-size:30px;
+		font-size:24px;
 		font-weight:bold;
+		width:20px;
 		margin:25px 5px 0 20px;
 	}
 	.guess{
@@ -84,6 +84,11 @@ $this->title = '小姐姐喊您卖号啦！';
 		width:20px;
 		float:right;
 		margin:30px;
+	}
+	.title-div{
+		float:left;
+		width:100%;
+		margin-top:20px;
 	}
 </style>
 
@@ -98,11 +103,11 @@ $this->title = '小姐姐喊您卖号啦！';
 		<a href="<?= Url::toRoute(['site/article', 'id'=> 14]) ?>"><p class="pink">卖家须知</p></a>
 	</div>
 	<div class="box" style="text-align:center;">
-		<span class="check">√</span>无差价
-		<span class="check">√</span>价格高
-		<span class="check">√</span>成交快
+		<img class="check" src="images/sell/005.png" />无差价
+		<img class="check" src="images/sell/005.png" />价格高
+		<img class="check" src="images/sell/005.png" />成交快
 	</div>
-	<div class="title-div" style="float:left;width:100%;margin:10px 0;">
+	<div class="title-div">
 		<span class="gradientblue1">收费标准</span>
 	</div>
 	<div class="box">
@@ -142,6 +147,7 @@ $this->title = '小姐姐喊您卖号啦！';
 				<td>卖家</td>
 			</tr>
 		</table>
+		<div style="height:15px;float:left:width:100%;">&nbsp;</div>
 	</div>
 	<div class="title-div">
 		<span class="gradientblue1">挂号流程</span>
@@ -156,7 +162,7 @@ $this->title = '小姐姐喊您卖号啦！';
 		<img class="right" src="images/up.png" />
 	</div>
 	<div class="box1" data-roc="1">
-		<p>平台客服上号截图制图 并且根据装备和宝宝服务器进行快速估价</p>
+		<p style="color:white;padding:0 10px;">平台客服上号截图制图 并且根据装备和宝宝服务器进行快速估价</p>
 	</div>
 	<div class="box" data-roc="2">
 		<p class="number">2</p>
@@ -168,7 +174,7 @@ $this->title = '小姐姐喊您卖号啦！';
 		<img class="right" src="images/up.png" />
 	</div>
 	<div class="box1" data-roc="2">
-		<p>确定好标价后 客服把商品上架到网站</p>
+		<p style="color:white;padding:0 10px;">确定好标价后 客服把商品上架到网站</p>
 	</div>
 	<div class="box" data-roc="3">
 		<p class="number">3</p>
@@ -180,7 +186,7 @@ $this->title = '小姐姐喊您卖号啦！';
 		<img class="right" src="images/up.png" />
 	</div>
 	<div class="box1" data-roc="3">
-		<p>买家询价 客服协助买卖双方谈价 谈好价格后买家打款 客服协助 买卖双方换绑资料</p>
+		<p style="color:white;padding:0 10px;">买家询价 客服协助买卖双方谈价 谈好价格后买家打款 客服协助 买卖双方换绑资料</p>
 	</div>
 	<div class="box" data-roc="4">
 		<p class="number">4</p>
@@ -192,32 +198,33 @@ $this->title = '小姐姐喊您卖号啦！';
 		<img class="right" src="images/up.png" />
 	</div>
 	<div class="box1" data-roc="4">
-		<p>24小时后买家确认换绑定成功 平台打款给买卖家 交易完成</p>
+		<p style="color:white;padding:0 10px;">24小时后买家确认换绑定成功 平台打款给买卖家 交易完成</p>
 	</div>
 	<div class="title-div">
 		<span class="gradientblue1">不拿卖家差价</span>
 	</div>
-	<div class="box" style="position:relative;">
-		<p style="width:90%;margin:5%;">如卖家发现有差价平台承诺100倍赔<span style="color:#05d2e0;">（差价是指例如实际成交价格是1.3万,但是平台告诉卖家成交价格是1万,3000元就是差价）</span></p>
-		<img style="position:absolute;top:140px;left:10px;" src="images/sell/6.png" />
-		<img style="position:absolute;top:100px;left:30px;width:40px;" src="images/sell/4.png" />
-		<div class="box" style="height:210px;">&nbsp;</div>
+	<div class="box">
+		<p style="width:90%;margin:10px 5%;">如卖家发现有差价平台承诺100倍赔<span style="color:#05d2e0;">（差价是指例如实际成交价格是1.3万,但是平台告诉卖家成交价格是1万,3000元就是差价）</span></p>
+		<img style="float:left;width:40px;margin-left:43px;" src="images/sell/4.png" />
+		<img style="width:70%;float:left;" src="images/sell/6.png" />
+		<div style="height:15px;float:left;width:100%;">&nbsp;</div>
 	</div>
 	<div class="title-div">
 		<span class="gradientblue1">保护卖家隐私</span>
 	</div>
-	<div class="box" style="position:relative;">
-		<p style="width:90%;margin:5%;">除必要的换帮资料外 平台在没有取得卖家同意下不泄漏任何卖家信息 否则承担相</p>
-		<img style="position:absolute;top:100px;left:30px;width:40px;" src="images/sell/3.png" />
-		<img style="position:absolute;top:200px;left:30px;width:40px;" src="images/sell/2.png" />
-		<img style="position:absolute;top:300px;left:30px;width:40px;" src="images/sell/1.png" />
-		<img style="position:absolute;top:100px;left:120px;width:200px;" src="images/sell/5.png" />
-		<div class="box" style="height:330px;">&nbsp;</div>
+	<div class="box">
+		<p style="width:90%;margin:10px 5%;">除必要的换帮资料外 平台在没有取得卖家同意下不泄漏任何卖家信息 否则承担相</p>
+		<div style="float:left;width:30%;margin-left:43px;">
+			<img style="width:40px;margin:15px;float:left;clear:both;" src="images/sell/3.png" />
+			<img style="width:40px;margin:15px;float:left;clear:both;" src="images/sell/2.png" />
+			<img style="width:40px;margin:15px;float:left;clear:both;" src="images/sell/1.png" />
+		</div>
+		<img style="width:200px;" src="images/sell/5.png" />
 	</div>
 	<div class="title-div">
 		<span class="gradientblue1">卖家常见问题</span>
 	</div>
-	<div class="content-div">
+	<div class="content-div" style="float:left;margin:20px 2.5%;">
 		<p class="a-title" data-in="q1">上架后多久能卖掉？<span style="float:right;">></span></p>
 		<div id="q1" style="display:none;">
 			<p>游戏角色装备宝宝齐全，价格合理当天即可卖掉。如果挂号后长时间无人咨询建议联系客服降价更新重新发布。</p>
