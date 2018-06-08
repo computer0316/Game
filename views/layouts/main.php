@@ -50,7 +50,7 @@ use yii\helpers\VarDumper;
 		<p>壹折手游交易平台</p>
 		<p>&copy;www.yizhecbg.com</p>
 		<p>唐山市壹折信息技术有限公司</p>
-		<p>冀ICP备00000000号</p>
+		<p>冀ICP备18018647号</p>
 	</div>
 	<div id="footer-div" class="footer-div">
 		<a href="?r=site/index">
