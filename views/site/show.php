@@ -125,15 +125,21 @@ use yii\widgets\ActiveForm;
 			width:30%;
 			margin:0 1.5%;
 		}
+		.p-3-active{
+			float:left;
+			width:30%;
+			margin:0 1.5%;
+			color:red;
+		}
 </style>
 			echo '<a style="float:left;margin-left:10px;" href="javascript:history.back()"><img style="position:fixed;z-index:100;top:10px;width:20px;height:20px;" src="images/back.png" /></a>';
 			echo '<p style="color:#999;font-size:14px;">' . $this->title . '</p>';
 		<div id="fixed-top">
 			<div class="top-div">
-				商品详情
+				<span style="font-size:14px;font-weight:normal;">商品详情</span>
 			</div>
 			<div>
-				<p style="text-decoration:underline;" class="p-3">详细信息</p>
+				<p class="p-3-active">详细信息</p>
 				<a href="<?= Url::toRoute(['site/article', 'id' => 12]) ?>"><p class="p-3">交易流程</p></a>
 				<a href="<?= Url::toRoute(['site/article', 'id' => 2]) ?>"><p class="p-3">常见问题</p></a>
 			</div>

@@ -48,7 +48,7 @@ use yii\helpers\VarDumper;
 	<div class="copy">
 		<p>首页&nbsp;|&nbsp;我要买&nbsp;|&nbsp;我要卖&nbsp;|&nbsp;联系客服</p>
 		<p>壹折手游交易平台</p>
-		<p>&copy;www.yizhecbg.com</p>
+		<p>&copy;www.yizhewy.com</p>
 		<p>唐山市壹折信息技术有限公司</p>
 		<p>冀ICP备18018647号</p>
 	</div>
@@ -69,12 +69,10 @@ use yii\helpers\VarDumper;
 			<img class="footerimg" src="images/ke.png" />
 			<p class="footer-p">客服</p>
 		</div>
-		<a href="?r=site/readme">
-		<div>
+		<div id="shuoming-button">
 			<img class="footerimg" src="images/shuo.png" />
 			<p class="footer-p">说明</p>
 		</div>
-		</a>
 	</div>
 </div>
 <style>
@@ -86,7 +84,7 @@ use yii\helpers\VarDumper;
 		z-index:10;
 		background:black;
 	}
-	#kefu{
+	.popup{
 		display:none;
 		position:absolute;
 		width:65%;
@@ -142,16 +140,35 @@ use yii\helpers\VarDumper;
 		color:white;
 		opaCity:0.5;
 	}
+	.shuoming{
+		width:80%;
+		height:35px;
+		font-size:12px;
+		color:white;
+		margin-left:15px;
+		line-height:35px;
+		margin:1% 10%;
+		background:url(images/shuoming.png) no-repeat;
+		background-size: 100% 100%;
+		margin-bottom:10px;
+	}
 </style>
 <div id="kefu-mask">&nbsp;</div>
 <p id="message"></p>
-<div id="kefu">
+<div id="kefu" class="popup">
 	<img class="kefu-title" src="images/kefutitle.png" />
 	<img class="kefu-img" src="images/wxh.jpg" />
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />订单微信：ccbgz16<span data-clipboard-text="Y767076" class="copy">复制</span></p>
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />寄售微信：Y670767<span data-clipboard-text="Y670767" class="copy">复制</span></p>
 	<p class="wx"><img class="wx-img" src="images/wx.jpg" />售后微信：ccbgz18<span data-clipboard-text="ccbgz18" class="copy">复制</span></p>
 	<p style="margin:10px;font-size:12px;color:deepskyblue;">网站仅供看号选号 议价交易请加微信</p>
+</div>
+<div id="shuoming" class="popup">
+	<img class="kefu-title" src="images/shuomingtitle.png" />
+	<img class="kefu-img" src="images/logo.png" />
+	<a href="?r=site/article&id=2"><div class="shuoming">签订合同 - 买家常见问题</div></a>
+	<a href="?r=site/article&id=3"><div class="shuoming">签订合同 - 卖家常见问题</div></a>
+	<a href="?r=site/article&id=4"><div class="shuoming">约定中介交易简介及常见问题</div></a>
 </div>
 <script>
 	/* 复制客服ID到剪贴板 */
@@ -165,14 +182,16 @@ use yii\helpers\VarDumper;
 	});
 	$(document).ready(function(){
 		/* 弹出客服蒙版，客服DIV */
-		$("#kefu-button").click(function(){showMask();});
+		$("#kefu-button").click(function(){showKefu();});
+		$("#shuoming-button").click(function(){showShuo();});
 		$("#kefu-p").click(function(){showMask();});
 		$("#kefu-mask").click(function(){
 			$("#kefu-mask").css('display', "none");
 			$("#kefu").css("display","none");
+			$("#shuoming").css("display","none");
 		});
 	});
-	function showMask(){
+	function showKefu(){
 			$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
 			var top = ($(window).height() - $("#kefu").height())/2;
         	var left = ($(window).width() - $("#kefu").width())/2;
@@ -180,6 +199,15 @@ use yii\helpers\VarDumper;
         	var scrollLeft = $(document).scrollLeft();
         	$("#kefu").css({position: 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();
 			$("#kefu").css("display","block");
+	}
+	function showShuo(){
+			$("#kefu-mask").css('width', 760).css('height', $(document).height()).css('display', 'block');
+			var top = ($(window).height() - $("#kefu").height())/2;
+        	var left = ($(window).width() - $("#kefu").width())/2;
+        	var scrollTop = $(document).scrollTop();
+        	var scrollLeft = $(document).scrollLeft();
+        	$("#shuoming").css({position: 'absolute', 'top' : top + scrollTop, left : left + scrollLeft } ).show();
+			$("#shuoming").css("display","block");
 	}
 </script>
 <?php $this->endBody() ?>

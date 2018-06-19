@@ -17,6 +17,14 @@ class Picture extends \yii\db\ActiveRecord
 		$this->path			= $path;
 		$this->save();
 	}
+
+	public function deletePics($id){
+		$pics = $this->find()->where(['equipmentid' => $id])->all();
+		foreach($pics as $pic){
+			unlink($pic->path);
+			$pic->delete();
+		}
+	}
     /**
      * @inheritdoc
      */

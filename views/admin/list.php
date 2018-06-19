@@ -403,19 +403,19 @@
 			echo '<ul id="list">';
 			foreach($equipments as $e){
 				if($e->role <> ''){
-					echo '<li class="role">\n';
+					echo '<li class="role">';
 				}
 				elseif($e->pets <> ''){
-					echo '<li class="pets">\n';
+					echo '<li class="pets">';
 				}
 				elseif($e->arm <> ''){
-					echo '<li class="arm">\n';
+					echo '<li class="arm">';
 				}
 				elseif($e->defence  <> ''){
-					echo '<li class="defence">\n';
+					echo '<li class="defence">';
 				}
 				else{
-					echo '<li class="coin">\n';
+					echo '<li class="coin">';
 				}
 
 					echo '<a onclick="return confirm(\'确认要删除吗？\')" href="' . Url::toRoute(['admin/delete', 'id' => $e->id]) . '"><span>删除</span></a>';

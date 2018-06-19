@@ -64,6 +64,8 @@ class AdminController extends Controller
     	}
     	if($user->admin == 1 ){
     		$e = Equipment::findOne($id);
+    		$pic = new Picture();
+    		$pic->deletePics($id);
     		$e->delete($id);
     		return $this->redirect(Url::toRoute("admin/list"));
 		}
@@ -210,7 +212,7 @@ class AdminController extends Controller
 
 	    	if($model->load(yii::$app->request->post()) && $model->save()){
 	        	$upload->imageFiles = UploadedFile::getInstances($upload, 'imageFiles');
-	            $filepaths = $upload->upload(1312);
+	            $filepaths = $upload->upload();
 
 	            foreach($filepaths as $filepath){
 					$pic = new Picture();

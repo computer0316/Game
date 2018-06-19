@@ -191,7 +191,7 @@ $(function () {
 	</a>
 </div>
 <div class="container">
-	<a href="?r=site/article&id=1">
+	<a href="<?= Url::toRoute(['site/article', 'id' => '10'])?>">
 		<div class="four-box">
 			<img src="sysimg/index/ffqi.png" />
 			<p>分期购号</p>
